@@ -1,9 +1,9 @@
 export default () => {
-const viewProfile = `
+  const viewProfile = `
     <h1> viewProfile </h1>
 `;
-const divElement = document.createElement('div');
-divElement.setAttribute('id', 'message');
-divElement.innerHTML = viewProfile;
-return divElement;
-   }
+  const divElement = document.createElement('div');
+  divElement.setAttribute('id', 'message');
+  divElement.innerHTML = viewProfile;
+  return divElement;
+};
