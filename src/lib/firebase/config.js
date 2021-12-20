@@ -1,7 +1,6 @@
-// Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-//import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+// import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 // import { firestore } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js'
 
 const firebaseConfig = {
@@ -15,5 +14,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const swapp = initializeApp(firebaseConfig);
-
-
+export { swapp };

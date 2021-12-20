@@ -1,9 +1,9 @@
 export default () => {
-const viewRegister = `
+  const viewRegister = `
     <h1> viewRegister </h1>
 `;
-const divElement = document.createElement('div');
-divElement.setAttribute('id', 'message');
-divElement.innerHTML = viewRegister;
-return divElement;
-   }
+  const divElement = document.createElement('div');
+  divElement.setAttribute('id', 'message');
+  divElement.innerHTML = viewRegister;
+  return divElement;
+};
