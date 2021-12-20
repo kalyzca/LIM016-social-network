@@ -14,6 +14,7 @@ export default () => {
     </form>
   `;
   const divElement = document.createElement('div');
+  divElement.setAttribute('id', 'message');
   divElement.innerHTML = viewLogin;
   return divElement;
 };
