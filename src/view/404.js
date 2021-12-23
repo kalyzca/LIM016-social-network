@@ -6,7 +6,7 @@ export default () => {
     para errores y vuelva a intentarlo.</p>
 `;
   const divElement = document.createElement('div');
-  divElement.setAttribute('id', 'message');
+  divElement.setAttribute('id', 'content');
   divElement.innerHTML = viewDifferent;
   return divElement;
 };

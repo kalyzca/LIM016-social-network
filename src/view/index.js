@@ -1,15 +1,15 @@
 // IMPORTAR TODAS LAS VISTAS
-import Login from './login.js';
-import News from './news.js';
-import Profile from './profile.js';
-import Registro from './registro.js';
+import { login } from './login.js';
+import { news } from './news.js';
+import { profile } from './profile.js';
+import { profileRegister } from './profileRegister.js';
 import Different from './404.js';
 
 const components = {
-  login: Login,
-  news: News,
-  profile: Profile,
-  registro: Registro,
+  Login: login,
+  News: news,
+  Profile: profile,
+  Registro: profileRegister,
   different: Different,
 };
 

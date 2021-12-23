@@ -8,16 +8,16 @@ const changeView = (route) => {
   mainContainer.innerHTML = ' ';
   switch (route) {
     case '#/': {
-      return mainContainer.appendChild(components.news());
+      return mainContainer.appendChild(components.News());
     }
     case '#/login': {
-      return mainContainer.appendChild(components.login());
+      return mainContainer.appendChild(components.Login());
     }
     case '#/registro': {
-      return mainContainer.appendChild(components.registro());
+      return mainContainer.appendChild(components.Registro());
     }
     case '#/profile': {
-      return mainContainer.appendChild(components.profile());
+      return mainContainer.appendChild(components.Profile());
     }
     default:
       return mainContainer.appendChild(components.different());
