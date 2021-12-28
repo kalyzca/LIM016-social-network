@@ -1,6 +1,7 @@
-// eslint-disable-next-line import/no-unresolved
 import { createUser } from '../lib/firebase/sign-up.js';
+import { saveUser } from '../lib/firebase/firestore.js';
 
+// vista del login
 const login = () => {
   const viewLogin = `
     <form id='formLogin'>
@@ -14,15 +15,34 @@ const login = () => {
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'content');
   divElement.innerHTML = viewLogin;
-  const save = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
-  save.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const email = document.querySelector('#email');
-    const pass = document.querySelector('#pass');
-    // console.log(email.value, pass.value);
-    createUser(email.value, pass.value);
-  });
-
   return divElement;
 };
-export { login };
+
+// obteniendo el correoelectrónico y la contraseña
+const getCredential = async (correo, contrasena) => {
+  // eslint-disable-next-line no-console
+  console.log(correo, contrasena);
+  // llamando a createUser con firebase y saveUser que guarda el usuario creado con firestore
+  // eslint-disable-next-line no-console
+  await createUser(correo, contrasena);
+  await saveUser(correo, contrasena);
+  // retorno del correo y contraseña
+  return (correo, contrasena);
+};
+
+// creando credenciales (correo y contraseña)
+const createCredential = (mycallback) => {
+  const formLogin = document.getElementById('formLogin');
+  const email = document.getElementById('email');
+  const password = document.getElementById('pass');
+  // evento para el boton login
+  formLogin.addEventListener('submit', async () => {
+    const valueEmail = email.value;
+    const valuePassword = password.value;
+    email.value = '';
+    password.value = '';
+    await mycallback(valueEmail, valuePassword);
+  });
+};
+
+export { login, createCredential, getCredential };
