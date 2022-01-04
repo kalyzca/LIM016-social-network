@@ -1,5 +1,5 @@
 import {
-  getFirestore, addDoc, collection,
+  getFirestore, collection, addDoc, getDocs,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
@@ -8,7 +8,7 @@ import { swapp } from './config.js';
 // Initialize Cloud Firestore through Firebase
 const db = getFirestore(swapp);
 
-// guardando usuarios creados en firestore
+// agregando datos de los usarios en firestore
 const saveUser = async (email, password) => {
   // objeto dataUSer que contiene los datos del usuario
   const dataUser = {
@@ -26,4 +26,13 @@ const saveUser = async (email, password) => {
   }
 };
 
-export { saveUser };
+// leyendo dato de los usuarios en firestore
+const queryUser = async () => {
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  querySnapshot.forEach((doc) => {
+    // eslint-disable-next-line no-console
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+};
+
+export { saveUser, queryUser };

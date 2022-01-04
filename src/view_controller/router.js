@@ -1,5 +1,6 @@
 import { components } from '../view/index.js';
-import { createCredential, getCredential } from '../view/login.js';
+import { createCredential, getCredential } from '../view/sign_up.js';
+import { signIn } from '../view/login.js';
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
@@ -13,6 +14,11 @@ const changeView = (route) => {
     }
     case '#/login': {
       mainContainer.appendChild(components.Login());
+      signIn();
+      break;
+    }
+    case '#/signUp': {
+      mainContainer.appendChild(components.SignUp());
       createCredential(getCredential);
       break;
     }
