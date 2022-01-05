@@ -1,5 +1,6 @@
-// eslint-disable-next-line import/no-unresolved
 import { components } from '../view/index.js';
+import { createCredential, getCredential } from '../view/sign_up.js';
+import { signIn } from '../view/login.js';
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
@@ -8,19 +9,29 @@ const changeView = (route) => {
   mainContainer.innerHTML = ' ';
   switch (route) {
     case '#/': {
-      return mainContainer.appendChild(components.News());
+      mainContainer.appendChild(components.News());
+      break;
     }
     case '#/login': {
-      return mainContainer.appendChild(components.Login());
+      mainContainer.appendChild(components.Login());
+      signIn();
+      break;
     }
-    case '#/registro': {
-      return mainContainer.appendChild(components.Registro());
+    case '#/signUp': {
+      mainContainer.appendChild(components.SignUp());
+      createCredential(getCredential);
+      break;
     }
+    // case '#/registro': {
+    //   return mainContainer.appendChild(components.Registro());
+    // }
     case '#/profile': {
-      return mainContainer.appendChild(components.Profile());
+      mainContainer.appendChild(components.Profile());
+      break;
     }
     default:
-      return mainContainer.appendChild(components.different());
+      mainContainer.appendChild(components.different());
+      break;
   }
 };
 export { changeView };

@@ -1,0 +1,103 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poiret One', cursive;
+  font-weight: 900;
+}
+.bienvenida{
+  justify-content: space-between;
+}
+nav{
+  background-color: #B9A6E0;
+}
+.bienvenida, nav{
+  border: 1px solid #99337a;
+  padding: 0.5rem;
+}
+.items{
+  justify-content: flex-end;
+}
+.bienvenida, .items, .menu__items{
+  display: flex;
+}
+.items>li, .menu__items>li{
+  list-style-type: none;
+}
+.items>li>a, .menu__items>li>a{
+  text-decoration: none;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+.items>li>a{
+  color: #B9A6E0;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.menu__items>li>a{
+  color: #fff;
+}
+.menu__items{
+  justify-content: center;
+}
+main{
+  width: auto;
+  
+}
+main{
+  background: #EAC9E2;;
+}
+
+.titulo{
+  padding: 3rem 1rem 0;
+  font-size: 3rem;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+form{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+form >input[type ='text'], input[type ='password']{
+  justify-self: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  width: 15.625rem;
+  height: 2rem;
+  font-family: 'Poiret One', cursive;
+}
+form >input[type ='text']{
+  margin-top: 1rem;
+}
+form>input[type ='submit']{
+  justify-self: center;
+  margin: 0.5rem 0;
+  width: fit-content;
+  height: auto;
+  background-color: #8BDFE2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.iconos_sesion{
+  display: inline-block;
+  justify-self: center;
+  margin-top: 1rem;
+}
+
+.forgetpass{
+  font-size: 0.6rem;
+  text-align: center;
+}
+.registerUser{
+  font-size: 0.75rem;
+  text-align: center;
+}
