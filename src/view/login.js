@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import { createUser } from '../lib/firebase/sign-up.js';
+import { loginUser } from '../lib/firebase/auth.js'
 
 const login = () => {
   const viewLogin = `
@@ -8,7 +7,8 @@ const login = () => {
       <input type='text' placeholder='Ingrese su usuario' id ='email' >
       <label for='pass'>Contraseña</label>
       <input type='password' placeholder='Ingrese su contraseña' id = 'pass'>
-      <input type='submit' value='LogIn' id='save' >
+      <input type='submit' value='LogIn' id='save'>
+      <a href="#/sign-up">¿No tienes cuenta?</a>
     </form>
     `;
   const divElement = document.createElement('div');
@@ -20,9 +20,11 @@ const login = () => {
     const email = document.querySelector('#email');
     const pass = document.querySelector('#pass');
     // console.log(email.value, pass.value);
-    createUser(email.value, pass.value);
-  });
-
+    loginUser(email.value, pass.value);
+    window.location.hash = '#/news';
+  }); 
+  
   return divElement;
 };
+
 export { login };

@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { components } from '../view/index.js';
+import { authSingUp } from '../view/sign-up.js'
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
@@ -7,10 +8,10 @@ const changeView = (route) => {
   // para que no agregue nada porque solo quiero que cambie
   mainContainer.innerHTML = ' ';
   switch (route) {
-    case '#/': {
+    case '#/news': {
       return mainContainer.appendChild(components.News());
     }
-    case '#/login': {
+    case '#/': {
       return mainContainer.appendChild(components.Login());
     }
     case '#/registro': {
@@ -19,8 +20,13 @@ const changeView = (route) => {
     case '#/profile': {
       return mainContainer.appendChild(components.Profile());
     }
+    case '#/sign-up':{
+      mainContainer.appendChild(components.SignUp());
+      authSingUp();
+    }
     default:
       return mainContainer.appendChild(components.different());
+
   }
 };
 export { changeView };
