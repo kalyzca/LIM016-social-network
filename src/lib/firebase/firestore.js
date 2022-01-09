@@ -1,38 +1,42 @@
 import {
-  getFirestore, collection, addDoc, getDocs,
-// eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+  getFirestore,
+  collection,
+  addDoc,
+  // doc,
+  // getDoc,
+}// eslint-disable-next-line import/no-unresolved
+  from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 import { swapp } from './config.js';
 
-// Initialize Cloud Firestore through Firebase
-const db = getFirestore(swapp);
+const db = getFirestore(swapp); // inicializar la BD
+// const isVerifyUser = (email) =>{}
 
-// agregando datos de los usarios en firestore
-const saveUser = async (email, password) => {
-  // objeto dataUSer que contiene los datos del usuario
-  const dataUser = {
-    correo: email,
-    contrasena: password,
-  };
-
+const saveUser = async (email, password, user) => {
   try {
-    const docRef = await addDoc(collection(db, 'users'), dataUser);
+    /* const refer = doc(db, "users", email);
+    const docSnap = await getDoc(refer);
+      if (docSnap.exists()) {
+        console.log(email, 'holaaa');
+        console.log("Document data:", docSnap.data());
+      }
+      else {console.log("No such document!");
+      // doc.data() will be undefined in this case
+    } */
+    const docRef = await addDoc(collection(db, 'users'), {
+      email,
+      password, // nuevo doc con su par clave-valor
+      user,
+    });
     // eslint-disable-next-line no-console
-    console.log('Documento creado con ID: ', docRef.id);
+    console.log('Documento escrito con su ID: ', docRef.id);
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error('Error agregando el documento: ', e);
+    console.error('Error al añadir el documento: ', e);
   }
 };
 
-// leyendo dato de los usuarios en firestore
-const queryUser = async () => {
-  const querySnapshot = await getDocs(collection(db, 'users'));
-  querySnapshot.forEach((doc) => {
-    // eslint-disable-next-line no-console
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
+export {
+  saveUser,
+  // isVerifyUser
 };
-
-export { saveUser, queryUser };

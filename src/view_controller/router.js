@@ -1,37 +1,36 @@
 import { components } from '../view/index.js';
-import { createCredential, getCredential } from '../view/sign_up.js';
-import { signIn } from '../view/login.js';
+import { printSignUp } from '../view/sign-up.js';
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
   const mainContainer = document.getElementById('mainContainer');
   // para que no agregue nada porque solo quiero que cambie
   mainContainer.innerHTML = ' ';
+
   switch (route) {
-    case '#/': {
+    case '#/news': {
       mainContainer.appendChild(components.News());
       break;
     }
-    case '#/login': {
+    case '#/': {
       mainContainer.appendChild(components.Login());
-      signIn();
       break;
     }
-    case '#/signUp': {
-      mainContainer.appendChild(components.SignUp());
-      createCredential(getCredential);
+    case '#/registro': {
+      mainContainer.appendChild(components.Registro());
       break;
     }
-    // case '#/registro': {
-    //   return mainContainer.appendChild(components.Registro());
-    // }
     case '#/profile': {
       mainContainer.appendChild(components.Profile());
       break;
     }
+    case '#/sign-up': {
+      mainContainer.appendChild(components.SignUp());
+      printSignUp();
+      break;
+    }
     default:
       mainContainer.appendChild(components.different());
-      break;
   }
 };
 export { changeView };

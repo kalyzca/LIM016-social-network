@@ -1,52 +1,71 @@
 *{
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  font-family: 'Poiret One', cursive;
-  font-weight: 900;
+  box-sizing: border-box;  
 }
-.bienvenida{
-  justify-content: space-between;
+@font-face {
+  /* trabaja con 300, 400, 700 */
+  font-family: 'Sulphur Point';
+  src:  url('./fonts/SulphurPoint-Light.ttf'),
+        url('./fonts/SulphurPoint-Regular.ttf'),
+        url('./fonts/SulphurPoint-Bold.ttf');
 }
-nav{
-  background-color: #B9A6E0;
+
+body{
+  font-family: 'Sulphur Point', sans-serif;
+  font-weight: 300;
 }
-.bienvenida, nav{
-  border: 1px solid #99337a;
-  padding: 0.5rem;
+.name__Page{
+  justify-content: center;
+  background-color: #8BDFE2;
 }
 .items{
-  justify-content: flex-end;
+  justify-content: center;
+  /* background-color: #fff; */
+  background-color: rgb(139, 223, 226, 0.5);
 }
-.bienvenida, .items, .menu__items{
+/* nav{
+  background-color: #fff;
+} */
+
+footer{
+  background-color: #B9A6E0;
+  justify-content: center;
+  color:#fff;
+}
+.name__Page,.items, .menu__items, footer{
   display: flex;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
-.items>li, .menu__items>li{
+.saludosw {
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  
+}
+.menu__items>li{
   list-style-type: none;
 }
-.items>li>a, .menu__items>li>a{
+.menu__items>li>a{
   text-decoration: none;
   padding: 0.5rem;
-  font-size: 0.8rem;
-}
-.items>li>a{
-  color: #B9A6E0;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-.menu__items>li>a{
-  color: #fff;
+  font-size: 0.9rem;
+
+  /* color: #B9A6E0; */
+  /* color: #8BDFE2; */
+  /* text-shadow: 0px 4px 4px rgba(139,223, 226, 0.25); */
+  font-weight: bold;
 }
 .menu__items{
   justify-content: center;
 }
 main{
   width: auto;
-  
+  text-align: center;
+  background:#fff;
 }
-main{
-  background: #EAC9E2;;
-}
-
 .titulo{
   padding: 3rem 1rem 0;
   font-size: 3rem;
@@ -56,7 +75,8 @@ main{
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 form{
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -70,9 +90,9 @@ form >input[type ='text'], input[type ='password']{
   height: 2rem;
   font-family: 'Poiret One', cursive;
 }
-form >input[type ='text']{
+/* form >input[type ='text']{
   margin-top: 1rem;
-}
+} */
 form>input[type ='submit']{
   justify-self: center;
   margin: 0.5rem 0;
@@ -87,6 +107,9 @@ form>input[type ='submit']{
   font-size: 1.1rem;
   font-weight: bold;
 }
+.formLogin{
+  background-color: pink;
+}
 .iconos_sesion{
   display: inline-block;
   justify-self: center;
@@ -95,9 +118,8 @@ form>input[type ='submit']{
 
 .forgetpass{
   font-size: 0.6rem;
-  text-align: center;
+  text-align: right;
 }
-.registerUser{
-  font-size: 0.75rem;
+.btn-registerUser{
   text-align: center;
 }
