@@ -2,66 +2,61 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } // eslint-disable-next-line import/no-unresolved
   from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
+// eslint-disable-next-line import/no-unresolved
 import { swapp } from './config.js';
 
-// initialize auth
 const auth = getAuth(swapp);
-
-// creando usuarios al registrarse con correo y contraseña
-const createUser = async (correo, contrasena) => {
-  await createUserWithEmailAndPassword(auth, correo, contrasena)
-    .then((userCredential) => {
-      // Signed in
-      const userId = userCredential.user.uid;
-      const userEmail = userCredential.user.email;
-      const user = userCredential.user;
-      // eslint-disable-next-line no-console
-      console.log(userId, userEmail, user);
-      // eslint-disable-next-line no-console
-      console.log('Usuario registrado');
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      const errorCode = error.code;
-      if ((errorCode === 'auth/email-already-in-use') || (errorMessage === 'Firebase: Error (auth/email-already-in-use')) {
-        // eslint-disable-next-line no-console
-        console.error('Email ya existe, por favor digite otro.');
-        window.location.hash = '#/';
-      }
-      if ((errorCode === 'auth/invalid-email') || (errorMessage === 'Firebase: Error (auth/invalid-email)')) {
-        // eslint-disable-next-line no-console
-        console.log('Email no válido', errorCode);
-        // eslint-disable-next-line no-console
-        console.log(errorMessage);
-        window.location.hash = '#/';
-      }
-    });
+// SIGN-UP
+export const createUser = async (email, password) => {
+  await createUserWithEmailAndPassword(auth, email, password);
 };
 
-// Acceso de usuarios existente con correo y contraseña para iniciar sesión.
-const signInUser = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
+// SIGN-IN
+export const loginUser = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password)
+
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
-      const userEmail = userCredential.user.email;
-      const userId = userCredential.user.uid;
       // eslint-disable-next-line no-console
-      console.log(userId, userEmail, user);
-      window.location.hash = '#/';
+      console.log(email);
       // eslint-disable-next-line no-console
-      console.log('Usuario ha iniciado sesión');
+      console.log(user);
+      // eslint-disable-next-line no-console
+      console.log('USTED A INICIADO SESION');
     // ...
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // eslint-disable-next-line no-console
-      console.log('Error: ', errorCode, errorMessage);
+      // const errorMessage = error.message;
+      if (errorCode === 'auth/weak-password') {
+        // eslint-disable-next-line no-alert
+        alert('The password is too weak.');
+      } else if (errorCode === 'auth/invalid-email') {
+        // eslint-disable-next-line no-alert
+        alert('The email is too weak.');
+      } else if (errorCode === 'auth/operation-not-allowed') {
+        // eslint-disable-next-line no-alert
+        alert('The operation is not allowed');
+      }
+    // console.log(error);
     });
 };
-
-export { createUser, signInUser };
+// SEE
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // eslint-disable-next-line no-console
+    console.log(uid);
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
