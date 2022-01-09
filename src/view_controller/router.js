@@ -31,6 +31,7 @@ const changeView = (route) => {
     }
     default:
       mainContainer.appendChild(components.different());
+      break;
   }
 };
 export { changeView };
