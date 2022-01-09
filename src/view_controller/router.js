@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { components } from '../view/index.js';
 import { authSingUp } from '../view/sign-up.js'
 
@@ -7,6 +6,7 @@ const changeView = (route) => {
   const mainContainer = document.getElementById('mainContainer');
   // para que no agregue nada porque solo quiero que cambie
   mainContainer.innerHTML = ' ';
+
   switch (route) {
     case '#/news': {
       return mainContainer.appendChild(components.News());
@@ -15,10 +15,17 @@ const changeView = (route) => {
       return mainContainer.appendChild(components.Login());
     }
     case '#/registro': {
-      return mainContainer.appendChild(components.Registro());
+      mainContainer.appendChild(components.Registro());
+      break;
     }
     case '#/profile': {
-      return mainContainer.appendChild(components.Profile());
+      mainContainer.appendChild(components.Profile());
+      break;
+    }
+    case '#/sign-up': {
+      mainContainer.appendChild(components.SignUp());
+      printSignUp();
+      break;
     }
     case '#/sign-up':{
       mainContainer.appendChild(components.SignUp());

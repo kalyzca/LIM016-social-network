@@ -1,0 +1,125 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;  
+}
+@font-face {
+  /* trabaja con 300, 400, 700 */
+  font-family: 'Sulphur Point';
+  src:  url('./fonts/SulphurPoint-Light.ttf'),
+        url('./fonts/SulphurPoint-Regular.ttf'),
+        url('./fonts/SulphurPoint-Bold.ttf');
+}
+
+body{
+  font-family: 'Sulphur Point', sans-serif;
+  font-weight: 300;
+}
+.name__Page{
+  justify-content: center;
+  background-color: #8BDFE2;
+}
+.items{
+  justify-content: center;
+  /* background-color: #fff; */
+  background-color: rgb(139, 223, 226, 0.5);
+}
+/* nav{
+  background-color: #fff;
+} */
+
+footer{
+  background-color: #B9A6E0;
+  justify-content: center;
+  color:#fff;
+}
+.name__Page,.items, .menu__items, footer{
+  display: flex;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.saludosw {
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  
+}
+.menu__items>li{
+  list-style-type: none;
+}
+.menu__items>li>a{
+  text-decoration: none;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+
+  /* color: #B9A6E0; */
+  /* color: #8BDFE2; */
+  /* text-shadow: 0px 4px 4px rgba(139,223, 226, 0.25); */
+  font-weight: bold;
+}
+.menu__items{
+  justify-content: center;
+}
+main{
+  width: auto;
+  text-align: center;
+  background:#fff;
+}
+.titulo{
+  padding: 3rem 1rem 0;
+  font-size: 3rem;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form >input[type ='text'], input[type ='password']{
+  justify-self: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  width: 15.625rem;
+  height: 2rem;
+  font-family: 'Poiret One', cursive;
+}
+/* form >input[type ='text']{
+  margin-top: 1rem;
+} */
+form>input[type ='submit']{
+  justify-self: center;
+  margin: 0.5rem 0;
+  width: fit-content;
+  height: auto;
+  background-color: #8BDFE2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.formLogin{
+  background-color: pink;
+}
+.iconos_sesion{
+  display: inline-block;
+  justify-self: center;
+  margin-top: 1rem;
+}
+
+.forgetpass{
+  font-size: 0.6rem;
+  text-align: right;
+}
+.btn-registerUser{
+  text-align: center;
+}

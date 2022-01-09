@@ -2,7 +2,8 @@ import { loginUser } from '../lib/firebase/auth.js'
 
 const login = () => {
   const viewLogin = `
-    <form id='formLogin'>
+    <form id='formLogin' class = 'formLogin'>
+      <h2 class = 'titulo'>Sinchi Warmi</h2>
       <label for='email'>Usuario </label>
       <input type='text' placeholder='Ingrese su usuario' id ='email' >
       <label for='pass'>Contraseña</label>
