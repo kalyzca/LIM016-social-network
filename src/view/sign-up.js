@@ -4,27 +4,24 @@ import { saveUser } from '../lib/firebase/firestore.js';
 const signUp = () => {
   const viewSignUp = `
     <form id='formSignUp'>
-    <h2 class = 'titulo'>Sign Up</h2>
-    <label for='userSignUp'>Usuario </label>
-    <input type='text' placeholder='Ingrese su usuario' id ='userSignUp' >
-    <label for='emailSignUp'> Email </label>
-    <input type='text' placeholder='Ingrese su correo' id ='emailSignUp' >
-    <label for='passSignUp'>Contraseña</label>
-    <input type='password' placeholder='Ingrese su contraseña' id = 'passSignUp'>
-    <input type='submit' value='signUp' id='signUp' >
-    <img src='../img/mujeresunidascelupeq.png'>
+      <h2 class = 'titulo'>Sign Up</h2>
+      <label for='userSignUp'>user </label>
+      <input type='text' placeholder='Ingrese su user' id ='userSignUp' >
+      <label for='emailSignUp'> Email </label>
+      <input type='text' placeholder='Ingrese su correo' id ='emailSignUp' >
+      <label for='passSignUp'>Contraseña</label>
+      <input type='password' placeholder='Ingrese su contraseña' id = 'passSignUp'>
+      <input type='submit' value='signUp' id='signUp' >
+      <img src='../img/mujeresunidascelupeq.png'>
     </form>
   `;
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
-  return divElement;
-};
 
-const printSignUp = () => {
   // eslint-disable-next-line no-console
   console.log('print sign up');
-  const registro = document.getElementById('formSignUp'); // divElement ya es un elemento de html
+  const registro = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
   // eslint-disable-next-line no-console
   console.log(registro);
 
@@ -35,54 +32,54 @@ const printSignUp = () => {
     event.preventDefault();
     // eslint-disable-next-line no-console
     console.log(email.value, pass.value, user.value);
-    // funcion para crear usuario en firebase auth
+    // funcion para crear user en firebase auth
     createUser(email.value, pass.value)
       .then(() => {
         // email.value = '';
         // pass.value = '';
         // user.value = '';
         // eslint-disable-next-line no-console
-        console.log('El usuario se creo correctamente');
+        console.log('El user se creo correctamente');
+        saveUser(email.value, pass.value, user.value);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (errorCode === 'auth/weak-password') {
-        // eslint-disable-next-line no-alert
-          alert('The password is too weak.');
+          // eslint-disable-next-line no-console
+          console.log('La contraseña no es lo suficientemente segura.La contraseña debe tener al menos 6 caracteres.');
+        } else if (errorCode === 'auth/invalid-password') {
+          // eslint-disable-next-line no-console
+          console.log('El valor dió al password no es válido. Debe ser una string con al menos seis caracteres.');
+        } else if (errorCode === 'auth/internal-error') {
+          // eslint-disable-next-line no-console
+          console.log('Error interno');
         } else if (errorCode === 'auth/invalid-email') {
-        // eslint-disable-next-line no-alert
-          alert('The email is too weak.');
+          // eslint-disable-next-line no-console
+          console.log('La dirección de correo electrónico no es vállida y debe ser un string..');
         } else if (errorCode === 'auth/email-already-in-use') {
-        // eslint-disable-next-line no-alert
-          alert('The email in in use.');
+          // eslint-disable-next-line no-console
+          console.log('Ya existe una cuenta con la dirección de correo electrónico proporcionada.');
         } else if (errorCode === 'auth/operation-not-allowed') {
-        // eslint-disable-next-line no-alert
-          alert('The operation is not allowed');
+          // eslint-disable-next-line no-console
+          console.log('las cuentas de correo electrónico / contraseña no están habilitadas. Habilite las cuentas de correo electrónico / contraseña en Firebase Console, en la pestaña Auth.');
+        } else if ((user.value === '') || (email.value === '') || (pass.value === '')) {
+          // eslint-disable-next-line no-console
+          console.log('Debes completar todos los campos');
         }
+
         // eslint-disable-next-line no-console
         console.log(errorCode, errorMessage);
-
-        if (user.value === '' && email.value === '' && pass.value === '') {
-        // eslint-disable-next-line no-console
-          console.log('Debes completar todos los campos');
-        } else if (user.value === '') {
-        // eslint-disable-next-line no-console
-          console.log('Debes rellenar tu usuario');
-        } else if (email.value === '') {
-        // eslint-disable-next-line no-console
-          console.log('Debes rellenar tu email');
-        } else if (pass.value === '') {
-        // eslint-disable-next-line no-console
-          console.log('Debes rellenar tu password');
-        } else saveUser(email.value, pass.value, user.value);
       });
-      
-    window.location.hash = '#/registro';
+
+    // window.location.hash = '#/registro';
+
   });
+
+  return divElement;
 };
 
 export {
   signUp,
-  printSignUp,
+  // printSignUp,
 };
