@@ -75,10 +75,9 @@ const printSignUp = () => {
         } else if (pass.value === '') {
         // eslint-disable-next-line no-console
           console.log('Debes rellenar tu password');
-        } else {
-          saveUser(email.value, pass.value, user.value);
-        }
+        } else saveUser(email.value, pass.value, user.value);
       });
+      
     window.location.hash = '#/registro';
   });
 };

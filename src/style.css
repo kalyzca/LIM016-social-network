@@ -80,7 +80,7 @@ form{
   justify-content: center;
   align-items: center;
 }
-form >input[type ='text'], input[type ='password']{
+form >input[type ='text'], input[type ='password'], input[type = 'email']{
   justify-self: center;
   border: 1px solid #fff;
   border-radius: 10px;
@@ -88,8 +88,19 @@ form >input[type ='text'], input[type ='password']{
   padding: 1rem;
   width: 15.625rem;
   height: 2rem;
-  font-family: 'Poiret One', cursive;
 }
+.gender{
+  justify-self: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  padding: 0 0.8rem;
+  width: 15.625rem;
+  height: 2rem;
+  
+}
+
+
 /* form >input[type ='text']{
   margin-top: 1rem;
 } */
@@ -122,4 +133,7 @@ form>input[type ='submit']{
 }
 .btn-registerUser{
   text-align: center;
+}
+.profileRegister{
+  background-color: #EAC9E2;
 }
