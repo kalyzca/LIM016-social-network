@@ -1,5 +1,4 @@
 import { components } from '../view/index.js';
-import { authSingUp } from '../view/sign-up.js'
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
@@ -9,10 +8,12 @@ const changeView = (route) => {
 
   switch (route) {
     case '#/news': {
-      return mainContainer.appendChild(components.News());
+      mainContainer.appendChild(components.News());
+      break;
     }
     case '#/': {
-      return mainContainer.appendChild(components.Login());
+      mainContainer.appendChild(components.Login());
+      break;
     }
     case '#/registro': {
       mainContainer.appendChild(components.Registro());
@@ -24,16 +25,11 @@ const changeView = (route) => {
     }
     case '#/sign-up': {
       mainContainer.appendChild(components.SignUp());
-      printSignUp();
       break;
     }
-    case '#/sign-up':{
-      mainContainer.appendChild(components.SignUp());
-      authSingUp();
-    }
     default:
-      return mainContainer.appendChild(components.different());
-
+      mainContainer.appendChild(components.different());
+      break;
   }
 };
 export { changeView };
