@@ -1,9 +1,10 @@
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister">
-  <h2>Ingresa tus datos</h2>
-  <img src="">
-  <p>cambiar foto de perfil</p>
+  <h2 class = 'titulo'>Ingresa tus datos</h2>
+  <hr>
+  <img class = 'camera' src='../img/camara.png'>
+  <p class='textCamera'>Cambiar foto de perfil</p>
   <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
   <input type="text" id="nickname" class="nickname" placeholder = "Apodo">
   <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
@@ -15,17 +16,17 @@ const profileRegister = () => {
       <option value="Prefiero no responder">Prefiero no responder</option>
   </select>
   <input type="text" id="age" class="age" placeholder = "Edad">
-  <input type="text" id="introduceYourself" class="introduceYourself" placeholder = "Preséntate">
-  <p>Aquí puedes dejar información de cómo contactarte si deseas 
+  <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
+  <p class='pProfileRegister'>Aquí puedes dejar información de cómo contactarte si deseas 
     ayudar de forma gratuita a mujeres que estén pasando por 
     situaciones de violencia</p>
-  <p>(*)Campo obligatorio</p>
-  <label for="btnSave">GUARDAR</label>
-  <input type="submit" id="btnSave" class="btnSave">
+  <p class='required'>(*)Campo obligatorio</p>
+  <input type="submit" id="btnSave" class="btnSave" value='Guardar'>
 </form>
 `;
   const divElement = document.createElement('div');
-  divElement.setAttribute('id', 'content');
+  divElement.setAttribute('id', 'contentProfileRegister');
+  divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
   return divElement;
 };

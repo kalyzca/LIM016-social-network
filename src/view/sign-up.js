@@ -3,20 +3,18 @@ import { saveUser } from '../lib/firebase/firestore.js';
 
 const signUp = () => {
   const viewSignUp = `
-    <form id='formSignUp'>
-      <h2 class = 'titulo'>Sign Up</h2>
-      <label for='userSignUp'>user </label>
-      <input type='text' placeholder='Ingrese su user' id ='userSignUp' >
-      <label for='emailSignUp'> Email </label>
-      <input type='text' placeholder='Ingrese su correo' id ='emailSignUp' >
-      <label for='passSignUp'>Contraseña</label>
-      <input type='password' placeholder='Ingrese su contraseña' id = 'passSignUp'>
-      <input type='submit' value='signUp' id='signUp' >
-      <img src='../img/mujeresunidascelupeq.png'>
+    <form class='formSignUp' id='formSignUp'>
+      <h2 class = 'tituloSignUp'>Regístrate</h2>    
+      <input type='text' placeholder='Ingrese su usuario' id ='userSignUp' class='userSignUp'>
+      <input type='text' placeholder='Ingrese su correo electrónico' id ='emailSignUp' class='emailSignUp'>
+      <input type='password' placeholder='Ingrese su contraseña' id='passSignUp' class='passSignUp'>
+      <input type='submit' value='Registrarme' id='signUp' >
+      <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
   `;
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentSignUp');
+  divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
 
   // eslint-disable-next-line no-console
