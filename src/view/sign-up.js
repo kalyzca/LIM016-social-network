@@ -71,7 +71,6 @@ const signUp = () => {
       });
 
     // window.location.hash = '#/registro';
-
   });
 
   return divElement;
