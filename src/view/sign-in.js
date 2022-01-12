@@ -1,5 +1,4 @@
-import { loginUser } from '../lib/firebase/auth.js';
-import { stateChange } from '../lib/firebase/auth.js'
+import { loginUser, stateChange, signInGoogle } from '../lib/firebase/auth.js'
 
 const login = () => {
   const viewLogin = `
@@ -10,7 +9,7 @@ const login = () => {
       <a class ='forgetpass' href = ''>¿Haz olvidado tu contraseña?</a>  
       <input type='submit' value='LogIn' id='save'>
       <div class='iconos_sesion'>
-        <img src="../img//google.png" alt="img-google">
+        <img src="../img//google.png" alt="img-google" class="google" id="google">
         <img src='../img/facebook.png'> 
       </div>
       <a class = 'registerUser' href="#/sign-up">¿No tienes cuenta?</a>
@@ -32,7 +31,6 @@ const login = () => {
     .then(() => {
         //const userId = userCredential.user.uid;
         //console.log(userId);
-        stateChange();
         console.log('USTED A INICIADO SESION');
         window.location.hash = '#/news';
       })
@@ -58,7 +56,12 @@ const login = () => {
       });
     
   });
-  
+  const google = divElement.querySelector("#google");
+  google.addEventListener('click', ()=>{
+    stateChange();
+    signInGoogle();
+    console.log("google");
+  });
   return divElement;
 };
 
