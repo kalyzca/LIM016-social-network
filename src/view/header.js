@@ -6,10 +6,10 @@ const viewHeader = `
     <nav class="">
       <ul class="menu__items">
         <li> <a href="#/news">news</a>       </li>
-        <li> <a href="#/registro">registro</a> </li>
+        <li> <a href="#/profileRegister">registro</a> </li>
         <li> <a href="#/profile">profile</a>   </li>
         <li> <a href="#/sign-up"> sign-up</a></li>
-        <li> <a href="#/">login</a>             </li>
+        <li> <a href="#/">sign-in</a>             </li>
       </ul>
     </nav>
     
