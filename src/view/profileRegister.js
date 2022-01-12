@@ -9,7 +9,7 @@ const profileRegister = () => {
   <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
   <input type="text" id="nickname" class="nickname" placeholder = "Apodo">
   <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
-  <input type="email" id="email" class="email" placeholder = "Correo electrónico">
+  <input type="email" id="email2" class="email" placeholder = "Correo electrónico">
   <select name="gender" id="gender" class = "gender" placeholder = "Género">
       <option style = "color:gray" disabled selected>Género</option>
       <option value="Femenino">Femenino</option>
@@ -29,10 +29,26 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-
-
-  const email = divElement.querySelector('#email');
-  console.log(stateChange()) ;
+  
+  stateChange()
+  .then(()=>{
+    if (user) {
+      //const user = auth.currentUser;
+      const email2 = divElement.querySelector('#email2');
+      //const uid = user.uid;
+      const email = user.email;
+      //console.log(uid);
+      //console.log(email);
+      email2.value = email;
+      console.log(email);
+    }
+  })
+  .catch(()=>{
+    console.log("error");
+  })
+ 
+  
+ 
 
   //window.location.hash = '#/news';
   return divElement;

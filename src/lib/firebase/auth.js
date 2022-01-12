@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-console */
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,8 +6,10 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
-} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+} // eslint-disable-next-line import/no-unresolved
+  from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
+// eslint-disable-next-line import/no-unresolved
 import { swapp } from './config.js';
 
 const auth = getAuth(swapp);
@@ -22,53 +22,46 @@ export const createUser = async (email, password) => {
 
 // SIGN-IN
 export const loginUser = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(auth, email, password)
 };
 // SEE
 
-export const stateChange = async () =>{
-  await onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      const email = user.email;
-      //console.log(uid);
-      //console.log(email);
-      console.log(user.email);
-    }
-    return email;
-  });
-};
-export const out = () => {
-  signOut(auth).then(() => {
+export const stateChange = async (user) =>{
+  await onAuthStateChanged(auth, (user));
+}
+
+export const out = () =>{
+  signOut(auth)
+  .then(() => {
     // Sign-out successful.
-  }).catch((error) => {
-    console.log(error);
+  })
+  .catch((error) => {
     // An error happened.
   });
-};
+}
 
-export const signInGoogle = () => {
+export const signInGoogle = () =>{
   signInWithPopup(auth, provider)
-    .then((result) => {
+  .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      console.log(credential, token, user);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    console.log(credential, token, user);
 
-      provider.setCustomParameters({
-        login_hint: 'user@example.com',
-      });
-    }).catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-      console.log(errorCode, errorMessage, email, credential);
+    provider.setCustomParameters({
+      'login_hint': 'user@example.com'
     });
-};
+    
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+}

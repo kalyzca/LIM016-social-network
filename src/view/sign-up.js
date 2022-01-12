@@ -28,7 +28,7 @@ const signUp = () => {
     const user = document.getElementById('userSignUp');
     event.preventDefault();
 
-    console.log(email.value, pass.value, user.value);
+    //console.log(email.value, pass.value, user.value);
     // funcion para crear user en firebase auth
     createUser(email.value, pass.value)
       .then(() => {

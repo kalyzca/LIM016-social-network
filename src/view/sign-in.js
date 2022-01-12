@@ -56,7 +56,7 @@ const login = () => {
   });
   const google = divElement.querySelector('#google');
   google.addEventListener('click', () => {
-    stateChange();
+    
     signInGoogle();
     console.log('google');
   });
