@@ -39,6 +39,7 @@ const signUp = () => {
         // eslint-disable-next-line no-console
         console.log('El user se creo correctamente');
         saveUser(email.value, pass.value, user.value);
+        window.location.hash = '#/profileRegister';
       })
       .catch((error) => {
         const errorCode = error.code;

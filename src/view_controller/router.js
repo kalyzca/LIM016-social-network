@@ -15,7 +15,7 @@ const changeView = (route) => {
       mainContainer.appendChild(components.Login());
       break;
     }
-    case '#/registro': {
+    case '#/profileRegister': {
       mainContainer.appendChild(components.Registro());
       break;
     }

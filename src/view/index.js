@@ -1,5 +1,5 @@
 // IMPORTAR TODAS LAS VISTAS
-import { login } from './login.js';
+import { login } from './sign-in.js';
 import { news } from './news.js';
 import { profile } from './profile.js';
 import { profileRegister } from './profileRegister.js';
