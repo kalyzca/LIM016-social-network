@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 import {
   getFirestore,
   collection,
   addDoc,
   // doc,
   // getDoc,
-}// eslint-disable-next-line import/no-unresolved
+}
   from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 import { swapp } from './config.js';
@@ -28,10 +30,8 @@ const saveUser = async (email, password, user) => {
       password, // nuevo doc con su par clave-valor
       user,
     });
-    // eslint-disable-next-line no-console
     console.log('Documento escrito con su ID: ', docRef.id);
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.error('Error al añadir el documento: ', e);
   }
 };

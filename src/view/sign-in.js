@@ -1,4 +1,6 @@
-import { loginUser, stateChange, signInGoogle } from '../lib/firebase/auth.js'
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
+import { loginUser, stateChange, signInGoogle } from '../lib/firebase/auth.js';
 
 const login = () => {
   const viewLogin = `
@@ -26,11 +28,11 @@ const login = () => {
     event.preventDefault();
     const email = document.querySelector('#email');
     const pass = document.querySelector('#pass');
-    // console.log(email.value, pass.value);
+
     loginUser(email.value, pass.value)
-    .then(() => {
-        //const userId = userCredential.user.uid;
-        //console.log(userId);
+      .then(() => {
+        // const userId = userCredential.user.uid;
+        // console.log(userId);
         console.log('USTED A INICIADO SESION');
         window.location.hash = '#/news';
       })
@@ -38,29 +40,25 @@ const login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // const errorMessage = error.message;
-        if(email.value === "" || pass.value ===""){
+        if (email.value === '' || pass.value === '') {
           console.log('Debes completar todos los campos');
-        }else if (errorCode === 'auth/invalid-email') {
-          // eslint-disable-next-line no-alert
+        } else if (errorCode === 'auth/invalid-email') {
           alert('La dirección de correo electrónico no es válida.');
         } else if (errorCode === 'auth/user-disabled') {
-          // eslint-disable-next-line no-alert
           alert('El usuario esta desactivado');
-        } else  if (errorCode === 'auth/user-not-found') {
-          // eslint-disable-next-line no-alert
+        } else if (errorCode === 'auth/user-not-found') {
           alert('Usuario no encontrado');
-        } else if(errorCode === 'auth/wrong-password'){
+        } else if (errorCode === 'auth/wrong-password') {
           alert('Password incorrecto');
         }
-      console.log(errorCode, errorMessage);
+        console.log(errorCode, errorMessage);
       });
-    
   });
-  const google = divElement.querySelector("#google");
-  google.addEventListener('click', ()=>{
+  const google = divElement.querySelector('#google');
+  google.addEventListener('click', () => {
     stateChange();
     signInGoogle();
-    console.log("google");
+    console.log('google');
   });
   return divElement;
 };
