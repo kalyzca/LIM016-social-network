@@ -25,15 +25,17 @@ export const loginUser = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password)
 };
 // SEE
-const user = auth.currentUser;
+
 export const stateChange = async () =>{
-  onAuthStateChanged(auth, (user) => {
+  await onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
-      console.log(uid);
-    } else {
-      // signed out
+      const email = user.email;
+      //console.log(uid);
+      //console.log(email);
+      console.log(user.email);
     }
+    return email;
   });
 }
 export const out = () =>{

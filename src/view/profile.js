@@ -1,3 +1,5 @@
+import { stateChange } from '../lib/firebase/auth.js'
+
 const profile = () => {
   const viewProfile = `
     <h1> viewProfile </h1>

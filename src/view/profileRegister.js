@@ -1,3 +1,4 @@
+import { stateChange } from '../lib/firebase/auth.js'
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister">
@@ -30,9 +31,10 @@ const profileRegister = () => {
   divElement.innerHTML = viewRegister;
 
 
+  const email = divElement.querySelector('#email');
+  console.log(stateChange()) ;
 
-
-  window.location.hash = '#/news';
+  //window.location.hash = '#/news';
   return divElement;
 };
 
