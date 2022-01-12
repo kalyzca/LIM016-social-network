@@ -28,10 +28,6 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-
-
-
-
   window.location.hash = '#/news';
   return divElement;
 };
