@@ -18,24 +18,18 @@ const signUp = () => {
   divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
   console.log('print sign up');
-  const registro = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
+  const userRegister = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
 
-  console.log(registro);
-
-  registro.addEventListener('submit', (event) => {
+  userRegister.addEventListener('submit', (event) => {
     const email = document.getElementById('emailSignUp');
     const pass = document.getElementById('passSignUp');
     const user = document.getElementById('userSignUp');
+
     event.preventDefault();
 
-    //console.log(email.value, pass.value, user.value);
     // funcion para crear user en firebase auth
     createUser(email.value, pass.value)
       .then(() => {
-        // email.value = '';
-        // pass.value = '';
-        // user.value = '';
-
         console.log('El user se creo correctamente');
         saveUser(email.value, pass.value, user.value);
         window.location.hash = '#/profileRegister';
@@ -68,5 +62,5 @@ const signUp = () => {
 
 export {
   signUp,
-  // printSignUp,
+
 };

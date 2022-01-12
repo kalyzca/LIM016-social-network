@@ -1,4 +1,6 @@
-import { stateChange } from '../lib/firebase/auth.js'
+/* eslint-disable no-console */
+import { userStateChange } from '../lib/firebase/auth.js';
+
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister">
@@ -29,28 +31,26 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-  
-  stateChange()
-  .then(()=>{
-    if (user) {
-      //const user = auth.currentUser;
-      const email2 = divElement.querySelector('#email2');
-      //const uid = user.uid;
-      const email = user.email;
-      //console.log(uid);
-      //console.log(email);
-      email2.value = email;
-      console.log(email);
-    }
-  })
-  .catch(()=>{
-    console.log("error");
-  })
- 
-  
- 
 
-  //window.location.hash = '#/news';
+  userStateChange()
+    .then((user) => {
+      console.log(user);
+      if (user) {
+      // const user = auth.currentUser;
+        const email2 = divElement.querySelector('#email2');
+        // const uid = user.uid;
+        const email = user.email;
+        // console.log(uid);
+        // console.log(email);
+        email2.value = email;
+        console.log(email);
+      }
+    })
+    .catch(() => {
+      console.log('error');
+    });
+
+  // window.location.hash = '#/news';
   return divElement;
 };
 

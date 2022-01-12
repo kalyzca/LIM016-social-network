@@ -1,4 +1,4 @@
-import { stateChange } from '../lib/firebase/auth.js'
+// import { userStateChange } from '../lib/firebase/auth.js';
 
 const profile = () => {
   const viewProfile = `

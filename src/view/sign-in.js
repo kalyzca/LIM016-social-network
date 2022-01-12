@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import { loginUser, stateChange, signInGoogle } from '../lib/firebase/auth.js';
+import { loginUser, userStateChange, signInGoogle } from '../lib/firebase/auth.js';
 
 const login = () => {
   const viewLogin = `
@@ -23,7 +23,9 @@ const login = () => {
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
 
-  const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
+  // Iniciar sesión con correo y contraseña
+  // divElement ya es un elemento de html
+  const formLogin = divElement.querySelector('#formLogin');
   formLogin.addEventListener('submit', (event) => {
     event.preventDefault();
     const email = document.querySelector('#email');
@@ -54,11 +56,36 @@ const login = () => {
         console.log(errorCode, errorMessage);
       });
   });
-  const google = divElement.querySelector('#google');
-  google.addEventListener('click', () => {
-    
-    signInGoogle();
-    console.log('google');
+
+  // Iniciar sesión con google
+  const signInWithGoogle = divElement.querySelector('#google');
+  signInWithGoogle.addEventListener('click', () => {
+    signInGoogle()
+      .then((result) => {
+        // The signed-in user info.
+        window.location.hash = '#/News';
+        console.log(result.user);
+        console.log('Iniciaste sesión con google');
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // ...
+        console.log(errorCode, errorMessage, email);
+      });
+  });
+
+  userStateChange((user) => {
+    if (user) {
+      // const displayName = user.displayName;
+      const email = user.email;
+      // const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+      const uid = user.uid;
+      console.log(email, emailVerified, uid);
+    }
   });
   return divElement;
 };
