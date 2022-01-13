@@ -10,6 +10,7 @@ const login = () => {
       <input type='password' placeholder='Ingrese su contraseña' id = 'pass' class='passLogin'>
       <a class ='forgetpass' href = ''>¿Haz olvidado tu contraseña?</a>  
       <input type='submit' value='LogIn' id='save'>
+      <p id="textVerified"></p>
       <div class='iconos_sesion'>
         <img src="../img//google.png" alt="img-google" class="google" id="google">
         <img src='../img/facebook.png'> 
@@ -53,12 +54,38 @@ const login = () => {
         }
         console.log(errorCode, errorMessage);
       });
+
+      stateChange((user) => {
+        if (user) {
+          //const user = auth.currentUser;
+          const displayName = user.displayName;
+          const uid = user.uid;
+          const email = user.email;
+          const photoURL = user.photoURL;
+          //console.log(uid);
+          //console.log(email);
+          const emailVerified = user.emailVerified;
+          const textVerified = document.getElementById("textVerified");
+          if(emailVerified === false){
+            textVerified.value="Email no verificado";
+          }
+          else textVerified.value="Email verificado";
+          console.log(email, displayName, uid, emailVerified,photoURL);
+        }
+      });
   });
   const google = divElement.querySelector('#google');
   google.addEventListener('click', () => {
-    
-    signInGoogle();
     console.log('google');
+    signInGoogle()
+   /* .then((result)=>{
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      //console.log(credential, "CREDENTIAL");
+    })
+    .catch(()=>{
+      
+    })*/
+    
   });
   return divElement;
 };

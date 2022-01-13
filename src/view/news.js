@@ -1,3 +1,4 @@
+import { buttonOut } from './sign-out.js'
 const news = () => {
   const viewNews = `
     <h1> viewNews </h1>

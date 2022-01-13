@@ -29,12 +29,11 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-  
-  stateChange()
-  .then(()=>{
+  const email2 = divElement.querySelector('#email2');
+  stateChange((user) => {
     if (user) {
       //const user = auth.currentUser;
-      const email2 = divElement.querySelector('#email2');
+      
       //const uid = user.uid;
       const email = user.email;
       //console.log(uid);
@@ -42,10 +41,9 @@ const profileRegister = () => {
       email2.value = email;
       console.log(email);
     }
-  })
-  .catch(()=>{
-    console.log("error");
-  })
+  });
+    
+ 
  
   
  

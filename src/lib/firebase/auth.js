@@ -6,6 +6,7 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  sendEmailVerification,
 } // eslint-disable-next-line import/no-unresolved
   from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
@@ -13,7 +14,8 @@ import {
 import { swapp } from './config.js';
 
 const auth = getAuth(swapp);
-const provider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider(swapp);
+
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 // SIGN-UP
 export const createUser = async (email, password) => {
@@ -26,20 +28,25 @@ export const loginUser = async (email, password) => {
 };
 // SEE
 
-export const stateChange = async (user) =>{
-  await onAuthStateChanged(auth, (user));
+export const stateChange = async (state) =>{
+  await onAuthStateChanged(auth, (state));
 }
 
 export const out = () =>{
-  signOut(auth)
-  .then(() => {
-    // Sign-out successful.
+  signOut(auth)};
+
+export const emailVerification = () =>{
+  sendEmailVerification(auth.currentUser)
+  .then(() =>{
+    console.log("correo enviado");
   })
   .catch((error) => {
-    // An error happened.
+    console.log(error, "Error occurred. Inspect error.code.");
   });
-}
+  };
 
+provider.addScope('profile');
+provider.addScope('email');
 export const signInGoogle = () =>{
   signInWithPopup(auth, provider)
   .then((result) => {
@@ -50,9 +57,9 @@ export const signInGoogle = () =>{
     const user = result.user;
     console.log(credential, token, user);
 
-    provider.setCustomParameters({
+    /*provider.setCustomParameters({
       'login_hint': 'user@example.com'
-    });
+    });*/
     
   }).catch((error) => {
     // Handle Errors here.
