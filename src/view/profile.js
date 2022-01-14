@@ -1,4 +1,4 @@
-import { stateChange } from '../lib/firebase/auth.js'
+import { viewHeader } from './header.js';
 
 const profile = () => {
   const viewProfile = `
@@ -6,7 +6,7 @@ const profile = () => {
 `;
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'content');
-  divElement.innerHTML = viewProfile;
+  divElement.innerHTML = viewHeader + viewProfile;
   return divElement;
 };
 

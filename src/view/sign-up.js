@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-import { createUser, 
-  emailVerification, 
-stateChange } from '../lib/firebase/auth.js';
+import { createUser, emailVerification, stateChange } from '../lib/firebase/auth.js';
 import { saveUser } from '../lib/firebase/firestore.js';
-import { viewHeader } from './header.js'
+import { viewHeader } from './header.js';
+
 const signUp = () => {
   const viewSignUp = `
     <form class='formSignUp' id='formSignUp'>
@@ -31,32 +30,33 @@ const signUp = () => {
   console.log(registro);
 
   registro.addEventListener('submit', (event) => {
-    const email = document.getElementById('emailSignUp');
+    const emailSignUp = document.getElementById('emailSignUp');
     const pass = document.getElementById('passSignUp');
-    const user = document.getElementById('userSignUp');
-    const textVerified = document.getElementById("textVerified");
+    const userSignUp = document.getElementById('userSignUp');
+    const textVerified = document.getElementById('textVerified');
     event.preventDefault();
-    //console.log(email.value, pass.value, user.value);
+    // console.log(email.value, pass.value, user.value);
     // funcion para crear user en firebase auth
-    createUser(email.value, pass.value)
+    createUser(emailSignUp.value, pass.value)
       .then(() => {
-        // email.value = '';
-        // pass.value = '';
-        // user.value = '';
+        // PONER FUNCION PARA LIMPIAR FORMULARIO
+        // const u = userCredential.user;
         console.log('El user se creo correctamente');
-
-        emailVerification()
-         
-        saveUser(email.value, pass.value, user.value);
+        emailVerification();
+        saveUser(emailSignUp.value, pass.value, userSignUp.value);
         window.location.hash = '#/profileRegister';
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorMessage = error.message;
         if (errorCode === 'auth/weak-password') {
-          console.log('La contraseña no es lo suficientemente segura.La contraseña debe tener al menos 6 caracteres.');
+          console.log(
+            'La contraseña no es lo suficientemente segura.La contraseña debe tener al menos 6 caracteres.',
+          );
         } else if (errorCode === 'auth/invalid-password') {
-          console.log('El valor dió al password no es válido. Debe ser una string con al menos seis caracteres.');
+          console.log(
+            'El valor dió al password no es válido. Debe ser una string con al menos seis caracteres.',
+          );
         } else if (errorCode === 'auth/internal-error') {
           console.log('Error interno');
         } else if (errorCode === 'auth/invalid-email') {
@@ -64,32 +64,31 @@ const signUp = () => {
         } else if (errorCode === 'auth/email-already-in-use') {
           console.log('Ya existe una cuenta con la dirección de correo electrónico proporcionada.');
         } else if (errorCode === 'auth/operation-not-allowed') {
-          console.log('las cuentas de correo electrónico / contraseña no están habilitadas. Habilite las cuentas de correo electrónico / contraseña en Firebase Console, en la pestaña Auth.');
-        } else if ((user.value === '') || (email.value === '') || (pass.value === '')) {
+          console.log(
+            'las cuentas de correo electrónico / contraseña no están habilitadas. Habilite las cuentas de correo electrónico / contraseña en Firebase Console, en la pestaña Auth.',
+          );
+        } else if (userSignUp.value === '' || emailSignUp.value === '' || pass.value === '') {
           console.log('Debes completar todos los campos');
         }
-        console.log(errorCode, errorMessage);
+        // console.log(errorCode, errorMessage);
       });
 
-      stateChange((user) => {
-        if (user) {
-          //const user = auth.currentUser;
-          const displayName = user.displayName;
-          const uid = user.uid;
-          const email = user.email;
-          const emailVerified = user.emailVerified;
-          if(emailVerified === false){
-            textVerified.value="Email no verificado";
-          }
-          else textVerified.value="Email verificado";
-          console.log(email, displayName, uid, emailVerified);
-        }
-      });
+    stateChange((user) => {
+      if (user) {
+        // const user = auth.currentUser;
+        const displayName = user.displayName;
+        const uid = user.uid;
+        const email = user.email;
+        const emailVerified = user.emailVerified;
+        if (emailVerified === false) {
+          textVerified.value = 'Email no verificado';
+        } else textVerified.value = 'Email verificado';
+        console.log(email, displayName, uid, emailVerified);
+      }
+    });
 
-      
     // window.location.hash = '#/registro';
   });
-
   return divElement;
 };
 
