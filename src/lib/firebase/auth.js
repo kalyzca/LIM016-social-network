@@ -37,8 +37,8 @@ export const signInGoogle = () => {
 };
 
 // USER STATE
-export const userStateChange = async (callback) => {
-  await onAuthStateChanged(auth, (callback));
+export const userStateChange = (callback) => {
+  onAuthStateChanged(auth, (callback));
 };
 
 // SIGN-OUT
