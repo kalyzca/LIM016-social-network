@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { userStateChange } from '../lib/firebase/auth.js';
+import { stateChange } from '../lib/firebase/auth.js';
 
 const profileRegister = () => {
   const viewRegister = `
@@ -17,7 +17,7 @@ const profileRegister = () => {
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
       <option value="Prefiero no responder">Prefiero no responder</option>
-  </select>
+  // </select>
   <input type="text" id="age" class="age" placeholder = "Edad">
   <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
   <p class='pProfileRegister'>Aquí puedes dejar información de cómo contactarte si deseas 
@@ -50,6 +50,4 @@ const profileRegister = () => {
   return divElement;
 };
 
-export {
-  profileRegister,
-};
+export { profileRegister };
