@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { userStateChange } from '../lib/firebase/auth.js';
+import { stateChange } from '../lib/firebase/auth.js';
 
 const profileRegister = () => {
   const viewRegister = `
@@ -17,7 +17,7 @@ const profileRegister = () => {
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
       <option value="Prefiero no responder">Prefiero no responder</option>
-  </select>
+  // </select>
   <input type="text" id="age" class="age" placeholder = "Edad">
   <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
   <p class='pProfileRegister'>Aquí puedes dejar información de cómo contactarte si deseas 
@@ -31,29 +31,17 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-
-  userStateChange()
-    .then((user) => {
-      console.log(user);
-      if (user) {
-      // const user = auth.currentUser;
-        const email2 = divElement.querySelector('#email2');
-        // const uid = user.uid;
-        const email = user.email;
-        // console.log(uid);
-        // console.log(email);
-        email2.value = email;
-        console.log(email);
-      }
-    })
-    .catch(() => {
-      console.log('error');
-    });
+  const email2 = divElement.querySelector('#email2');
+  stateChange((user) => {
+    if (user) {
+      const email = user.email;
+      email2.value = email;
+      console.log(email);
+    }
+  });
 
   // window.location.hash = '#/news';
   return divElement;
 };
 
-export {
-  profileRegister,
-};
+export { profileRegister };
