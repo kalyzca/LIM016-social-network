@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { createUser, emailVerification, stateChange } from '../lib/firebase/auth.js';
+import { createUser, emailVerification, userStateChange } from '../lib/firebase/auth.js';
 import { saveUser } from '../lib/firebase/firestore.js';
-import { viewHeader } from './header.js';
+// import { viewHeader } from './header.js';
 
 const signUp = () => {
   const viewSignUp = `
@@ -23,7 +23,7 @@ const signUp = () => {
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentSignUp');
   divElement.setAttribute('class', 'contentSignUp');
-  divElement.innerHTML = viewHeader + viewSignUp;
+  divElement.innerHTML = viewSignUp;
   console.log('print sign up');
   const registro = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
 
@@ -73,7 +73,7 @@ const signUp = () => {
         // console.log(errorCode, errorMessage);
       });
 
-    stateChange((user) => {
+    userStateChange((user) => {
       if (user) {
         // const user = auth.currentUser;
         const displayName = user.displayName;
