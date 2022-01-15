@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import { stateChange } from '../lib/firebase/auth.js';
+import { userStateChange } from '../lib/firebase/auth.js';
 
 const profileRegister = () => {
   const viewRegister = `
-  <form class="profileRegister">
+  <form class="profileRegister" id = 'profileRegister'>
   <h2 class = 'titulo'>Ingresa tus datos</h2>
   <hr>
   <img class = 'camera' src='../img/camara.png'>
@@ -11,7 +11,7 @@ const profileRegister = () => {
   <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
   <input type="text" id="nickname" class="nickname" placeholder = "Apodo">
   <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
-  <input type="email" id="email2" class="email" placeholder = "Correo electrónico">
+  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico">
   <select name="gender" id="gender" class = "gender" placeholder = "Género">
       <option style = "color:gray" disabled selected>Género</option>
       <option value="Femenino">Femenino</option>
@@ -31,16 +31,25 @@ const profileRegister = () => {
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
-  const email2 = divElement.querySelector('#email2');
-  stateChange((user) => {
+
+  const inputemail = divElement.querySelector('#inputemail');
+
+  const formProfileRegister = divElement.querySelector('#profileRegister');
+
+  formProfileRegister.addEventListener('submit', (e) => {
+    e.preventDefault();
+    window.location.hash = '#/';
+  });
+  console.log(formProfileRegister);
+
+  userStateChange((user) => {
     if (user) {
       const email = user.email;
-      email2.value = email;
+      inputemail.value = email;
       console.log(email);
     }
   });
 
-  // window.location.hash = '#/news';
   return divElement;
 };
 
