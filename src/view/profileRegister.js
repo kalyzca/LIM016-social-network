@@ -3,7 +3,7 @@ import { userStateChange } from '../lib/firebase/auth.js';
 
 const profileRegister = () => {
   const viewRegister = `
-  <form class="profileRegister">
+  <form class="profileRegister" id = 'profileRegister'>
   <h2 class = 'titulo'>Ingresa tus datos</h2>
   <hr>
   <img class = 'camera' src='../img/camara.png'>
@@ -11,13 +11,13 @@ const profileRegister = () => {
   <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
   <input type="text" id="nickname" class="nickname" placeholder = "Apodo">
   <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
-  <input type="email" id="email2" class="email" placeholder = "Correo electrónico">
+  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico">
   <select name="gender" id="gender" class = "gender" placeholder = "Género">
       <option style = "color:gray" disabled selected>Género</option>
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
       <option value="Prefiero no responder">Prefiero no responder</option>
-  </select>
+  // </select>
   <input type="text" id="age" class="age" placeholder = "Edad">
   <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
   <p class='pProfileRegister'>Aquí puedes dejar información de cómo contactarte si deseas 
@@ -32,28 +32,25 @@ const profileRegister = () => {
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
 
-  userStateChange()
-    .then((user) => {
-      console.log(user);
-      if (user) {
-      // const user = auth.currentUser;
-        const email2 = divElement.querySelector('#email2');
-        // const uid = user.uid;
-        const email = user.email;
-        // console.log(uid);
-        // console.log(email);
-        email2.value = email;
-        console.log(email);
-      }
-    })
-    .catch(() => {
-      console.log('error');
-    });
+  const inputemail = divElement.querySelector('#inputemail');
 
-  // window.location.hash = '#/news';
+  const formProfileRegister = divElement.querySelector('#profileRegister');
+
+  formProfileRegister.addEventListener('submit', (e) => {
+    e.preventDefault();
+    window.location.hash = '#/';
+  });
+  console.log(formProfileRegister);
+
+  userStateChange((user) => {
+    if (user) {
+      const email = user.email;
+      inputemail.value = email;
+      console.log(email);
+    }
+  });
+
   return divElement;
 };
 
-export {
-  profileRegister,
-};
+export { profileRegister };

@@ -106,7 +106,7 @@ form{
   border-radius: 10px;
   margin-bottom: 0.8rem;
   padding: 1rem;
-  width: 15rem;
+  width: 17rem;
   height: 2rem;
 }
 .fullName,
@@ -172,13 +172,29 @@ form>input[type ='submit']{
   font-size: 1.1rem;
 }
 .emailLogin{
-  background-image: url(./img/iconfemale.png);
+  background-image: url(./img/email.png);
   background-repeat: no-repeat;
-  background-position:right;
-  background-size: 20px;
+  background-position: 15rem;
+  background-size: 1rem;
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 }
+.passLogin{
+  background-image: url(./img/password.png);
+  background-repeat: no-repeat;
+  background-position: 14.75rem;
+  background-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+}
+.pass{
+  display: flex;
+  width: 17rem;
+  justify-content:space-between;
+  }
+
 .contentLogin,
 .contentSignUp,
 .contentProfileRegister{
@@ -186,13 +202,10 @@ form>input[type ='submit']{
 }
 .iconos_sesion{
   display: inline-block;
-  justify-self: center;
   margin-top: 1rem;
 }
 
-.forgetpass,
-.registerUser{
-  font-size: 0.7rem;
+.forgetpass{
   font-weight: bold;
 }
 .women{
@@ -213,4 +226,12 @@ hr{
   margin: 0.1rem 0 0.7rem 0;
   background-color: white;
   border: 0px solid white;
+}
+.registerUser{
+  display: inline-flex;
+}
+.registerUser>a{
+  text-decoration: none;
+  padding: 0 0.5rem;
+  font-weight: bold;
 }
