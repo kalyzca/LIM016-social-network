@@ -14,6 +14,7 @@
 body{
   font-family: 'Sulphur Point', sans-serif;
   font-weight: 300;
+  background-color: #EAC9E2;
 }
 .name__Page{
   justify-content: center;
@@ -24,16 +25,14 @@ body{
   /* background-color: #fff; */
   background-color: rgb(139, 223, 226, 0.5);
 }
-/* nav{
-  background-color: #fff;
-} */
+
 
 footer{
   background-color: #B9A6E0;
   justify-content: center;
   color:#fff;
 }
-.name__Page,.items, .menu__items, footer{
+.name__Page,.items, footer{
   display: flex;
   padding: 0.5rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
@@ -45,45 +44,11 @@ footer{
   color: #FFFFFF;
   
 }
-.menu__items>li{
-  list-style-type: none;
-}
-.menu__items>li>a{
-  text-decoration: none;
-  padding: 0.5rem;
-  font-size: 0.9rem;
 
-  /* color: #B9A6E0; */
-  /* color: #8BDFE2; */
-  /* text-shadow: 0px 4px 4px rgba(139,223, 226, 0.25); */
-  font-weight: bold;
-}
-.menu__items{
-  justify-content: center;
-}
-main{
-  width: auto;
-  text-align: center;
-  background:#fff;
-}
+
 .titulo{
   padding: 2.5rem 1rem 0;
   font-size: 2rem;
-  text-align: center;
-  color: #FFFFFF;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  }
-.tituloLogin{
-  padding: 2.5rem 1rem 0;
-  font-size: 3rem;
-  text-align: center;
-  color: #FFFFFF;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-.tituloSignUp{
-  padding: 2.5rem 1rem 0;
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
   text-align: center;
   color: #FFFFFF;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -94,10 +59,110 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+
+
+.women{
+ width: 100vw;
+ height: 15rem;
+}
+
+/* Estilos de botones submit */
+form>input[type ='submit']{
+  
+  margin: 0.75rem 0;
+  background-color: #8BDFE2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border:solid 1px transparent;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.493);
+  font-size: 1rem;
+  font-weight: bold;
+
+}
+
+/* Sign in */
+.tituloLogin{
+  padding: 4rem 0 1rem;
+  font-size: 2.75rem;
+  text-align: center;
+  color: #FFFFFF;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 .emailLogin,
-.passLogin,
+.passLogin
+{
+  justify-self: center;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+  width: 15rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+}
+
+.emailLogin{
+  background-image: url(./img/email.png);
+  background-position: 13.25rem;
+  background-size: 1rem;
+  
+}
+.passLogin{
+  background-image: url(./img/password.png);
+  background-position: 13rem;
+  background-size: 1.5rem;
+  
+}
+.pass{
+  display: flex;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  width: 15rem;
+  height: 1.5rem;
+  }
+.forget{
+  display: flex;
+  justify-content: flex-end;
+  width: 15rem;
+  height: 1rem;
+}
+.forgetpass{
+  text-decoration: none;
+}
+.registerUser{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.registerUser>a{
+  text-decoration: none;
+  padding: 0 0.5rem;
+}
+
+/* iconos google y facebook */
+.iconos_sesion{
+  display: flex;
+  justify-content: center;
+}
+.btn-google, .btn-facebook{
+  padding: 0 3px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+/* Sign up */
+.tituloSignUp{
+  padding: 2.5rem 1rem 0;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #FFFFFF;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 .userSignUp,
 .emailSignUp,
 .passSignUp{
@@ -109,11 +174,31 @@ form{
   width: 17rem;
   height: 2rem;
 }
+
+/* Profile Register */
+
+.camera{
+  
+  border-radius: 100%;
+  padding: 1rem;
+}
+.textCamera{
+  margin: 0.5rem;
+  font-size: 1.2rem;
+}
+hr{
+  width: 20rem;
+  height: 3px;
+  margin: 0.1rem 0 0.7rem 0;
+  background-color: white;
+  border: 0px solid white;
+}
 .fullName,
 .nickname,
 .ocupation,
 .email,
-.age{
+.age,
+.phone{
   justify-self: center;
   border: 1px solid #fff;
   border-radius: 10px;
@@ -142,6 +227,7 @@ form{
   height: 2rem;
   font-family: 'Sulphur Point', sans-serif;
   font-weight: 400;
+  background-color: #FFFFFF;
 }
 .pProfileRegister{
   font-size: 0.8rem;
@@ -158,80 +244,40 @@ form{
   font-weight: bold;
 }
 
-form>input[type ='submit']{
-  justify-self: center;
-  margin: 0.5rem 0;
-  width: fit-content;
-  height: auto;
+/* Header */
+.titulonews{
   background-color: #8BDFE2;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid transparent;
-  border-radius: 20px;
-  padding: 0.5rem 2rem;
   color: #fff;
-  font-size: 1.1rem;
-}
-.emailLogin{
-  background-image: url(./img/email.png);
-  background-repeat: no-repeat;
-  background-position: 15rem;
-  background-size: 1rem;
-  display: flex;
-  align-items: center;
-  padding-right: 1rem;
-}
-.passLogin{
-  background-image: url(./img/password.png);
-  background-repeat: no-repeat;
-  background-position: 14.75rem;
-  background-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  padding-right: 1rem;
-}
-.pass{
-  display: flex;
-  width: 17rem;
-  justify-content:space-between;
-  }
-
-.contentLogin,
-.contentSignUp,
-.contentProfileRegister{
-  background-color: #EAC9E2;
-}
-.iconos_sesion{
-  display: inline-block;
-  margin-top: 1rem;
-}
-
-.forgetpass{
+  text-align: center;
+  font-size: 1.5rem;
   font-weight: bold;
+  padding: 0.5rem;
 }
-.women{
- width: 25rem;
+.contentNews{
+  background-color: #fff;
 }
-.camera{
-  background-color: white;
-  border-radius: 100%;
-  padding: 1rem;
+nav{
+  background: #ace5e7;
 }
-.textCamera{
-  margin: 0.5rem;
-  font-size: 1.2rem;
+.menu__items{
+  display: flex;
+  justify-content: center;
 }
-hr{
-  width: 20rem;
-  height: 3px;
-  margin: 0.1rem 0 0.7rem 0;
-  background-color: white;
-  border: 0px solid white;
+.menu__items>li{
+  list-style-type: none;
+  padding: 0.45rem;
 }
-.registerUser{
-  display: inline-flex;
-}
-.registerUser>a{
+.menu__items>li>a{
   text-decoration: none;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  /* color: #B9A6E0; */
+  
   font-weight: bold;
+}
+
+.menu__items>li>a>img{
+  width: 2rem;
+  height: 2rem;
+  
 }

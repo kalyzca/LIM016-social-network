@@ -1,30 +1,32 @@
 /* eslint-disable no-console */
 import { userStateChange } from '../lib/firebase/auth.js';
+import { saveUserProfile } from '../lib/firebase/firestore.js';
 
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister" id = 'profileRegister'>
   <h2 class = 'titulo'>Ingresa tus datos</h2>
   <hr>
-  <img class = 'camera' src='../img/camara.png'>
+  <img class = 'camera' src='../img/camara.png' id='camera' > </a>
   <p class='textCamera'>Cambiar foto de perfil</p>
   <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
-  <input type="text" id="nickname" class="nickname" placeholder = "Apodo">
-  <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
-  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico">
-  <select name="gender" id="gender" class = "gender" placeholder = "Género">
-      <option style = "color:gray" disabled selected>Género</option>
+  <input type="text" id="nickName" class="nickname" placeholder = "Apodo *"  requerided>
+  <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación *">
+  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico *" readonly >
+  <select name="gender" id="gender" class = "gender" requerided>
+      <option style = "color:gray" disabled selected>Género *</option>
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
       <option value="Prefiero no responder">Prefiero no responder</option>
   // </select>
-  <input type="text" id="age" class="age" placeholder = "Edad">
+  <input type="number" id="age" class="age" placeholder = "Edad" min="5" max="105">
+  <input type="tel" id="phone" class="phone" placeholder = "Telefono">
   <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
   <p class='pProfileRegister'>Aquí puedes dejar información de cómo contactarte si deseas 
     ayudar de forma gratuita a mujeres que estén pasando por 
     situaciones de violencia</p>
   <p class='required'>(*)Campo obligatorio</p>
-  <input type="submit" id="btnSave" class="btnSave" value='Guardar'>
+  <input type="submit" value='Guardar'>
 </form>
 `;
   const divElement = document.createElement('div');
@@ -32,22 +34,38 @@ const profileRegister = () => {
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
 
-  const inputemail = divElement.querySelector('#inputemail');
-
   const formProfileRegister = divElement.querySelector('#profileRegister');
+
+  userStateChange((user) => {
+    const inputEmail = document.getElementById('inputemail');
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const email = user.email;
+      inputEmail.value = email;
+      console.log(email);
+      console.log('usuario ha iniciado sesion');
+    } else {
+      // User is signed out
+      console.log('usuario ha cerrado sesion');
+    }
+  });
 
   formProfileRegister.addEventListener('submit', (e) => {
     e.preventDefault();
-    window.location.hash = '#/';
-  });
-  console.log(formProfileRegister);
-
-  userStateChange((user) => {
-    if (user) {
-      const email = user.email;
-      inputemail.value = email;
-      console.log(email);
-    }
+    const photo = document.getElementById('photo');
+    const name = document.getElementById('fullName').value;
+    const nickname = document.getElementById('nickName').value;
+    const ocupation = document.getElementById('ocupation').value;
+    const email = document.getElementById('inputemail').value;
+    const gender = document.getElementById('gender').value;
+    const age = document.getElementById('age').value;
+    const phone = document.getElementById('phone').value;
+    const description = document.getElementById('introduceYourself').value;
+    console.log('Entraste al registro del perfil');
+    console.log(photo, name, nickname, ocupation, email, gender, age, phone, description);
+    saveUserProfile(photo, name, nickname, ocupation, email, gender, age, phone, description);
+    window.location.hash = '#/news';
   });
 
   return divElement;

@@ -1,8 +1,11 @@
 /* eslint-disable import/named */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
+import { GoogleAuthProvider } from '../lib/firebase/config.js';
 import {
-  loginUser, userStateChange, signInGoogle,
+  loginUser,
+  //  userStateChange,
+  signInGoogle,
 } from '../lib/firebase/auth.js';
 
 const login = () => {
@@ -14,20 +17,25 @@ const login = () => {
       <div class="pass">
         <input type="checkbox" id="show-pass">
         <h6>Mostrar contraseña</h6>
-        <a class ='forgetpass' id='forgetpass' href= '#/'><h6>¿Has olvidado tu contraseña?</h6></a>  
+      </div>
+      <div class= 'forget'>
+        <a class ='forgetpass' id='forgetpass' href= '#/'>
+          <h6>¿Has olvidado tu contraseña?</h6>
+        </a>  
       </div>
       <input type='submit' value='LogIn' id='save'>
-      <p id="textVerified">Texto verificado</p>
-     
+      <p id="textVerified"></p>
+      
+      <h6>O bien ingresa con</h6>
       <div class='iconos_sesion'>
-        <img src="../img/google.png" alt="img-google" class="google" id="google">
-        <img src='../img/facebook.png'> 
+        <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
+        <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
       </div>
       <div class = 'registerUser'>
-        <p>¿No tienes cuenta?,</p><a href="#/sign-up">Regístrate</a>
+        <h6>¿No tienes cuenta?,</h6><a href="#/sign-up"><h6>Regístrate</h6></a>
       </div>
-        <img class = 'women' src='../img/mujeresunidas_celu.png'>
-        </form>
+      <img class = 'women' src='../img/mujeresunidas_celu.png'>
+    </form>
     `;
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentLogin');
@@ -43,7 +51,7 @@ const login = () => {
       inputPass.type = 'password';
     }
   });
-
+  // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -51,11 +59,15 @@ const login = () => {
     const pass = document.querySelector('#pass');
 
     loginUser(emailLogin.value, pass.value)
-      .then(() => {
-        // const userId = userCredential.user.uid;
-        // console.log(userId);
-        console.log('USTED A INICIADO SESION');
-        window.location.hash = '#/news';
+      .then((userCredential) => {
+        const userEmailVerified = userCredential.user.emailVerified;
+        if (userEmailVerified === true) {
+          window.location.hash = '#/news';
+          console.log('Usuario logueado');
+        } else {
+          // muestra mensaje de error si no verifico por correo
+          console.log('Error, el usuario no esta logueado');
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -75,31 +87,76 @@ const login = () => {
         }
         console.log(errorCode, errorMessage);
       });
-
-    userStateChange((user) => {
-      if (user) {
-        // const user = auth.currentUser;
-        const displayName = user.displayName;
-        const uid = user.uid;
-        const email = user.email;
-        const photoURL = user.photoURL;
-        // console.log(uid);
-        // console.log(email);
-        const emailVerified = user.emailVerified;
-        const textVerified = document.getElementById('textVerified');
-        if (emailVerified === false) {
-          textVerified.value = 'Email no verificado';
-        } else textVerified.value = 'Email verificado';
-        console.log(email, displayName, uid, emailVerified, photoURL);
-      }
-    });
   });
-  const google = divElement.querySelector('#google');
+
+  // Iniciando sesion con google
+  const google = divElement.querySelector('#btn-google');
   google.addEventListener('click', () => {
-    signInGoogle();
-    console.log('iniciaste sesion con google');
+    signInGoogle()
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log(credential);
+        console.log(token);
+        console.log(user);
+        console.log('iniciaste sesion con google', user);
+        window.location.hash = '#/news';
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        // ...
+        console.log(errorCode);
+        console.log(errorMessage);
+        console.log(email);
+      });
   });
   return divElement;
 };
 
 export { login };
+
+// userStateChange((user) => {
+//     const inputEmail = document.getElementById('inputemail');
+//     if (user) {
+//       // User is signed in, see docs for a list of available properties
+//       // https://firebase.google.com/docs/reference/js/firebase.User
+//       const name = user.displayName;
+//       const email = user.email;
+//       const emailVerified = user.emailVerified;
+//       const uid = user.uid;
+//       const phone = user.phoneNumber;
+//       const photo = user.photoURL;
+//       const dataUser = [uid, email, emailVerified, name, photo, phone];
+//       inputEmail.value = dataUser[1];
+//       console.log(dataUser);
+//       console.log('usuario ha iniciado sesion');
+//     } else {
+//       // User is signed out
+//       console.log('usuario ha cerrado sesion');
+//     }
+//   });
+
+// userStateChange((user) => {
+//   if (user) {
+//     // const user = auth.currentUser;
+//     const displayName = user.displayName;
+//     const uid = user.uid;
+//     const email = user.email;
+//     const photoURL = user.photoURL;
+//     // console.log(uid);
+//     // console.log(email);
+//     const emailVerified = user.emailVerified;
+//     const textVerified = document.getElementById('textVerified');
+//     if (emailVerified === false) {
+//       textVerified.value = 'Email no verificado';
+//     } else textVerified.value = 'Email verificado';
+//     console.log(email, displayName, uid, emailVerified, photoURL);
+//   }
+// });
