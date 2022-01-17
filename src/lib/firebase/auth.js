@@ -5,8 +5,9 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithPopup,
-  proveedor,
+  providerGoogle,
   sendEmailVerification,
+  providerFacebook,
 } from './config.js';
 
 // SIGN-UP
@@ -19,14 +20,14 @@ export const loginUser = (email, password) => signInWithEmailAndPassword(auth, e
 export const userStateChange = (state) => onAuthStateChanged(auth, state);
 
 // LOGOUT
-export const logOutUser = async () => {
-  await signOut(auth);
-};
+export const logOutUser = () => signOut(auth);
 
 // SEND MESSSAGE OF VERIFICATION TO EMAIL
 const emailVerification = () => sendEmailVerification(auth.currentUser);
 
 // Inicio de sesion con cuenta de Google
-export const signInGoogle = () => signInWithPopup(auth, proveedor);
+export const signInGoogle = () => signInWithPopup(auth, providerGoogle);
+// Inicio de sesion con cuenta facebook
+export const signInFacebook = () => signInWithPopup(auth, providerFacebook);
 
 export { createUser, emailVerification };
