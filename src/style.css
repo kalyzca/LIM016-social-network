@@ -281,3 +281,17 @@ nav{
   height: 2rem;
   
 }
+
+
+/* View Profile */
+.viewProfile{
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+}
+.userPhoto{
+  border: 0.5rem solid #8BDFE2;
+  width: 30%;
+  height: 30%;
+  border-radius: 5rem 5rem 0.5rem 5rem;
+}
