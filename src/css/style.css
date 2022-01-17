@@ -245,19 +245,8 @@ hr{
 }
 
 /* Header */
-.titulonews{
-  background-color: #8BDFE2;
-  color: #fff;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.5rem;
-}
-.contentNews{
-  background-color: #fff;
-}
 nav{
-  background: #ace5e7;
+  background-color: #fff;
 }
 .menu__items{
   display: flex;
@@ -265,19 +254,19 @@ nav{
 }
 .menu__items>li{
   list-style-type: none;
-  padding: 0.45rem;
 }
 .menu__items>li>a{
   text-decoration: none;
   padding: 0.5rem;
   font-size: 0.9rem;
+
   /* color: #B9A6E0; */
-  
+  /* color: #8BDFE2; */
+  /* text-shadow: 0px 4px 4px rgba(139,223, 226, 0.25); */
   font-weight: bold;
 }
 
 .menu__items>li>a>img{
   width: 2rem;
   height: 2rem;
-  
 }

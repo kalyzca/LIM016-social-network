@@ -1,9 +1,12 @@
 /* eslint-disable no-console */
-import { createUser, emailVerification, userStateChange } from '../lib/firebase/auth.js';
+import {
+  createUser,
+  emailVerification,
+} from '../lib/firebase/auth.js';
 import { saveUser } from '../lib/firebase/firestore.js';
-// import { viewHeader } from './header.js';
 
 const signUp = () => {
+  // template de sign up
   const viewSignUp = `
     <form class='formSignUp' id='formSignUp'>
       <h2 class = 'tituloSignUp'>Regístrate</h2>    
@@ -20,31 +23,47 @@ const signUp = () => {
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
   `;
+
+  // creando estructura html
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentSignUp');
   divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
-  console.log('print sign up');
-  const registro = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
 
-  console.log(registro);
+  // obteniendo el formulario de registro del usuario
+  const userRegister = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
 
-  registro.addEventListener('submit', (event) => {
+  // Evento para crear un usuario
+  userRegister.addEventListener('submit', (event) => {
+    // Obteniendo el usuario,correo electrónico y contraseña
+    const userSignUp = document.getElementById('userSignUp');
     const emailSignUp = document.getElementById('emailSignUp');
     const pass = document.getElementById('passSignUp');
-    const userSignUp = document.getElementById('userSignUp');
-    const textVerified = document.getElementById('textVerified');
+    // const textVerified = document.getElementById('textVerified');
+
+    // Evita que se recargue la página web inmediatamente
     event.preventDefault();
-    // console.log(email.value, pass.value, user.value);
-    // funcion para crear user en firebase auth
+
+    // funcion para crear un usuario en firebase auth
     createUser(emailSignUp.value, pass.value)
-      .then(() => {
+      .then((userCredential) => {
         // PONER FUNCION PARA LIMPIAR FORMULARIO
-        // const u = userCredential.user;
-        console.log('El user se creo correctamente');
-        emailVerification();
-        saveUser(emailSignUp.value, pass.value, userSignUp.value);
-        window.location.hash = '#/profileRegister';
+        const credencialUsuario = userCredential.user;
+        const uid = userCredential.user.uid;
+        const correo = userCredential.user.email;
+        const correoVerificado = userCredential.user.emailVerified;
+        console.log(credencialUsuario, correo, uid, correoVerificado);
+        console.log('El usuario se creo correctamente', emailSignUp.value, ' y ', pass.value);
+
+        emailVerification()
+          .then(() => {
+            console.log('Se ha enviado un mensaje de verficicacion al correo ');
+            window.location.hash = '#/profileRegister';
+            saveUser(emailSignUp.value, pass.value, userSignUp.value);
+          })
+          .catch((error) => {
+            console.log(error, 'Error envio de mensaje al correo electrónico.');
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -73,21 +92,7 @@ const signUp = () => {
         // console.log(errorCode, errorMessage);
       });
 
-    userStateChange((user) => {
-      if (user) {
-        // const user = auth.currentUser;
-        const displayName = user.displayName;
-        const uid = user.uid;
-        const email = user.email;
-        const emailVerified = user.emailVerified;
-        if (emailVerified === false) {
-          textVerified.value = 'Email no verificado';
-        } else textVerified.value = 'Email verificado';
-        console.log(email, displayName, uid, emailVerified);
-      }
-    });
-
-    // window.location.hash = '#/registro';
+    // window.location.hash = '#/userRegister';
   });
   return divElement;
 };
