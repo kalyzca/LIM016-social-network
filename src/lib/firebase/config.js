@@ -12,6 +12,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
+  FacebookAuthProvider,
+  GithubAuthProvider,
 } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 const firebaseConfig = {
@@ -29,10 +31,18 @@ const swapp = initializeApp(firebaseConfig);
 // Inicializando auth de firebase
 const auth = getAuth(swapp);
 
-// Initialize Firebase app
-const proveedor = new GoogleAuthProvider(swapp);
+// Initialize google con Firebase app
+const providerGoogle = new GoogleAuthProvider(swapp);
 
-export { swapp, auth, proveedor };
+// Incializar facebook con firebase app
+const providerFacebook = new FacebookAuthProvider(swapp);
+
+// Incializar github con firebase app
+const providerGitHub = new GithubAuthProvider(swapp);
+
+export {
+  swapp, auth, providerGoogle, providerFacebook, providerGitHub,
+};
 
 export {
   getAuth,
@@ -43,4 +53,6 @@ export {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
+  FacebookAuthProvider,
+  GithubAuthProvider,
 };

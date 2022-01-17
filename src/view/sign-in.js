@@ -1,11 +1,12 @@
 /* eslint-disable import/named */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import { GoogleAuthProvider } from '../lib/firebase/config.js';
+import { GoogleAuthProvider, FacebookAuthProvider } from '../lib/firebase/config.js';
 import {
   loginUser,
   //  userStateChange,
   signInGoogle,
+  signInFacebook,
 } from '../lib/firebase/auth.js';
 
 const login = () => {
@@ -104,17 +105,50 @@ const login = () => {
         console.log(user);
         console.log('iniciaste sesion con google', user);
         window.location.hash = '#/news';
-      }).catch((error) => {
+      })
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
         const email = error.email;
         // The AuthCredential type that was used.
-        // ...
+        const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorCode);
         console.log(errorMessage);
         console.log(email);
+        console.log(credential);
+      });
+  });
+  // Iniciando sesion con facebook
+  const facebook = divElement.querySelector('#btn-facebook');
+  facebook.addEventListener('click', () => {
+    signInFacebook()
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        console.log(credential);
+        console.log(accessToken);
+        console.log(user);
+        console.log('iniciaste sesion con facebook', user);
+        window.location.hash = '#/news';
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(errorCode);
+        console.log(errorMessage);
+        console.log(email);
+        console.log(credential);
       });
   });
   return divElement;
@@ -159,4 +193,4 @@ export { login };
 //     } else textVerified.value = 'Email verificado';
 //     console.log(email, displayName, uid, emailVerified, photoURL);
 //   }
-// });
+// )};
