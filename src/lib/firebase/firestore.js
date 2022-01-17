@@ -4,30 +4,20 @@ import {
   getFirestore,
   collection,
   addDoc,
-  // doc,
-  // getDoc,
+
 }
   from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 import { swapp } from './config.js';
 
 const db = getFirestore(swapp); // inicializar la BD
-// const isVerifyUser = (email) =>{}
 
+// Función para guardar el usuario registrado
 const saveUser = async (email, password, user) => {
   try {
-    /* const refer = doc(db, "users", email);
-    const docSnap = await getDoc(refer);
-      if (docSnap.exists()) {
-        console.log(email, 'holaaa');
-        console.log("Document data:", docSnap.data());
-      }
-      else {console.log("No such document!");
-      // doc.data() will be undefined in this case
-    } */
-    const docRef = await addDoc(collection(db, 'users'), {
+    const docRef = await addDoc(collection(db, 'users'), { // nuevo doc con su par clave-valor
       email,
-      password, // nuevo doc con su par clave-valor
+      password,
       user,
     });
     console.log('Documento escrito con su ID: ', docRef.id);
@@ -36,7 +26,29 @@ const saveUser = async (email, password, user) => {
   }
 };
 
+// Función para guardar el datos del perfil del usuario registrado
+const saveUserProfile = (
+  photo, fullname, nickname, ocupation, email, gender, age, phone, description,
+) => {
+  try {
+    const docProfile = addDoc(collection(db, 'profile'), {
+      photo,
+      fullname,
+      nickname,
+      ocupation,
+      email,
+      gender,
+      age,
+      phone,
+      description,
+    });
+    console.log('Documento  de perfil guardado con id: ', docProfile.id);
+  } catch (error) {
+    console.error('Error al añadir el documento: ', error);
+  }
+};
+
 export {
   saveUser,
-  // isVerifyUser
+  saveUserProfile,
 };
