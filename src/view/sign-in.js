@@ -1,11 +1,17 @@
 /* eslint-disable import/named */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import { GoogleAuthProvider } from '../lib/firebase/config.js';
+import {
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+} from '../lib/firebase/config.js';
 import {
   loginUser,
-  //  userStateChange,
+  // userStateChange,
   signInGoogle,
+  signInFacebook,
+  signInGitHub,
 } from '../lib/firebase/auth.js';
 
 const login = () => {
@@ -30,6 +36,7 @@ const login = () => {
       <div class='iconos_sesion'>
         <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
         <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
+        <img src='../img/github.jpeg' id='gitHub' class= 'btn-github'> 
       </div>
       <div class = 'registerUser'>
         <h6>¿No tienes cuenta?,</h6><a href="#/sign-up"><h6>Regístrate</h6></a>
@@ -104,17 +111,80 @@ const login = () => {
         console.log(user);
         console.log('iniciaste sesion con google', user);
         window.location.hash = '#/news';
-      }).catch((error) => {
+      })
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
         const email = error.email;
         // The AuthCredential type that was used.
-        // ...
+        const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(errorCode);
         console.log(errorMessage);
         console.log(email);
+        console.log(credential);
+      });
+  });
+  // Iniciando sesion con facebook
+  const facebook = divElement.querySelector('#btn-facebook');
+  facebook.addEventListener('click', () => {
+    signInFacebook()
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        console.log(credential);
+        console.log(accessToken);
+        console.log(user);
+        console.log('iniciaste sesion con facebook', user);
+        window.location.hash = '#/news';
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+        console.log(errorCode);
+        console.log(errorMessage);
+        console.log(email);
+        console.log(credential);
+      });
+  });
+  // Iniciando sesion con facebook
+  const gitHub = divElement.querySelector('#gitHub');
+  gitHub.addEventListener('click', () => {
+    signInGitHub()
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log(credential);
+        console.log(token);
+        console.log(user);
+        console.log('iniciaste sesion con git hub', user);
+        window.location.hash = '#/news';
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error);
+        console.log(errorCode);
+        console.log(errorMessage);
+        console.log(email);
+        console.log(credential);
       });
   });
   return divElement;
@@ -122,26 +192,26 @@ const login = () => {
 
 export { login };
 
-// userStateChange((user) => {
-//     const inputEmail = document.getElementById('inputemail');
-//     if (user) {
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/firebase.User
-//       const name = user.displayName;
-//       const email = user.email;
-//       const emailVerified = user.emailVerified;
-//       const uid = user.uid;
-//       const phone = user.phoneNumber;
-//       const photo = user.photoURL;
-//       const dataUser = [uid, email, emailVerified, name, photo, phone];
-//       inputEmail.value = dataUser[1];
-//       console.log(dataUser);
-//       console.log('usuario ha iniciado sesion');
-//     } else {
-//       // User is signed out
-//       console.log('usuario ha cerrado sesion');
-//     }
-//   });
+/* userStateChange((user) => {
+  const inputEmail = document.getElementById('inputemail');
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const name = user.displayName;
+    const email = user.email;
+    const emailVerified = user.emailVerified;
+    const uid = user.uid;
+    const phone = user.phoneNumber;
+    const photo = user.photoURL;
+    const dataUser = [uid, email, emailVerified, name, photo, phone];
+    inputEmail.value = dataUser[1];
+    console.log(dataUser);
+    console.log('usuario ha iniciado sesion');
+  } else {
+    // User is signed out
+    console.log('usuario ha cerrado sesion');
+  }
+}); */
 
 // userStateChange((user) => {
 //   if (user) {
@@ -159,4 +229,4 @@ export { login };
 //     } else textVerified.value = 'Email verificado';
 //     console.log(email, displayName, uid, emailVerified, photoURL);
 //   }
-// });
+// )};
