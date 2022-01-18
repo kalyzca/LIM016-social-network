@@ -35,8 +35,8 @@ const login = () => {
       <h6>O bien ingresa con</h6>
       <div class='iconos_sesion'>
         <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
-        <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'>
-        <input type="button" id="gitHub" value="Git Hub"> 
+        <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
+        <img src='../img/github.jpeg' id='gitHub' class= 'btn-github'> 
       </div>
       <div class = 'registerUser'>
         <h6>¿No tienes cuenta?,</h6><a href="#/sign-up"><h6>Regístrate</h6></a>
