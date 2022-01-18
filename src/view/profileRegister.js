@@ -5,20 +5,20 @@ import { saveUserProfile } from '../lib/firebase/firestore.js';
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister" id = 'profileRegister'>
-  <h2 class = 'titulo'>Ingresa tus datos</h2>
+  <h2 class ='tituloProfileRegister'>Ingresa tus datos</h2>
   <hr>
-  <img class = 'camera' src='../img/camara.png' id='camera' > </a>
+  <img class ='camera' src='../img/camara.png' id='camera' > </a>
   <p class='textCamera'>Cambiar foto de perfil</p>
-  <input type="text" id="fullName" class="fullName" placeholder = "Nombre completo">
-  <input type="text" id="nickName" class="nickname" placeholder = "Apodo *"  requerided>
-  <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación *">
-  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico *" readonly >
+  <input type="text" id="fullName" class="fullName" placeholder = "Nombre">
+  <input type="text" id="nickName" class="nickname" placeholder = "Apodo*"  requerided>
+  <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
+  <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico" readonly >
   <select name="gender" id="gender" class = "gender" requerided>
-      <option style = "color:gray" disabled selected>Género *</option>
+      <option style = "color:gray" disabled selected>Género</option>
       <option value="Femenino">Femenino</option>
       <option value="Masculino">Masculino</option>
       <option value="Prefiero no responder">Prefiero no responder</option>
-  // </select>
+  </select>
   <input type="number" id="age" class="age" placeholder = "Edad" min="5" max="105">
   <input type="tel" id="phone" class="phone" placeholder = "Telefono">
   <textarea id="introduceYourself" class="introduceYourself" placeholder = "Preséntate" cols="30" rows="5"></textarea>
