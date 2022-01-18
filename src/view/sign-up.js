@@ -15,11 +15,6 @@ const signUp = () => {
       <input type='password' placeholder='Ingrese su contraseña' id='passSignUp' class='passSignUp'>
       <p id="textVerified"></p>
       <input type='submit' value='Registrarme' id='signUp' >
-      <div class='iconos_sesion'>
-        <img src="../img//google.png" alt="img-google" class="google" id="google">
-        <img src='../img/facebook.png'> 
-      </div>
-      <a class = 'signIn' href="#/">Iniciar Sesión</a>
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
   `;

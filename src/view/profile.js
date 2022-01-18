@@ -4,11 +4,15 @@ const profile = () => {
   const viewProfile = `
     <div class= "viewProfile">
       <img src= "../img/iconfemale.png" id="userPhoto" alt="imagen-perfil" class = "userPhoto">
-      <h4 class= "fullNameProfile" id = ""> Kaly Zulema Cristobal Alcantara</h4>
-      <h4 class = "" id =""> Nickname </h4>
-      <h4 class = "" id =""> Ocupación </h4>
-      <h4 class = "" id =""> Correo Electrónico </h4>
-      <h5 class = "" id =""> Teléfono </h5>
+        <h4 class= "fullNameProfile" id = ""> Kaly Zulema Cristobal Alcantara
+          <i class="far fa-edit"></i> 
+        </h4>
+        <h4 class = "" id =""> Nickname </h4>
+        <h4 class = "" id =""> Ocupación </h4>
+        <h4 class = "" id =""> Correo Electrónico </h4>
+        <h5 class = "" id =""> Teléfono </h5>
+      
+      
       <section class= "conteoPerfil">
         <div class = "conteoPublicaciones">
           <h3 class="conteo">124</h3>
