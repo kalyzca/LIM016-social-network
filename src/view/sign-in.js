@@ -20,26 +20,20 @@ const login = () => {
       <h2 class = 'tituloLogin'>Sinchi Warmi</h2>
       <input type='text' placeholder='Ingrese su correo electrónico' id ='emailLogin' class='emailLogin'>
       <input type='password' placeholder='Ingrese su contraseña' id = 'pass' class='passLogin'>
-      <div class="pass">
-        <input type="checkbox" id="show-pass">
-        <h6>Mostrar contraseña</h6>
-      </div>
       <div class= 'forget'>
         <a class ='forgetpass' id='forgetpass' href= '#/'>
-          <h6>¿Has olvidado tu contraseña?</h6>
+          <p>¿Has olvidado tu contraseña?</p>
         </a>  
       </div>
       <input type='submit' value='LogIn' id='save'>
       <p id="textVerified"></p>
-      
-      <h6>O bien ingresa con</h6>
       <div class='iconos_sesion'>
         <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
         <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
-        <img src='../img/github.jpeg' id='gitHub' class= 'btn-github'> 
+        <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
       </div>
       <div class = 'registerUser'>
-        <h6>¿No tienes cuenta?,</h6><a href="#/sign-up"><h6>Regístrate</h6></a>
+        <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
       </div>
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
@@ -49,15 +43,6 @@ const login = () => {
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
 
-  const showPassword = divElement.querySelector('#show-pass');
-  showPassword.addEventListener('click', () => {
-    const inputPass = document.getElementById('pass');
-    if (inputPass.type === 'password') {
-      inputPass.type = 'text';
-    } else {
-      inputPass.type = 'password';
-    }
-  });
   // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
@@ -190,8 +175,6 @@ const login = () => {
   return divElement;
 };
 
-export { login };
-
 /* userStateChange((user) => {
   const inputEmail = document.getElementById('inputemail');
   if (user) {
@@ -230,3 +213,4 @@ export { login };
 //     console.log(email, displayName, uid, emailVerified, photoURL);
 //   }
 // )};
+export { login };
