@@ -109,10 +109,12 @@ form>input[type ='submit']{
   display: flex;
   justify-content: center;
 }
-.btn-google, .btn-facebook{
+.btn-google, .btn-facebook, .btn-github{
   padding: 0 3px;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  
 }
 
 /* Sign up */
