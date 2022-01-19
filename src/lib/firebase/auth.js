@@ -9,6 +9,7 @@ import {
   providerGoogle,
   providerFacebook,
   providerGitHub,
+  sendPasswordResetEmail,
 } from './config.js';
 // SIGN-UP
 const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
@@ -26,6 +27,8 @@ const signInGoogle = () => signInWithPopup(auth, providerGoogle);
 const signInFacebook = () => signInWithPopup(auth, providerFacebook);
 // Inicio de sesion con cuenta de GitHub
 const signInGitHub = () => signInWithPopup(auth, providerGitHub);
+// Envío de un correo electrónico de restablecimiento de contraseña
+const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
 export {
   createUser,
@@ -36,4 +39,5 @@ export {
   signInGoogle,
   signInFacebook,
   signInGitHub,
+  resetPassword,
 };
