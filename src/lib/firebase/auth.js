@@ -27,7 +27,7 @@ const signInGoogle = () => signInWithPopup(auth, providerGoogle);
 const signInFacebook = () => signInWithPopup(auth, providerFacebook);
 // Inicio de sesion con cuenta de GitHub
 const signInGitHub = () => signInWithPopup(auth, providerGitHub);
-// restablecer contraseña
+// Envío de un correo electrónico de restablecimiento de contraseña
 const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
 export {

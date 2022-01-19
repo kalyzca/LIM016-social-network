@@ -69,7 +69,7 @@ const signUp = () => {
           .then(() => {
             console.log('Se ha enviado un mensaje de verficicacion al correo ');
             window.location.hash = '#/profileRegister';
-            saveUser(emailSignUp.value, pass.value, userSignUp.value);
+            saveUser(emailSignUp.value, pass.value, userSignUp.value, uid);
           })
           .catch((error) => {
             console.log(error, 'Error envio de mensaje al correo electrónico.');
