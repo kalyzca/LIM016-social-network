@@ -47,14 +47,16 @@ const signUp = () => {
         const uid = userCredential.user.uid;
         const correo = userCredential.user.email;
         const correoVerificado = userCredential.user.emailVerified;
+        // emailVerified es verficar correo validos que existe en gmail -ojo
         console.log(credencialUsuario, correo, uid, correoVerificado);
         console.log('El usuario se creo correctamente', emailSignUp.value, ' y ', pass.value);
-
         emailVerification()
           .then(() => {
             console.log('Se ha enviado un mensaje de verficicacion al correo ');
+            saveUser(emailSignUp.value, pass.value, userSignUp.value, uid);
             window.location.hash = '#/profileRegister';
-            saveUser(emailSignUp.value, pass.value, userSignUp.value);
+
+            // cerrar sesion
           })
           .catch((error) => {
             console.log(error, 'Error envio de mensaje al correo electrónico.');

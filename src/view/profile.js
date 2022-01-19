@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import { viewHeader } from './header.js';
+import { getDataUserProfile } from '../lib/firebase/firestore.js';
 
 const profile = () => {
   const viewProfile = `
@@ -52,6 +54,11 @@ const profile = () => {
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'content');
   divElement.innerHTML = viewHeader + viewProfile;
+  getDataUserProfile()
+    .then(() => {
+      console.log('gol');
+      // console.log(getDataUserProfile());
+    });
   return divElement;
 };
 
