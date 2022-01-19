@@ -86,8 +86,6 @@ const signUp = () => {
         }
         // console.log(errorCode, errorMessage);
       });
-
-    // window.location.hash = '#/userRegister';
   });
   return divElement;
 };

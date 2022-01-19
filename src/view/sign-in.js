@@ -12,6 +12,7 @@ import {
   signInGoogle,
   signInFacebook,
   signInGitHub,
+  resetPassword,
 } from '../lib/firebase/auth.js';
 
 const login = () => {
@@ -20,26 +21,20 @@ const login = () => {
       <h2 class = 'tituloLogin'>Sinchi Warmi</h2>
       <input type='text' placeholder='Ingrese su correo electrónico' id ='emailLogin' class='emailLogin'>
       <input type='password' placeholder='Ingrese su contraseña' id = 'pass' class='passLogin'>
-      <div class="pass">
-        <input type="checkbox" id="show-pass">
-        <h6>Mostrar contraseña</h6>
-      </div>
       <div class= 'forget'>
         <a class ='forgetpass' id='forgetpass' href= '#/'>
-          <h6>¿Has olvidado tu contraseña?</h6>
+          <p>¿Has olvidado tu contraseña?</p>
         </a>  
       </div>
       <input type='submit' value='LogIn' id='save'>
       <p id="textVerified"></p>
-      
-      <h6>O bien ingresa con</h6>
       <div class='iconos_sesion'>
         <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
         <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
-        <img src='../img/github.jpeg' id='gitHub' class= 'btn-github'> 
+        <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
       </div>
       <div class = 'registerUser'>
-        <h6>¿No tienes cuenta?,</h6><a href="#/sign-up"><h6>Regístrate</h6></a>
+        <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
       </div>
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
@@ -49,15 +44,32 @@ const login = () => {
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
 
-  const showPassword = divElement.querySelector('#show-pass');
-  showPassword.addEventListener('click', () => {
-    const inputPass = document.getElementById('pass');
-    if (inputPass.type === 'password') {
-      inputPass.type = 'text';
-    } else {
-      inputPass.type = 'password';
-    }
+  // Evento para obtener el correo electrónico que se esta escribiendo
+  let valueEmail;
+  const emailSignIn = divElement.querySelector('#emailLogin');
+  emailSignIn.addEventListener('input', () => {
+    valueEmail = emailSignIn.value;
+    return valueEmail;
   });
+
+  // Evento cuando olvidaste tu contraseña para iniciar sesión
+  const password = divElement.querySelector('#forgetpass');
+  password.addEventListener('click', () => {
+    console.log(valueEmail);
+    resetPassword(valueEmail)
+      .then(() => {
+        // Password reset email sent!
+        console.log('Se enviado a ', valueEmail, ' un link para restablecer contraseña.');
+        // ..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode, errorMessage);
+      });
+  });
+
   // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
@@ -68,6 +80,7 @@ const login = () => {
     loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
         const userEmailVerified = userCredential.user.emailVerified;
+
         if (userEmailVerified === true) {
           window.location.hash = '#/news';
           console.log('Usuario logueado');
@@ -190,28 +203,25 @@ const login = () => {
   return divElement;
 };
 
-export { login };
-
-/* userStateChange((user) => {
-  const inputEmail = document.getElementById('inputemail');
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const name = user.displayName;
-    const email = user.email;
-    const emailVerified = user.emailVerified;
-    const uid = user.uid;
-    const phone = user.phoneNumber;
-    const photo = user.photoURL;
-    const dataUser = [uid, email, emailVerified, name, photo, phone];
-    inputEmail.value = dataUser[1];
-    console.log(dataUser);
-    console.log('usuario ha iniciado sesion');
-  } else {
-    // User is signed out
-    console.log('usuario ha cerrado sesion');
-  }
-}); */
+// userStateChange((user) => {
+//   const inputEmail = document.getElementById('inputemail');
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     const name = user.displayName;
+//     const email = user.email;
+//     const emailVerified = user.emailVerified;
+//     const uid = user.uid;
+//     const phone = user.phoneNumber;
+//     const photo = user.photoURL;
+//     console.log(uid, email, emailVerified, name, photo, phone);
+//     inputEmail.value = email;
+//     console.log('usuario ha iniciado sesion');
+//   } else {
+//     // User is signed out
+//     console.log('usuario ha cerrado sesion');
+//   }
+// });
 
 // userStateChange((user) => {
 //   if (user) {
@@ -230,3 +240,4 @@ export { login };
 //     console.log(email, displayName, uid, emailVerified, photoURL);
 //   }
 // )};
+export { login };

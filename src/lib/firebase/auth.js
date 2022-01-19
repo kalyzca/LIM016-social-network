@@ -9,26 +9,35 @@ import {
   providerGoogle,
   providerFacebook,
   providerGitHub,
+  sendPasswordResetEmail,
 } from './config.js';
 // SIGN-UP
-export const createUser = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password);
-};
+const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 // SIGN-IN
-export const loginUser = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password);
-};
+const loginUser = (email, password) => signInWithEmailAndPassword(auth, email, password);
 // USER STATE
-export const userStateChange = (state) => onAuthStateChanged(auth, state);
+const userStateChange = (state) => onAuthStateChanged(auth, state);
 // LOGOUT
-export const logOutUser = () => signOut(auth);
+const logOutUser = () => signOut(auth);
 // SEND MESSSAGE OF VERIFICATION TO EMAIL
-export const emailVerification = () => sendEmailVerification(auth.currentUser);
+const emailVerification = () => sendEmailVerification(auth.currentUser);
 // Inicio de sesion con cuenta de Google
-export const signInGoogle = () => signInWithPopup(auth, providerGoogle);
+const signInGoogle = () => signInWithPopup(auth, providerGoogle);
 // Inicio de sesion con cuenta facebook
-export const signInFacebook = () => signInWithPopup(auth, providerFacebook);
+const signInFacebook = () => signInWithPopup(auth, providerFacebook);
 // Inicio de sesion con cuenta de GitHub
-export const signInGitHub = () => signInWithPopup(auth, providerGitHub);
+const signInGitHub = () => signInWithPopup(auth, providerGitHub);
+// Envío de un correo electrónico de restablecimiento de contraseña
+const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
-// export { createUser, emailVerification };
+export {
+  createUser,
+  loginUser,
+  userStateChange,
+  logOutUser,
+  emailVerification,
+  signInGoogle,
+  signInFacebook,
+  signInGitHub,
+  resetPassword,
+};
