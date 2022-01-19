@@ -12,6 +12,7 @@ import {
   signInGoogle,
   signInFacebook,
   signInGitHub,
+  resetPassword,
 } from '../lib/firebase/auth.js';
 
 const login = () => {
@@ -43,6 +44,32 @@ const login = () => {
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
 
+  // Evento para obtener el correo electrónico que se esta escribiendo
+  let valueEmail;
+  const emailSignIn = divElement.querySelector('#emailLogin');
+  emailSignIn.addEventListener('input', () => {
+    valueEmail = emailSignIn.value;
+    return valueEmail;
+  });
+
+  // Evento cuando olvidaste tu contraseña para iniciar sesión
+  const password = divElement.querySelector('#forgetpass');
+  password.addEventListener('click', () => {
+    console.log(valueEmail);
+    resetPassword(valueEmail)
+      .then(() => {
+        // Password reset email sent!
+        console.log('Se enviado a ', valueEmail, ' un link para restablecer contraseña.');
+        // ..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode, errorMessage);
+      });
+  });
+
   // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
@@ -53,6 +80,7 @@ const login = () => {
     loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
         const userEmailVerified = userCredential.user.emailVerified;
+
         if (userEmailVerified === true) {
           window.location.hash = '#/news';
           console.log('Usuario logueado');
@@ -175,26 +203,25 @@ const login = () => {
   return divElement;
 };
 
-/* userStateChange((user) => {
-  const inputEmail = document.getElementById('inputemail');
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const name = user.displayName;
-    const email = user.email;
-    const emailVerified = user.emailVerified;
-    const uid = user.uid;
-    const phone = user.phoneNumber;
-    const photo = user.photoURL;
-    const dataUser = [uid, email, emailVerified, name, photo, phone];
-    inputEmail.value = dataUser[1];
-    console.log(dataUser);
-    console.log('usuario ha iniciado sesion');
-  } else {
-    // User is signed out
-    console.log('usuario ha cerrado sesion');
-  }
-}); */
+// userStateChange((user) => {
+//   const inputEmail = document.getElementById('inputemail');
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     const name = user.displayName;
+//     const email = user.email;
+//     const emailVerified = user.emailVerified;
+//     const uid = user.uid;
+//     const phone = user.phoneNumber;
+//     const photo = user.photoURL;
+//     console.log(uid, email, emailVerified, name, photo, phone);
+//     inputEmail.value = email;
+//     console.log('usuario ha iniciado sesion');
+//   } else {
+//     // User is signed out
+//     console.log('usuario ha cerrado sesion');
+//   }
+// });
 
 // userStateChange((user) => {
 //   if (user) {
