@@ -18,22 +18,23 @@ import {
 const login = () => {
   const viewLogin = `
     <form id='formLogin' class = 'formLogin'>
-      <h2 class = 'tituloLogin'>Sinchi Warmi</h2>
-      <input type='text' placeholder='Ingrese su correo electrónico' id ='emailLogin' class='emailLogin'>
-      <input type='password' placeholder='Ingrese su contraseña' id = 'pass' class='passLogin'>
+      <h2 class='tituloLogin'>Sinchi Warmi</h2>
+      <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
+      <div class="eye">
+        <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
+        <input type='password' placeholder='Ingrese su contraseña' id='pass' class='passLogin'>
+      </div>
       <div class= 'forget'>
-        <a class ='forgetpass' id='forgetpass' href= '#/'>
-          <p>¿Has olvidado tu contraseña?</p>
-        </a>  
+        <a class='forgetpass' id='forgetpass' href='#/'>¿Has olvidado tu contraseña?</a>  
       </div>
       <input type='submit' value='LogIn' id='save'>
       <p id="textVerified"></p>
       <div class='iconos_sesion'>
-        <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
+        <img src="../img/google.png" id="btn-google" class="btn-google">
         <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
         <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
       </div>
-      <div class = 'registerUser'>
+      <div class='registerUser'>
         <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
       </div>
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
@@ -43,40 +44,38 @@ const login = () => {
   divElement.setAttribute('id', 'contentLogin');
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
-
-  // Evento para obtener el correo electrónico que se esta escribiendo
-  let valueEmail;
-  const emailSignIn = divElement.querySelector('#emailLogin');
-  emailSignIn.addEventListener('input', () => {
-    valueEmail = emailSignIn.value;
-    return valueEmail;
+  const emailLogin = divElement.querySelector('#emailLogin');
+  const pass = divElement.querySelector('#pass');
+  const iconEye = divElement.querySelector('.iconEye');
+  const icon = divElement.querySelector('i');
+  iconEye.addEventListener('click', () => {
+    if (pass.type === 'password') {
+      pass.type = 'text';
+      icon.classList.remove('fa-eye-slash');
+      icon.classList.add('fa-eye');
+    } else {
+      pass.type = 'password';
+      icon.classList.add('fa-eye-slash');
+      icon.classList.remove('fa-eye');
+    }
   });
-
   // Evento cuando olvidaste tu contraseña para iniciar sesión
-  const password = divElement.querySelector('#forgetpass');
-  password.addEventListener('click', () => {
-    console.log(valueEmail);
-    resetPassword(valueEmail)
+  const forgetpass = divElement.querySelector('#forgetpass');
+  forgetpass.addEventListener('click', () => {
+    resetPassword(emailLogin.value)
       .then(() => {
-        // Password reset email sent!
-        console.log('Se enviado a ', valueEmail, ' un link para restablecer contraseña.');
-        // ..
+        console.log('Se enviado a ', emailLogin.value, ' un link para restablecer contraseña.');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
         console.log(errorCode, errorMessage);
       });
   });
-
   // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
     event.preventDefault();
-    const emailLogin = document.querySelector('#emailLogin');
-    const pass = document.querySelector('#pass');
-
     loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
         const userEmailVerified = userCredential.user.emailVerified;
