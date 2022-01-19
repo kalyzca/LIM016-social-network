@@ -3,6 +3,7 @@ import { viewHeader } from './header.js';
 const profile = () => {
   const viewProfile = `
     <div class= "viewProfile">
+      <input type="file" id="photoFile" class="photoFile" style="display:none">
       <img src= "../img/iconfemale.png" id="userPhoto" alt="imagen-perfil" class = "userPhoto">
       <h4 class= "fullNameProfile" id = ""> Kaly Zulema Cristobal Alcantara</h4>
       <h4 class = "" id =""> Nickname </h4>
