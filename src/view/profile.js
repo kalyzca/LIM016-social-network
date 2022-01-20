@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
 import { getDataUserProfile } from '../lib/firebase/firestore.js';
+import { userStateChange } from '../lib/firebase/auth.js';
 
 const profile = () => {
   const viewProfile = `
@@ -56,11 +57,22 @@ const profile = () => {
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'content');
   divElement.innerHTML = viewHeader + viewProfile;
-  getDataUserProfile()
-    .then(() => {
-      console.log('gol');
-      // console.log(getDataUserProfile());
-    });
+
+  let uidUser;
+  userStateChange((user) => {
+    if (user) {
+      uidUser = user.uid;
+      console.log('usuario esta logueado');
+      getDataUserProfile(uidUser)
+        .then((result) => { console.log(result); })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+    // User is signed out
+      console.log('usuario ha cerrado sesion');
+    }
+  });
   return divElement;
 };
 
