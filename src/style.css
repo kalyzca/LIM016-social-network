@@ -62,21 +62,29 @@ form>input[type ='submit']{
   margin-bottom: 0.8rem;
   padding: 1rem;
   width: 15rem;
-  height: 2rem;
+  height: 1rem;
   background-repeat: no-repeat;
 }
 
 .emailLogin{
   background-image: url(./img/email.png);
   background-position: 13.25rem;
-  background-size: 1rem;
-  
-}
-.passLogin{
-  background-image: url(./img/password.png);
-  background-position: 13rem;
   background-size: 1.5rem;
   
+}
+.eye{
+  display: flex;
+  align-items:center;
+  position: relative;
+  
+}
+.iconEye{
+  color: #EAC9E2;
+  position: absolute;
+  right: 0;
+  margin: 5px;
+  cursor: pointer;
+  top: 10%;
 }
 .forget{
   display: flex;

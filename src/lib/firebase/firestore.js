@@ -49,6 +49,14 @@ const saveUserProfile = (
     console.error('Error al añadir el documento: ', error);
   }
 };
+// obtener data de perfil del usuario
+// Get a list of cities from your database
+/* const getDataUserProfile = async () => {
+  const getUserProfileCol = collection(db, 'profile');
+  const profileSnapshot = await getDocs(getUserProfileCol);
+  const userProfileList = profileSnapshot.docs.map((doc) => doc.data());
+  return console.log(userProfileList);
+} */
 
 // obtener data de perfil del usuario
 // Get a list of cities from your database

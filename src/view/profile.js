@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
 import { getDataUserProfile } from '../lib/firebase/firestore.js';
@@ -5,6 +6,7 @@ import { getDataUserProfile } from '../lib/firebase/firestore.js';
 const profile = () => {
   const viewProfile = `
     <div class= "viewProfile">
+      <input type="file" id="photoFile" class="photoFile" style="display:none">
       <img src= "../img/iconfemale.png" id="userPhoto" alt="imagen-perfil" class = "userPhoto">
         <h4 class= "fullNameProfile" id = ""> Kaly Zulema Cristobal Alcantara
           <i class="far fa-edit"></i> 

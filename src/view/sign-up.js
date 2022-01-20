@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-console */
 import {
   createUser,
@@ -12,7 +13,10 @@ const signUp = () => {
       <h2 class = 'tituloSignUp'>Regístrate</h2>    
       <input type='text' placeholder='Ingrese su usuario' id ='userSignUp' class='userSignUp'>
       <input type='text' placeholder='Ingrese su correo electrónico' id ='emailSignUp' class='emailSignUp'>
+      <div class="eye">
+      <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
       <input type='password' placeholder='Ingrese su contraseña' id='passSignUp' class='passSignUp'>
+      </div>
       <p id="textVerified"></p>
       <input type='submit' value='Registrarme' id='signUp' >
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
@@ -24,16 +28,27 @@ const signUp = () => {
   divElement.setAttribute('id', 'contentSignUp');
   divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
-
+  const userSignUp = divElement.querySelector('#userSignUp');
+  const emailSignUp = divElement.querySelector('#emailSignUp');
+  const pass = divElement.querySelector('#passSignUp');
+  const icon = divElement.querySelector('i');
+  const iconEye = divElement.querySelector('.iconEye');
+  iconEye.addEventListener('click', () => {
+    if (pass.type === 'password') {
+      pass.type = 'text';
+      icon.classList.remove('fa-eye-slash');
+      icon.classList.add('fa-eye');
+    } else {
+      pass.type = 'password';
+      icon.classList.add('fa-eye-slash');
+      icon.classList.remove('fa-eye');
+    }
+  });
   // obteniendo el formulario de registro del usuario
   const userRegister = divElement.querySelector('#formSignUp'); // divElement ya es un elemento de html
 
   // Evento para crear un usuario
   userRegister.addEventListener('submit', (event) => {
-    // Obteniendo el usuario,correo electrónico y contraseña
-    const userSignUp = document.getElementById('userSignUp');
-    const emailSignUp = document.getElementById('emailSignUp');
-    const pass = document.getElementById('passSignUp');
     // const textVerified = document.getElementById('textVerified');
 
     // Evita que se recargue la página web inmediatamente

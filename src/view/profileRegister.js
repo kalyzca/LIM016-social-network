@@ -35,12 +35,9 @@ const profileRegister = () => {
   divElement.innerHTML = viewRegister;
 
   const formProfileRegister = divElement.querySelector('#profileRegister');
-
   userStateChange((user) => {
-    const inputEmail = document.getElementById('inputemail');
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
+      const inputEmail = document.getElementById('inputemail');
       const email = user.email;
       inputEmail.value = email;
       console.log(email);
