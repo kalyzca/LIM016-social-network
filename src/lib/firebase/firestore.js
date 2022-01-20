@@ -28,7 +28,7 @@ const saveUser = async (email, password, user, uid) => {
 
 // Función para guardar el datos del perfil del usuario registrado
 const saveUserProfile = (
-  photo, fullname, nickname, ocupation, email, gender, age, phone, description,
+  photo, fullname, nickname, ocupation, email, gender, age, phone, description, uid,
 ) => {
   try {
     const docProfile = addDoc(collection(db, 'profile'), {
@@ -41,6 +41,7 @@ const saveUserProfile = (
       age,
       phone,
       description,
+      uid,
     });
     console.log('Documento  de perfil guardado con id: ', docProfile.id);
   } catch (error) {
