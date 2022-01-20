@@ -5,7 +5,7 @@ const profile = () => {
     <div class= "viewProfile">
       <input type="file" id="photoFile" class="photoFile" style="display:none">
       <img src= "../img/iconfemale.png" id="userPhoto" alt="imagen-perfil" class = "userPhoto">
-      <h4 class= "fullNameProfile" id = ""> Kaly Zulema Cristobal Alcantara</h4>
+      <h4 class= "fullNameProfile" id = "fullNameProfile"> Kaly Zulema Cristobal Alcantara</h4>
       <h4 class = "" id =""> Nickname </h4>
       <h4 class = "" id =""> Ocupación </h4>
       <h4 class = "" id =""> Correo Electrónico </h4>

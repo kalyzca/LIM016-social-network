@@ -78,6 +78,7 @@ const login = () => {
     event.preventDefault();
     loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
+        console.log(userCredential, 'user');
         const userEmailVerified = userCredential.user.emailVerified;
 
         if (userEmailVerified === true) {
