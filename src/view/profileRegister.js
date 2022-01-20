@@ -9,7 +9,7 @@ const profileRegister = () => {
   <hr>
   <img class ='camera' src='../img/camara.png' id='camera' > </a>
   <p class='textCamera'>Cambiar foto de perfil</p>
-  <input type="text" id="fullName" class="fullName" placeholder = "Nombre">
+  <input type="text" id="fullName" class="fullName" placeholder="Nombre">
   <input type="text" id="nickName" class="nickname" placeholder = "Apodo*"  requerided>
   <input type="text" id="ocupation" class="ocupation" placeholder = "Ocupación">
   <input type="email" id="inputemail" class="email" placeholder = "Correo electrónico" readonly >
