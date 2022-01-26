@@ -35,11 +35,13 @@ const profileRegister = () => {
   divElement.innerHTML = viewRegister;
 
   const formProfileRegister = divElement.querySelector('#profileRegister');
+  let uid;
   userStateChange((user) => {
     if (user) {
       const inputEmail = document.getElementById('inputemail');
       const email = user.email;
       inputEmail.value = email;
+      uid = user.uid;
       console.log(email);
       console.log('usuario ha iniciado sesion');
     } else {
@@ -60,8 +62,8 @@ const profileRegister = () => {
     const phone = document.getElementById('phone').value;
     const description = document.getElementById('introduceYourself').value;
     console.log('Entraste al registro del perfil');
-    console.log(photo, name, nickname, ocupation, email, gender, age, phone, description);
-    saveUserProfile(photo, name, nickname, ocupation, email, gender, age, phone, description);
+    console.log(photo, name, nickname, ocupation, email, gender, age, phone, description, uid);
+    saveUserProfile(photo, name, nickname, ocupation, email, gender, age, phone, description, uid);
     window.location.hash = '#/news';
   });
 

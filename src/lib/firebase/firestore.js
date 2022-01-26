@@ -14,7 +14,7 @@ const db = getFirestore(swapp); // inicializar la BD
 // Función para guardar el usuario registrado
 const saveUser = async (email, password, user, uid) => {
   try {
-    const docRef = await addDoc(collection(db, 'users'), { // nuevo doc con su par clave-valor
+    const docRef = await addDoc(collection(db, 'saveUsers'), { // nuevo doc con su par clave-valor
       email,
       password,
       user,
@@ -27,11 +27,11 @@ const saveUser = async (email, password, user, uid) => {
 };
 
 // Función para guardar el datos del perfil del usuario registrado
-const saveUserProfile = (
+const saveUserProfile = async (
   photo, fullname, nickname, ocupation, email, gender, age, phone, description, uid,
 ) => {
   try {
-    const docProfile = addDoc(collection(db, 'profile'), {
+    const docProfile = await addDoc(collection(db, 'profile'), {
       photo,
       fullname,
       nickname,
