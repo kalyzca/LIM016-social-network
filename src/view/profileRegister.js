@@ -7,7 +7,7 @@ const profileRegister = () => {
   <form class="profileRegister" id = 'profileRegister'>
     <h2 class ='tituloProfileRegister'>Ingresa tus datos</h2>
     <hr>
-    <input type="image" src="../img/camara.png" alt="" id='camera'>
+    <img src="../img/camara.png" alt="" id='camera'>
     <i class = "far fa-edit" id = "editPhoto"></i>
     <p class='textCamera'>Cambiar foto de perfil</p>
     <input type="text" id="fullName" class="fullName" placeholder="Nombre">
@@ -35,16 +35,6 @@ const profileRegister = () => {
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
 
-  // Declaración de variables
-  const photo = document.getElementById('camera');
-  const fullname = document.getElementById('fullName');
-  const nickname = document.getElementById('nickName');
-  const ocupation = document.getElementById('ocupation');
-  const gender = document.getElementById('gender');
-  const age = document.getElementById('age');
-  const phone = document.getElementById('phone');
-  const description = document.getElementById('introduceYourself');
-
   // Obteniendo elementos del dom
   const formProfileRegister = divElement.querySelector('#profileRegister');
   let uid;
@@ -64,6 +54,15 @@ const profileRegister = () => {
   });
 
   formProfileRegister.addEventListener('submit', (e) => {
+    // Declaración de variables
+    const photo = document.getElementById('camera');
+    const fullname = document.getElementById('fullName');
+    const nickname = document.getElementById('nickName');
+    const ocupation = document.getElementById('ocupation');
+    const gender = document.getElementById('gender');
+    const age = document.getElementById('age');
+    const phone = document.getElementById('phone');
+    const description = document.getElementById('introduceYourself');
     e.preventDefault();
     saveUserProfile(
       photo.src,
