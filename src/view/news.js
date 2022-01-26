@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
 import { logOutUser } from '../lib/firebase/auth.js';
-// import { user } from '../lib/firebase/config.js';
+import { currentUser } from './sign-in.js';
 
 import {
   savePost, onGetPost, deletePost, getDocPost, updateDocPost,
 } from '../lib/firebase/firestore.js';
 
+console.log(currentUser);
 // Template de news
 const viewNews = `
     <form id="formPost" class="formPost">
       <div class="userPost" id="userPost">
-        <input type="image" src="../img/usuario-femenino.png" alt="" class="imgPerfil" id="imgPerfil">
+        <img src="../img/usuario-femenino.png" alt="" class="imgPerfil" id="imgPerfil">
         <h5 class="userName" id="userName">Nombre</h5>
         <h5  class="datetimePost" id="datetimePost"> 12/11/2021 12:00</h5>
       </div>
@@ -37,6 +38,7 @@ divElement.innerHTML = viewHeader + viewNews;
 // Declaración de variables
 let editStatus = false;
 let idp;
+
 // Obteniendo el formulario post
 const formularioPost = divElement.querySelector('#formPost');
 const postContainer = divElement.querySelector('#postContainer');
@@ -47,6 +49,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       const dataPost = doc.data();
+      console.log(dataPost);
       postContainer.innerHTML
       += `
         <div class= "userPostId">

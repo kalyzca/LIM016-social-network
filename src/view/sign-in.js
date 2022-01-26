@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable import/named */
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
@@ -15,8 +16,9 @@ import {
   resetPassword,
 } from '../lib/firebase/auth.js';
 
+let currentUser;
+
 const login = () => {
-  let currentUser;
   const viewLogin = `
     <form id='formLogin' class = 'formLogin'>
       <h2 class='tituloLogin'>Sinchi Warmi</h2>
@@ -68,6 +70,7 @@ const login = () => {
     } else {
       console.log('Usuario no logueado');
     }
+    return currentUser;
   });
 
   // Evento cuando olvidaste tu contraseña para iniciar sesión
@@ -90,11 +93,10 @@ const login = () => {
     event.preventDefault();
     currentUser = loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
-        console.log(userCredential, 'user');
         const userEmailVerified = userCredential.user.emailVerified;
         if (userEmailVerified === true) {
           window.location.hash = '#/news';
-          console.log('Usuario con correo verificado');
+          console.log('Usuario registrado y con correo verificado');
         } else {
           // muestra mensaje de error si no verifico por correo
           console.log('Error, el usuario no se verifico el correo ');
@@ -133,6 +135,7 @@ const login = () => {
         console.log(credential);
         console.log(token);
         console.log(user);
+
         console.log('iniciaste sesion con google', user);
         window.location.hash = '#/news';
       })
@@ -211,7 +214,8 @@ const login = () => {
         console.log(credential);
       });
   });
+
   return divElement;
 };
 
-export { login };
+export { login, currentUser };
