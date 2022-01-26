@@ -320,3 +320,72 @@ nav{
   margin: 0.5rem;
   padding: 1rem;
 }
+
+/* News */
+
+.postContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  width:20rem;
+  height:auto;
+  
+}
+.userPostId{
+  border: 1px solid #e0a6b7;
+  width:20rem;
+  height:auto;
+  margin: 0 0 1rem 0; 
+}
+.data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width:20rem;
+  height:auto;
+}
+.data>textarea{
+  display: flex;
+  border: 1px solid transparent;
+  justify-content: center;
+  width:18rem;
+  height: auto;
+  
+}
+.formPost{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  border: 1px solid #EAC9E2;
+  border-radius: 0.5rem;
+  width:20rem;
+  height:auto;
+  margin: 0.5rem auto;
+}
+
+.userPost{
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+  border: 1px solid #8BDFE2;
+  border-radius: 0.5rem 0.5rem 0 0;
+  width:20rem;
+  padding: 0.5rem;
+}
+.imgPerfil{
+  width:30px;
+  height: 30px;
+}
+.postTitle{
+  
+  text-align: center;
+}
+.btnPostSave{
+  padding: 0.5rem;
+  margin: 1rem;
+}

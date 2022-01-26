@@ -1,5 +1,4 @@
-/* eslint-disable import/named */
-/* eslint-disable no-alert */
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-console */
 import {
   GoogleAuthProvider,
@@ -8,12 +7,14 @@ import {
 } from '../lib/firebase/config.js';
 import {
   loginUser,
-  // userStateChange,
+  userStateChange,
   signInGoogle,
   signInFacebook,
   signInGitHub,
   resetPassword,
 } from '../lib/firebase/auth.js';
+
+let currentUser;
 
 const login = () => {
   const viewLogin = `
@@ -59,6 +60,17 @@ const login = () => {
       icon.classList.remove('fa-eye');
     }
   });
+
+  userStateChange((user) => {
+    if (user) {
+      currentUser = user;
+      console.log('Usuario logueado', currentUser);
+    } else {
+      console.log('Usuario no logueado');
+    }
+    return currentUser;
+  });
+
   // Evento cuando olvidaste tu contraseña para iniciar sesión
   const forgetpass = divElement.querySelector('#forgetpass');
   forgetpass.addEventListener('click', () => {
@@ -72,21 +84,20 @@ const login = () => {
         console.log(errorCode, errorMessage);
       });
   });
+
   // Iniciando sesión con correo y contraseña
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
     event.preventDefault();
-    loginUser(emailLogin.value, pass.value)
+    currentUser = loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
-        console.log(userCredential, 'user');
         const userEmailVerified = userCredential.user.emailVerified;
-
         if (userEmailVerified === true) {
           window.location.hash = '#/news';
-          console.log('Usuario logueado');
+          console.log('Usuario registrado y con correo verificado');
         } else {
           // muestra mensaje de error si no verifico por correo
-          console.log('Error, el usuario no esta logueado');
+          console.log('Error, el usuario no se verifico el correo ');
         }
       })
       .catch((error) => {
@@ -112,7 +123,7 @@ const login = () => {
   // Iniciando sesion con google
   const google = divElement.querySelector('#btn-google');
   google.addEventListener('click', () => {
-    signInGoogle()
+    currentUser = signInGoogle()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -122,6 +133,7 @@ const login = () => {
         console.log(credential);
         console.log(token);
         console.log(user);
+
         console.log('iniciaste sesion con google', user);
         window.location.hash = '#/news';
       })
@@ -142,7 +154,7 @@ const login = () => {
   // Iniciando sesion con facebook
   const facebook = divElement.querySelector('#btn-facebook');
   facebook.addEventListener('click', () => {
-    signInFacebook()
+    currentUser = signInFacebook()
       .then((result) => {
         // The signed-in user info.
         const user = result.user;
@@ -170,10 +182,10 @@ const login = () => {
         console.log(credential);
       });
   });
-  // Iniciando sesion con facebook
+  // Iniciando sesion con github
   const gitHub = divElement.querySelector('#gitHub');
   gitHub.addEventListener('click', () => {
-    signInGitHub()
+    currentUser = signInGitHub()
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         const credential = GithubAuthProvider.credentialFromResult(result);
@@ -200,44 +212,8 @@ const login = () => {
         console.log(credential);
       });
   });
+
   return divElement;
 };
 
-// userStateChange((user) => {
-//   const inputEmail = document.getElementById('inputemail');
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const name = user.displayName;
-//     const email = user.email;
-//     const emailVerified = user.emailVerified;
-//     const uid = user.uid;
-//     const phone = user.phoneNumber;
-//     const photo = user.photoURL;
-//     console.log(uid, email, emailVerified, name, photo, phone);
-//     inputEmail.value = email;
-//     console.log('usuario ha iniciado sesion');
-//   } else {
-//     // User is signed out
-//     console.log('usuario ha cerrado sesion');
-//   }
-// });
-
-// userStateChange((user) => {
-//   if (user) {
-//     // const user = auth.currentUser;
-//     const displayName = user.displayName;
-//     const uid = user.uid;
-//     const email = user.email;
-//     const photoURL = user.photoURL;
-//     // console.log(uid);
-//     // console.log(email);
-//     const emailVerified = user.emailVerified;
-//     const textVerified = document.getElementById('textVerified');
-//     if (emailVerified === false) {
-//       textVerified.value = 'Email no verificado';
-//     } else textVerified.value = 'Email verificado';
-//     console.log(email, displayName, uid, emailVerified, photoURL);
-//   }
-// )};
-export { login };
+export { login, currentUser };

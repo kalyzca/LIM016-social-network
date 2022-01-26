@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
-import {
-  createUser,
-  emailVerification,
-} from '../lib/firebase/auth.js';
-import { saveUser } from '../lib/firebase/firestore.js';
+import { createUser, emailVerification } from '../lib/firebase/auth.js';
+// import { saveUser } from '../lib/firebase/firestore.js';
+import { saveUser, userAccount } from '../lib/firebase/firestore.js';
 
 const signUp = () => {
   // template de sign up
@@ -18,7 +16,6 @@ const signUp = () => {
       </div>
       <p id="textVerified"></p>
       <input type='submit' value='Registrarme' id='signUp' >
-      <a class = 'signIn' href="#/">Iniciar Sesión</a>
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
   `;
@@ -28,11 +25,15 @@ const signUp = () => {
   divElement.setAttribute('id', 'contentSignUp');
   divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
+
+  // Declaración de variables
   const userSignUp = divElement.querySelector('#userSignUp');
   const emailSignUp = divElement.querySelector('#emailSignUp');
   const pass = divElement.querySelector('#passSignUp');
   const icon = divElement.querySelector('i');
   const iconEye = divElement.querySelector('.iconEye');
+
+  // Evento para mostrar y ocultar contraseña
   iconEye.addEventListener('click', () => {
     if (pass.type === 'password') {
       pass.type = 'text';
@@ -60,16 +61,19 @@ const signUp = () => {
         // PONER FUNCION PARA LIMPIAR FORMULARIO
         const credencialUsuario = userCredential.user;
         const uid = userCredential.user.uid;
-        const correo = userCredential.user.email;
-        const correoVerificado = userCredential.user.emailVerified;
-        console.log(credencialUsuario, correo, uid, correoVerificado);
-        console.log('El usuario se creo correctamente', emailSignUp.value, ' y ', pass.value);
 
+        console.log('El usuario se creo correctamente', emailSignUp.value, ' y ', pass.value);
         emailVerification()
           .then(() => {
             console.log('Se ha enviado un mensaje de verficicacion al correo ');
-            window.location.hash = '#/profileRegister';
             saveUser(emailSignUp.value, pass.value, userSignUp.value, uid);
+            userAccount(uid, userSignUp.value, credencialUsuario.displayName,
+              emailSignUp.value, pass.value, credencialUsuario.phoneNumber,
+              credencialUsuario.photoURL);
+
+            window.location.hash = '#/profileRegister';
+
+            // cerrar sesion
           })
           .catch((error) => {
             console.log(error, 'Error envio de mensaje al correo electrónico.');
@@ -105,7 +109,4 @@ const signUp = () => {
   return divElement;
 };
 
-export {
-  signUp,
-  // printSignUp,
-};
+export { signUp };

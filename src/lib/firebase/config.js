@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+
 // Importación de la app de firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 
@@ -15,6 +16,7 @@ import {
   FacebookAuthProvider,
   GithubAuthProvider,
   sendPasswordResetEmail,
+
 } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 const firebaseConfig = {
@@ -41,8 +43,11 @@ const providerFacebook = new FacebookAuthProvider(swapp);
 // Incializar github con firebase app
 const providerGitHub = new GithubAuthProvider(swapp);
 
+// Usuario actual
+const user = auth.currentUser;
+
 export {
-  swapp, auth, providerGoogle, providerFacebook, providerGitHub,
+  swapp, auth, providerGoogle, providerFacebook, providerGitHub, user,
 };
 
 export {
