@@ -105,7 +105,7 @@ const dataUserPersonal = async (
 
 // POSTS
 // Guardar los post
-const savePost = (title, description, uid) => addDoc(collection(db, 'posts'), { title, description, uid });
+const savePost = (title, description) => addDoc(collection(db, 'posts'), { title, description });
 
 // Listar los posts
 const getPost = () => getDocs(collection(db, 'posts'));
