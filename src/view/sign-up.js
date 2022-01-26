@@ -1,10 +1,7 @@
-/* eslint-disable import/named */
 /* eslint-disable no-console */
-import {
-  createUser,
-  emailVerification,
-} from '../lib/firebase/auth.js';
-import { saveUser } from '../lib/firebase/firestore.js';
+import { createUser, emailVerification } from '../lib/firebase/auth.js';
+// import { saveUser } from '../lib/firebase/firestore.js';
+import { userAccount } from '../lib/firebase/firestore.js';
 
 const signUp = () => {
   // template de sign up
@@ -60,16 +57,16 @@ const signUp = () => {
         // PONER FUNCION PARA LIMPIAR FORMULARIO
         const credencialUsuario = userCredential.user;
         const uid = userCredential.user.uid;
-        const correo = userCredential.user.email;
-        const correoVerificado = userCredential.user.emailVerified;
-        // emailVerified es verficar correo validos que existe en gmail -ojo
-        console.log(credencialUsuario, correo, uid, correoVerificado);
+
         console.log('El usuario se creo correctamente', emailSignUp.value, ' y ', pass.value);
         emailVerification()
           .then(() => {
             console.log('Se ha enviado un mensaje de verficicacion al correo ');
-            saveUser(emailSignUp.value, pass.value, userSignUp.value, uid);
-            window.location.hash = '#/profileRegister';
+            userAccount(uid, userSignUp.value, credencialUsuario.displayName,
+              emailSignUp.value, pass.value, credencialUsuario.phoneNumber,
+              credencialUsuario.photoURL);
+
+            window.location.hash = '#/news';
 
             // cerrar sesion
           })
@@ -107,7 +104,4 @@ const signUp = () => {
   return divElement;
 };
 
-export {
-  signUp,
-  // printSignUp,
-};
+export { signUp };
