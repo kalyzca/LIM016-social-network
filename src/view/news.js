@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
 import { logOutUser } from '../lib/firebase/auth.js';

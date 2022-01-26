@@ -84,7 +84,7 @@ const userAccount = async (
     console.log(error, 'Error al añadir el documento');
   }
 };
-
+// Función para obtener los datos de profileRegister y mostrarlos en profile.
 const getDataUserProfile = async (uidUser) => {
   const queryDataUser = query(collection(db, 'profile'), where('uid', '==', uidUser));
   const querySnapshot = await getDocs(queryDataUser);
@@ -97,7 +97,7 @@ const getDataUserProfile = async (uidUser) => {
 const savePost = (title, description) => addDoc(collection(db, 'posts'), { title, description });
 
 // Listar los posts
-const getPost = () => getDocs(collection(db, 'posts'));
+const getPosts = () => getDocs(collection(db, 'posts'));
 
 // Escucha los post
 const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
@@ -115,10 +115,9 @@ export {
   saveUser,
   saveUserProfile,
   getDataUserProfile,
-  // updateDocUser,
   userAccount,
   savePost,
-  getPost,
+  getPosts,
   onGetPost,
   deletePost,
   getDocPost,

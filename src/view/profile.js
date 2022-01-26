@@ -6,14 +6,16 @@ import { userStateChange } from '../lib/firebase/auth.js';
 const profile = () => {
   const viewProfile = `
     <div class= "viewProfile">
-      <input type="file" id="photoFile" class="photoFile" style="display:none">
       <img src= "../img/iconfemale.png" id="userPhoto" alt="imagen-perfil" class = "userPhoto">
-      <h4 class= "fullNameProfile" id = "fullNameProfile"> Kaly Zulema Cristobal Alcantara</h4>
+      <input type="file" id="photoFile" class="photoFile" style="display:none">
+      
       <i class="far fa-edit"></i> 
-      <h4 class = "" id =""> Nickname </h4>
-      <h4 class = "" id =""> Ocupación </h4>
-      <h4 class = "" id =""> Correo Electrónico </h4>
-      <h5 class = "" id =""> Teléfono </h5>
+      <h3 class= "fullNameProfile" id = "fullNameProfile"> </h3>
+      
+      <h4 class = "" id ="nickName"> Nickname </h4>
+      <h4 class = "" id ="ocupation"> Ocupación </h4>
+      <h4 class = "" id ="correo"> Correo Electrónico </h4>
+      <h4 class = "" id ="phone"> Teléfono </h4>
       <section class= "conteoPerfil">
         <div class = "conteoPublicaciones">
           <h3 class="conteo">124</h3>
@@ -30,7 +32,7 @@ const profile = () => {
       </section>
       <section class= "presentacion" id= "presentacion">
         <h4>Descripción</h4>
-        <p class= "descripcion" readonly>Soy una mujer perseverante ...</p>
+        <p class= "descripcion" id= "description"  readonly>Soy una mujer perseverante ...</p>
       </section>
       <div class="icono-publicaciones-usuario">
         <img src="../img/publicaciones.png" id ="" class="">
@@ -55,20 +57,31 @@ const profile = () => {
   divElement.innerHTML = viewHeader + viewProfile;
 
   let uidUser;
+  const name = divElement.querySelector('#fullNameProfile');
+  const nickname = divElement.querySelector('#nickName');
+  const ocupation = divElement.querySelector('#ocupation');
+  const email = divElement.querySelector('#correo');
+  const phone = divElement.querySelector('#phone');
+  const description = divElement.querySelector('#description');
   userStateChange((user) => {
     if (user) {
       uidUser = user.uid;
-      console.log('usuario esta logueado');
+
       getDataUserProfile(uidUser)
-        .then((result) => { console.log(result); })
+        .then((result) => {
+          name.textContent = result[0].fullname;
+          nickname.textContent = result[0].nickname;
+          ocupation.textContent = result[0].ocupation;
+          email.textContent = result[0].email;
+          phone.textContent = result[0].phone;
+          description.textContent = result[0].description;
+        })
         .catch((err) => {
           console.log(err);
         });
-    } else {
-    // User is signed out
-      console.log('usuario ha cerrado sesion');
     }
   });
+
   return divElement;
 };
 
