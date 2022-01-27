@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import { userStateChange } from '../lib/firebase/auth.js';
-import { dataUserPersonal } from '../lib/firebase/firestore.js';
+import { saveUserProfile } from '../lib/firebase/firestore.js';
 
 const profileRegister = () => {
   const viewRegister = `
   <form class="profileRegister" id = 'profileRegister'>
     <h2 class ='tituloProfileRegister'>Ingresa tus datos</h2>
     <hr>
-    <input type="image" src="../img/camara.png" alt="" id='camera'>
+    <img src="../img/camara.png" alt="" id='camera'>
     <i class = "far fa-edit" id = "editPhoto"></i>
     <p class='textCamera'>Cambiar foto de perfil</p>
     <input type="text" id="fullName" class="fullName" placeholder="Nombre">
@@ -35,30 +35,17 @@ const profileRegister = () => {
   divElement.setAttribute('class', 'contentProfileRegister');
   divElement.innerHTML = viewRegister;
 
-  // Declaración de variables
-  const photo = document.getElementById('camera');
-  const fullname = document.getElementById('fullName');
-  const nickname = document.getElementById('nickName');
-  const ocupation = document.getElementById('ocupation');
-  const gender = document.getElementById('gender');
-  const age = document.getElementById('age');
-  const phone = document.getElementById('phone');
-  const description = document.getElementById('introduceYourself');
-
   // Obteniendo elementos del dom
   const formProfileRegister = divElement.querySelector('#profileRegister');
-
-  let uidUser;
+  let uid;
   let valueEmail;
   userStateChange((user) => {
     const inputEmail = document.getElementById('inputemail');
     if (user) {
-      console.log(user);
+      uid = user.uid;
       valueEmail = user.email;
       inputEmail.value = valueEmail;
-      console.log(valueEmail);
-      uidUser = user.uid;
-      console.log(uidUser, valueEmail);
+      console.log(uid, valueEmail);
       console.log('usuario ha iniciado sesion');
     } else {
     // User is signed out
@@ -67,9 +54,17 @@ const profileRegister = () => {
   });
 
   formProfileRegister.addEventListener('submit', (e) => {
+    // Declaración de variables
+    const photo = document.getElementById('camera');
+    const fullname = document.getElementById('fullName');
+    const nickname = document.getElementById('nickName');
+    const ocupation = document.getElementById('ocupation');
+    const gender = document.getElementById('gender');
+    const age = document.getElementById('age');
+    const phone = document.getElementById('phone');
+    const description = document.getElementById('introduceYourself');
     e.preventDefault();
-    dataUserPersonal(
-      uidUser,
+    saveUserProfile(
       photo.src,
       fullname.value,
       nickname.value,
@@ -79,6 +74,7 @@ const profileRegister = () => {
       age.value,
       phone.value,
       description.value,
+      uid,
     );
     console.log('Entraste al registro del perfil');
     window.location.hash = '#/news';

@@ -1,6 +1,4 @@
 /* eslint-disable import/no-mutable-exports */
-/* eslint-disable import/named */
-/* eslint-disable no-alert */
 /* eslint-disable no-console */
 import {
   GoogleAuthProvider,

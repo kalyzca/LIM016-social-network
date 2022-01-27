@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { createUser, emailVerification } from '../lib/firebase/auth.js';
 // import { saveUser } from '../lib/firebase/firestore.js';
-import { userAccount } from '../lib/firebase/firestore.js';
+import { saveUser, userAccount } from '../lib/firebase/firestore.js';
 
 const signUp = () => {
   // template de sign up
@@ -25,11 +25,15 @@ const signUp = () => {
   divElement.setAttribute('id', 'contentSignUp');
   divElement.setAttribute('class', 'contentSignUp');
   divElement.innerHTML = viewSignUp;
+
+  // Declaración de variables
   const userSignUp = divElement.querySelector('#userSignUp');
   const emailSignUp = divElement.querySelector('#emailSignUp');
   const pass = divElement.querySelector('#passSignUp');
   const icon = divElement.querySelector('i');
   const iconEye = divElement.querySelector('.iconEye');
+
+  // Evento para mostrar y ocultar contraseña
   iconEye.addEventListener('click', () => {
     if (pass.type === 'password') {
       pass.type = 'text';
@@ -62,11 +66,12 @@ const signUp = () => {
         emailVerification()
           .then(() => {
             console.log('Se ha enviado un mensaje de verficicacion al correo ');
+            saveUser(emailSignUp.value, pass.value, userSignUp.value, uid);
             userAccount(uid, userSignUp.value, credencialUsuario.displayName,
               emailSignUp.value, pass.value, credencialUsuario.phoneNumber,
               credencialUsuario.photoURL);
 
-            window.location.hash = '#/news';
+            window.location.hash = '#/profileRegister';
 
             // cerrar sesion
           })
