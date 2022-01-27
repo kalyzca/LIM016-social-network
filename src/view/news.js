@@ -1,11 +1,11 @@
 /* eslint-disable import/named */
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
-import { logOutUser } from '../lib/firebase/auth.js';
+import { logOutUser, userStateChange } from '../lib/firebase/auth.js';
 import { currentUser } from './sign-in.js';
 
 import {
-  savePost, onGetPost, deletePost, getDocPost, updateDocPost,
+  savePost, onGetPost, deletePost, getDocPost, updateDocPost, getDataUserProfile,
 } from '../lib/firebase/firestore.js';
 
 console.log(currentUser);
@@ -39,24 +39,41 @@ divElement.innerHTML = viewHeader + viewNews;
 // Declaración de variables
 let editStatus = false;
 let idp;
-
+let uidUser;
+let fullname;
 // Obteniendo el formulario post
 const formularioPost = divElement.querySelector('#formPost');
 const postContainer = divElement.querySelector('#postContainer');
 
+userStateChange((user) => {
+  const nameU = divElement.querySelector('#userName');
+  if (user) {
+    uidUser = user.uid;
+    getDataUserProfile(uidUser)
+      .then((result) => {
+        fullname = result[0].fullname;
+        nameU.textContent = fullname; // nombre del formulario con id formPost
+        console.log(result);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+});
+
 window.addEventListener('DOMContentLoaded', async () => {
   await onGetPost((querySnapshot) => {
     postContainer.innerHTML = '';
+    let dataPost;
     // Listar los posts -
     querySnapshot.forEach((doc) => {
-      const dataPost = doc.data();
-      console.log(dataPost);
+      dataPost = doc.data();
+
       postContainer.innerHTML
       += `
         <div class= "userPostId">
           <div class="userPost" id="userPost">
             <img src="../img/usuario-femenino.png" alt="" class="imgPerfil" id="imgPerfil">
-            <h5 class="userName" id="userName">Nombre</h5>
+            <h5 class="userName" id="userNamePost">${dataPost.name}</h5>
             <h5 class="datetimePost" id="datetimePost"> 12/11/2021 12:00</h5>
             <button class="btn-delete" data-id="${doc.id}">Eliminar</button>
             <button class="btn-edit" data-id="${doc.id}"><i class="far fa-edit"></i>Editar</button>
@@ -68,7 +85,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         </div>
       `;
     });
-
+    console.log(dataPost);
     // Eliminando post
     const btnDelete = postContainer.querySelectorAll('.btn-delete');
     btnDelete.forEach((btn) => {
@@ -107,13 +124,16 @@ formularioPost.addEventListener('submit', async (e) => {
   e.preventDefault();
   const title = formularioPost.postTitle;
   const description = formularioPost.postDescription;
+  // const name = formularioPost.userName;
   if (!editStatus) {
-    await savePost(title.value, description.value);
+    await savePost(title.value, description.value, fullname, uidUser);
   } else {
     console.log(idp);
     await updateDocPost(idp, {
       title: title.value,
       description: description.value,
+      name: fullname,
+      uid: uidUser,
     });
     editStatus = false;
     idp = '';
