@@ -30,6 +30,7 @@ const profileRegister = () => {
     <input type="submit" value='Guardar'>
   </form>
 `;
+  document.body.style.background = '#EAC9E2';
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentProfileRegister');
   divElement.setAttribute('class', 'contentProfileRegister');

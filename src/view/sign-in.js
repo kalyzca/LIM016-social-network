@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-console */
 import {
@@ -41,6 +42,7 @@ const login = () => {
       <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
     `;
+  document.body.style.background = '#EAC9E2';
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentLogin');
   divElement.setAttribute('class', 'contentLogin');
@@ -64,7 +66,7 @@ const login = () => {
   userStateChange((user) => {
     if (user) {
       currentUser = user;
-      console.log('Usuario logueado', currentUser);
+      console.log('Usuario logueado', user);
     } else {
       console.log('Usuario no logueado');
     }
@@ -93,8 +95,8 @@ const login = () => {
       .then((userCredential) => {
         const userEmailVerified = userCredential.user.emailVerified;
         if (userEmailVerified === true) {
-          window.location.hash = '#/news';
           console.log('Usuario registrado y con correo verificado');
+          window.location.hash = '#/news';
         } else {
           // muestra mensaje de error si no verifico por correo
           console.log('Error, el usuario no se verifico el correo ');
