@@ -3,7 +3,7 @@
 // Importación de la app de firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 
-// Importación de los metodos de firebase auth
+// Importación de los metodos de firebase - auth
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -19,6 +19,35 @@ import {
 
 } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
+// Importación de los métodos de firebase - firestore
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  where,
+  query,
+  orderBy,
+  arrayUnion,
+  // arrayRemove,
+
+} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
+// Importación de firebase - storage
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+
+} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+
+// Configuración de la app de firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDhB7rYYx_tmv7V2idc3b5B6B28epqaXFs',
   authDomain: 'red-social-30125.firebaseapp.com',
@@ -28,28 +57,37 @@ const firebaseConfig = {
   appId: '1:659462308929:web:a9b0365293ee87f3f8f2c0',
 };
 
-// Initialize Firebase app
+// Inicializando la app de firebase
 const swapp = initializeApp(firebaseConfig);
 
 // Inicializando auth de firebase
 const auth = getAuth(swapp);
 
-// Initialize google con Firebase app
+// Inicializando google con Firebase app
 const providerGoogle = new GoogleAuthProvider(swapp);
 
-// Incializar facebook con firebase app
+// Inicializando facebook con firebase app
 const providerFacebook = new FacebookAuthProvider(swapp);
 
-// Incializar github con firebase app
+// Inicializando github con firebase app
 const providerGitHub = new GithubAuthProvider(swapp);
 
 // Usuario actual
-const user = auth.currentUser;
+const userA = auth.currentUser;
 
+// Inicializando la  base de datos firestore
+const db = getFirestore(swapp);
+
+// Inicializando el storage
+export const storage = getStorage(swapp);
+
+// EXPORT FUNCIONES DE FIREBASE
+// Exportación de funciones
 export {
-  swapp, auth, providerGoogle, providerFacebook, providerGitHub, user,
+  auth, providerGoogle, providerFacebook, providerGitHub, userA,
 };
 
+// Exportación de funciones auth
 export {
   getAuth,
   createUserWithEmailAndPassword,
@@ -62,4 +100,31 @@ export {
   FacebookAuthProvider,
   GithubAuthProvider,
   sendPasswordResetEmail,
+};
+
+// Exportación de firestore
+export {
+  getFirestore,
+  db,
+  collection,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  where,
+  query,
+  orderBy,
+  arrayUnion,
+  // arrayRemove,
+};
+
+// Exportación de storage
+export {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
 };

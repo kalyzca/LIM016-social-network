@@ -1,5 +1,5 @@
 import { components } from '../view/index.js';
-// import { signUp } from '../view/sign-up.js';
+import { registerUser } from '../view/sign-up.js';
 
 const changeView = (route) => {
   // vamos a asociar el nombre de la ruta con el componente
@@ -26,6 +26,7 @@ const changeView = (route) => {
     }
     case '#/sign-up': {
       mainContainer.appendChild(components.SignUp());
+      registerUser();
       break;
     }
     default:
