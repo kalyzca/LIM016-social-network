@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import {
-  getFirestore,
+  db,
   collection,
   addDoc,
   getDocs,
@@ -12,13 +12,13 @@ import {
   updateDoc,
   where,
   query,
+  arrayUnion,
+  // arrayRemove,
 
-} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+  // orderBy,
+} from './config.js';
 
-import { swapp } from './config.js';
-
-const db = getFirestore(swapp); // inicializar la BD
-
+// USERS
 // Creando la colleccion saveUsers
 // Función para guardar el usuario registrado
 const saveUser = async (email, password, user, uid) => {
@@ -35,7 +35,9 @@ const saveUser = async (email, password, user, uid) => {
   }
 };
 
-// Función para guardar el datos del  formulario de perfil del usuario registrado
+const getUsers = () => getDocs(query(collection(db, 'users')));
+
+// DATOS PERSONALES DEL USUARIO
 // Función para guardar los datos personales del usuario
 const saveUserProfile = (
   photo, fullname, nickname, ocupation, email, gender, age, phone, description, uid,
@@ -58,7 +60,20 @@ const saveUserProfile = (
     console.error('Error al añadir el documento: ', error);
   }
 };
+// Función para obtener los datos de profileRegister y mostrarlos en profile.
+const getDataUserProfile = async (uidUser) => {
+  const queryDataUser = query(collection(db, 'profile'), where('uid', '==', uidUser));
+  const querySnapshot = await getDocs(queryDataUser);
+  const dataUser = querySnapshot.docs.map((documento) => documento.data());
+  return (dataUser);
+};
 
+const getDataPost = async (uidUserFilter) => {
+  const queryDataPost = query(collection(db, 'posts'), where('uid', '==', uidUserFilter));
+  const querySnapshot = await getDocs(queryDataPost);
+  const dataPost = querySnapshot.docs.map((documento) => documento.data());
+  return console.log(dataPost);
+};
 // Función para guardar la cuenta del usuario
 const userAccount = async (
   uid,
@@ -84,18 +99,11 @@ const userAccount = async (
     console.log(error, 'Error al añadir el documento');
   }
 };
-// Función para obtener los datos de profileRegister y mostrarlos en profile.
-const getDataUserProfile = async (uidUser) => {
-  const queryDataUser = query(collection(db, 'profile'), where('uid', '==', uidUser));
-  const querySnapshot = await getDocs(queryDataUser);
-  const dataUser = querySnapshot.docs.map((documento) => documento.data());
-  return (dataUser);
-};
 
 // POSTS
 // Guardar los post
-const savePost = (title, description, name, uid) => addDoc(collection(db, 'posts'), {
-  title, description, name, uid,
+const savePost = (description, name, uid) => addDoc(collection(db, 'posts'), {
+  description, name, uid, likePost: [],
 });
 
 // Listar los posts
@@ -113,6 +121,12 @@ const getDocPost = (id) => getDoc(doc(db, 'posts', id));
 // Actualizando un documento del  post
 const updateDocPost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
 
+// LIKES
+// Actualizando likes
+const setLikes = async (idDoc, idUserLike) => updateDoc(doc(db, 'posts', idDoc), {
+  likePost: arrayUnion(idUserLike),
+});
+
 export {
   saveUser,
   saveUserProfile,
@@ -124,5 +138,8 @@ export {
   deletePost,
   getDocPost,
   updateDocPost,
-
+  // usuario
+  getUsers,
+  setLikes,
+  getDataPost,
 };

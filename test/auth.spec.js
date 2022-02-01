@@ -1,23 +1,20 @@
-// Importando funciones de firesbase
-import {
-  createUserWithEmailAndPassword,
+// Importamos las funciones de firebase
+import { createUserWithEmailAndPassword } from '../src/lib/firebase/config';
 
-} from '../src/lib/firebase/config.js';
+// Importamos las funciones que vamos a testear
+import { createUser } from '../src/lib/firebase/auth';
 
-// Importando las funciones que vamos a testear
-import {
-  createUser,
-} from '../src/lib/firebase/auth.js';
+// Llamamos a la función que mockea las funciones de firebase
+jest.mock('../src/lib/firebase/config.js');
 
-jest.mock('../src/lib/firebase/auth.js');
-
-describe('Registrando a un usuario', () => {
-  it('deberia ser una función', () => {
+// Testeando el registro de un usuario con firebase - auth
+describe('Registro de un usuario', () => {
+  it('Deberia ser una funcion', () => {
     expect(typeof createUser).toBe('function');
   });
-  it('Debería poder registrar a un usuario', () => createUser('front@end.la', '123456')
+  it('Debería poder registrar a un usuario', () => createUser('marita@gmail.com', '12355687')
     .then(() => {
-      expect(createUserWithEmailAndPassword.mock.calls[0][1]).toBe('front@end.la');
-      expect(createUserWithEmailAndPassword.mock.calls[0][2]).toBe('123456');
+      expect(createUserWithEmailAndPassword.mock.calls[0][1]).toBe('marita@gmail.com');
+      expect(createUserWithEmailAndPassword.mock.calls[0][2]).toBe('12355687');
     }));
 });

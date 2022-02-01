@@ -2,32 +2,32 @@
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
 import { logOutUser, userStateChange } from '../lib/firebase/auth.js';
-import { currentUser } from './sign-in.js';
 
 import {
   savePost, onGetPost, deletePost, getDocPost, updateDocPost, getDataUserProfile,
+  // getDataPost,
+  // setLikes,
 } from '../lib/firebase/firestore.js';
 
-console.log(currentUser);
 // Template de news
 const viewNews = `
-    <form id="formPost" class="formPost">
-      <div class="userPost" id="userPost">
-        <img src="../img/usuario-femenino.png" alt="" class="imgPerfil" id="imgPerfil">
-        <h5 class="userName" id="userName">Nombre</h5>
-        <h5  class="datetimePost" id="datetimePost"> 12/11/2021 12:00</h5>
-      </div>
-      
-      <label for="" class="lbltitlePost" id="lbltitlePost">Título:</label>
-      <input type="text" placeholder = "Titulo de la publicación" class="postTitle" id="postTitle">
-
-      <label for="">Descripción:</label>
-      <textarea class="postDescription" id="postDescription" cols="30" rows="6" placeholder="Publicación del post" ></textarea>
-      
-      <button class="btnPostSave" id="btnPostSave">Guardar</button>
-      
-    </form>
-    <div class="postContainer" id="postContainer"></div>
+  <form id="formPost" class="formPost">
+    <div class="userPost" id="userPost">
+      <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil">
+      <h5 class="userName" id="userName">Nombre</h5>
+    </div>
+    <textarea class="postDescription" id="postDescription" cols="40" rows="5" placeholder="¿Quieres decir algo?" Publica algo></textarea>
+    <div class="botones">
+      <img src='../img/addphotopost.png'>
+      <label>Foto</label>
+      <img src='../img/video.png'>
+      <label>Video</label>
+      <button class="btnPostSave" id="btnPostSave"><h5>Compartir</h5></button>
+    </div>
+    
+  </form>
+  <section class="postContainer" id="postContainer"></section>
+  
   `;
 
 const divElement = document.createElement('div');
@@ -41,19 +41,20 @@ let editStatus = false;
 let idp;
 let uidUser;
 let fullname;
+// let idDocumento;
 // Obteniendo el formulario post
 const formularioPost = divElement.querySelector('#formPost');
 const postContainer = divElement.querySelector('#postContainer');
 
 userStateChange((user) => {
   const nameU = divElement.querySelector('#userName');
+
   if (user) {
     uidUser = user.uid;
     getDataUserProfile(uidUser)
       .then((result) => {
         fullname = result[0].fullname;
         nameU.textContent = fullname; // nombre del formulario con id formPost
-        console.log(result);
       }).catch((err) => {
         console.log(err);
       });
@@ -64,28 +65,45 @@ window.addEventListener('DOMContentLoaded', async () => {
   await onGetPost((querySnapshot) => {
     postContainer.innerHTML = '';
     let dataPost;
+
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
 
       postContainer.innerHTML
       += `
-        <div class= "userPostId">
-          <div class="userPost" id="userPost">
-            <img src="../img/usuario-femenino.png" alt="" class="imgPerfil" id="imgPerfil">
+        
+        <div class="userPostList" id="userPostList">
+          <div class= "dataUserP">
+            <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
             <h5 class="userName" id="userNamePost">${dataPost.name}</h5>
-            <h5 class="datetimePost" id="datetimePost"> 12/11/2021 12:00</h5>
-            <button class="btn-delete" data-id="${doc.id}">Eliminar</button>
-            <button class="btn-edit" data-id="${doc.id}"><i class="far fa-edit"></i>Editar</button>
+            <h5 class="datetimePost" id="datetimePost"> Hace 5s</h5>
+            <div class= 'botonesListPost'>
+              <button class="btn-delete">
+                <i class="fas fa-trash" data-id="${doc.id}"></i>
+              </button>
+              <button class="btn-edit" >
+                <i class="far fa-edit" data-id="${doc.id}"></i>
+              </button>
+            </div>
           </div>
+         
           <div class="data">
-            <h3>${dataPost.title}</h3>
             <textarea rows="auto" readonly >${dataPost.description}</textarea>
           </div>
+          
+          <div class="divLikes">
+            <button class = "btn-like" >
+              <i class="far fa-thumbs-up" data-id="${doc}></i>
+              <p class='pp'>${dataPost.likePost.length}</p>
+            </button>
+            
+          </div>
         </div>
+       
+        
       `;
     });
-    console.log(dataPost);
     // Eliminando post
     const btnDelete = postContainer.querySelectorAll('.btn-delete');
     btnDelete.forEach((btn) => {
@@ -99,10 +117,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     const btnEdit = postContainer.querySelectorAll('.btn-edit');
     btnEdit.forEach((btnedit) => {
       btnedit.addEventListener('click', async (e) => {
+        // idDocumento = e.target.dataset.id;
         await getDocPost(e.target.dataset.id)
           .then((result) => {
             const post = result.data();
-            formularioPost.postTitle.value = post.title;
+            // console.log(post.id);
             formularioPost.postDescription.value = post.description;
             editStatus = true;
             // idp = e.target.dataset.id;
@@ -115,6 +134,31 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
+    // Likes de  post
+    const btnLikes = postContainer.querySelectorAll('.btn-like');
+    btnLikes.forEach((btnlike) => {
+      btnlike.addEventListener('click', async (e) => {
+        await getDocPost(e.target.dataset.id);
+        console.log('doc del post');
+        // await getDocPost(e)
+        //   .then((result) => {
+        //     console.log(result, 'btnlike');
+        //     // formularioPost.btnPostSave.innerText = 'Actualizar';
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
+
+        // await getDataPost(uidUser)
+        //   .then((result) => {
+        //     console.log(result);
+        //   });
+        console.log('flores', uidUser);
+        // console.log(dataPost.id);
+        // setLikes(getDocPost(e.target.dataset.id), { likePost: uidUser });
+      });
+    });
+
     //
   });
 });
@@ -122,25 +166,23 @@ window.addEventListener('DOMContentLoaded', async () => {
 // Guardando datos actualizados del post
 formularioPost.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const title = formularioPost.postTitle;
   const description = formularioPost.postDescription;
+
   // const name = formularioPost.userName;
   if (!editStatus) {
-    await savePost(title.value, description.value, fullname, uidUser);
+    await savePost(description.value, fullname, uidUser);
   } else {
     console.log(idp);
     await updateDocPost(idp, {
-      title: title.value,
       description: description.value,
-      name: fullname,
-      uid: uidUser,
     });
+
     editStatus = false;
     idp = '';
     formularioPost.btnPostSave.innerText = 'Guardar';
   }
   formularioPost.reset();
-  title.focus();
+  description.focus();
 });
 
 // Funcion para salir
