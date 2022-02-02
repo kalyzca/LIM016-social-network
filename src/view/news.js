@@ -13,6 +13,7 @@ import {
   getDataUserProfile,
   // getDataPost,
   setLikes,
+  removeLikes,
 } from '../lib/firebase/firestore.js';
 
 // Template de news
@@ -73,12 +74,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     postContainer.innerHTML = '';
     let dataPost;
     let arraylike = [];
+    let uidDataPost;
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
       arraylike = dataPost.likePost;
-      postContainer.innerHTML
-      += `
+      uidDataPost = dataPost.uid;
+      postContainer.innerHTML += `
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -92,31 +94,30 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <i class="far fa-edit" data-id="${doc.id}"></i>
               </button>
             </div>
-          </div>
-         
+          </div> 
           <div class="data">
             <textarea rows="auto" readonly >${dataPost.description}</textarea>
-          </div>
-          
+          </div>         
           <div class="divLikes">
             <button class = "btn-like" >
-
               <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
             </button>
           </div>
-
          </div>
       `;
     });
     // Eliminando post
     const btnDelete = postContainer.querySelectorAll('.btn-delete');
     btnDelete.forEach((btn) => {
-      btn.addEventListener('click', async ({ target: { dataset } }) => {
-        await deletePost(dataset.id);
-        console.log('Eliminando documento', dataset.id);
-      });
+      if (uidUser === uidDataPost) {
+        btn.addEventListener('click', async ({ target: { dataset } }) => {
+          await deletePost(dataset.id);
+          console.log('Eliminando documento', dataset.id);
+        });
+      } else {
+        // btn-delete.style.display = 'none';
+      }
     });
-
     // Editando post
     const btnEdit = postContainer.querySelectorAll('.btn-edit');
     btnEdit.forEach((btnedit) => {
@@ -137,26 +138,23 @@ window.addEventListener('DOMContentLoaded', async () => {
           });
       });
     });
-    // const likePost = [];
-    // Likes de  post
 
     const btnLikes = postContainer.querySelectorAll('.btn-like');
-    const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
+    // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
-        await getDocPost(e.target.dataset.id)
-          .then((result) => {
-            console.log('doc del post', result.id);
-            console.log('uid - usuario loguedo', uidUser);
-
-            if (arraylike.indexOf(uidUser) !== -1) {
-              // iconLike.style.color = 'blue';
-              setLikes(result.id, uidUser).FieldValue;
-              console.log(arraylike);
-            } else {
-              iconLike.style.color = 'black';
-            }
-          });
+        await getDocPost(e.target.dataset.id).then((result) => {
+          console.log('doc del post', result.id);
+          console.log('uid - usuario loguedo', uidUser);
+          // setLikes(result.id, uidUser).FieldValue;
+          if (arraylike.indexOf(uidUser) !== -1) {
+            // iconLike.style.color = 'blue';
+            removeLikes(result.id, uidUser).FieldValue;
+            console.log(arraylike, 'hola');
+          } else {
+            setLikes(result.id, uidUser).FieldValue;
+          }
+        });
       });
     });
 
