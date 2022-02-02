@@ -13,6 +13,7 @@ import {
   getDataUserProfile,
   // getDataPost,
   setLikes,
+  removeLikes,
 } from '../lib/firebase/firestore.js';
 
 // Template de news
@@ -141,20 +142,19 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Likes de  post
 
     const btnLikes = postContainer.querySelectorAll('.btn-like');
-    const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
+    // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
         await getDocPost(e.target.dataset.id)
           .then((result) => {
             console.log('doc del post', result.id);
             console.log('uid - usuario loguedo', uidUser);
-
+            // setLikes(result.id, uidUser).FieldValue;
             if (arraylike.indexOf(uidUser) !== -1) {
-              // iconLike.style.color = 'blue';
-              setLikes(result.id, uidUser).FieldValue;
-              console.log(arraylike);
+              removeLikes(result.id, uidUser).FieldValue;
+              console.log(arraylike, 'hola');
             } else {
-              iconLike.style.color = 'black';
+              setLikes(result.id, uidUser).FieldValue;
             }
           });
       });
