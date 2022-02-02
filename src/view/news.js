@@ -143,6 +143,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
+<<<<<<< HEAD
         await getDocPost(e.target.dataset.id).then((result) => {
           console.log('doc del post', result.id);
           console.log('uid - usuario loguedo', uidUser);
@@ -155,6 +156,20 @@ window.addEventListener('DOMContentLoaded', async () => {
             setLikes(result.id, uidUser).FieldValue;
           }
         });
+=======
+        await getDocPost(e.target.dataset.id)
+          .then((result) => {
+            console.log('doc del post', result.id);
+            console.log('uid - usuario loguedo', uidUser);
+            // setLikes(result.id, uidUser).FieldValue;
+            if (arraylike.indexOf(uidUser) !== -1) {
+              removeLikes(result.id, uidUser).FieldValue;
+              console.log(arraylike, 'hola');
+            } else {
+              setLikes(result.id, uidUser).FieldValue;
+            }
+          });
+>>>>>>> a8c0f9a595043bf322cf1cb9eafc0c9afae1abe1
       });
     });
 
