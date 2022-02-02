@@ -13,7 +13,7 @@ import {
   where,
   query,
   arrayUnion,
-  // arrayRemove,
+  arrayRemove,
 
   // orderBy,
 } from './config.js';
@@ -127,7 +127,9 @@ const setLikes = async (idDocPost, idUserLike) => updateDoc(doc(db, 'posts', idD
   likePost: arrayUnion(idUserLike),
 });
 
-
+const removeLikes = async (idDocPost, idUserLike) => updateDoc(doc(db, 'posts', idDocPost), {
+  likePost: arrayRemove(idUserLike),
+});
 export {
   saveUser,
   saveUserProfile,
@@ -142,5 +144,6 @@ export {
   // usuario
   // getUsers,
   setLikes,
+  removeLikes,
   getDataPost,
 };

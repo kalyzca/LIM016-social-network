@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Importamos las funciones de firebase
 import {
   createUserWithEmailAndPassword,
@@ -6,14 +7,23 @@ import {
   signOut,
   sendEmailVerification,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from '../src/lib/firebase/config';
 
 // Importamos las funciones que vamos a testear
-import { createUser, loginUser, userStateChange } from '../src/lib/firebase/auth';
-// import { saveUser } from '../src/lib/firebase/firestore.js';
-jest.mock('../src/lib/firebase/config.js');
+import {
+  createUser,
+  loginUser,
+  userStateChange,
+  logOutUser,
+  signInGoogle,
+  resetPassword,
+  emailVerification,
+} from '../src/lib/firebase/auth';
 
 // Llamamos a la función que mockea las funciones de firebase
+jest.mock('../src/lib/firebase/config.js');
+
 // Testeando el registro de un usuario con firebase - auth
 describe('probar la función createUser', () => {
   it('Deberia ser una funcion', () => {
@@ -24,7 +34,12 @@ describe('probar la función createUser', () => {
     expect(createUserWithEmailAndPassword.mock.calls[0][2]).toBe('12355687');
   }));
 });
+
+// testeando el inicio de sesión del usuario
 describe('probar la función loginUser', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof loginUser).toBe('function');
+  });
   it('Debería permitir que el usuario entre a la app', () => {
     loginUser('marita@gmail.com', '12355687').then(() => {
       expect(signInWithEmailAndPassword.mock.calls[0][1]).toBe('marita@gmail.com');
@@ -32,7 +47,12 @@ describe('probar la función loginUser', () => {
     });
   });
 });
+
+// testeando el estado del usuario
 describe('probar la función userStateChange', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof userStateChange).toBe('function');
+  });
   it('Debería permitir obtener los datos del usuario', () => {
     const user = () => {};
     userStateChange(user).then(() => {
@@ -40,37 +60,55 @@ describe('probar la función userStateChange', () => {
     });
   });
 });
+
+// testeando la función para cerrar sesión
 describe('probar la función signOut', () => {
-  it('Debería salir de sesión', () => {
-    signOut().then(() => {
-      expect(signOut.mock.calls[0][1]).toBe();
+  it('Deberia ser una funcion', () => {
+    expect(typeof logOutUser).toBe('function');
+  });
+  it('Debería salir de sesión', (done) => {
+    logOutUser().then(() => {
+      expect(signOut.mock.calls[0][1]).toBe(undefined);
     });
+    done();
   });
 });
+
+// testeando el envio de un link al correo para que el usuario pueda iniciar sesión
 describe('probar la función sendEmailVerification', () => {
-  it('Debería enviar un email de verificación al usuario', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof emailVerification).toBe('function');
+  });
+  it('Debería enviar un email de verificación al usuario', (done) => {
     sendEmailVerification().then(() => {
-      expect(sendEmailVerification.mock.calls[0][1]).toBe();
+      expect(sendEmailVerification.mock.calls[0][1]).toBe(undefined);
     });
+    done();
   });
 });
+
+// testeando el inicio de sesión con google
 describe('probar la función signInWithPopup', () => {
-  const result = { correo: 'kaly@gmail.com', id: 123456 };
+  it('Deberia ser una funcion', () => {
+    expect(typeof signInGoogle).toBe('function');
+  });
   it('Debería abrir el popup de google', () => {
-    signInWithPopup().then(() => {
-      expect(signInWithPopup.mock.calls[0][1]).toBe(result);
+    signInWithPopup().then((result) => {
+      expect(signInWithPopup.mock.calls[0][1]).toBe(result.user);
     });
   });
 });
-/* describe('probar la función createUser', () => {
-  it('Debería retornar al usuario creado', async () => {
-    const result = await saveUser('karenberrio@gmail.com', '123456',
-    'PsCjKz4DgTMRVTy6POdDYzmL2bD3', 'karen');
-    expect(result).toEqual({
-      email: 'karenberrio@gmail.com',
-      password: '123456',
-      uid: 'PsCjKz4DgTMRVTy6POdDYzmL2bD3',
-      user: 'karen',
-    });
+
+// testeando una funcion que envia un link al correo para que restablezca su contraseña
+describe('probar la funcion de restablecimiento de contraseña', () => {
+  it('Deberia ser una funcion', () => {
+    expect(typeof resetPassword).toBe('function');
   });
-}); */
+  it('Envia un link al correo electronico para restablecer su contraseña', (done) => {
+    const res = sendPasswordResetEmail('alcantarakaly@gmail.com');
+    res.then(() => {
+      expect(sendPasswordResetEmail.mock.calls[0][1]).toBe(undefined);
+    });
+    done();
+  });
+});
