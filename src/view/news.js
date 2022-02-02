@@ -4,7 +4,12 @@ import { viewHeader } from './header.js';
 import { logOutUser, userStateChange } from '../lib/firebase/auth.js';
 
 import {
-  savePost, onGetPost, deletePost, getDocPost, updateDocPost, getDataUserProfile,
+  savePost,
+  onGetPost,
+  deletePost,
+  getDocPost,
+  updateDocPost,
+  getDataUserProfile,
   // getDataPost,
   setLikes,
 } from '../lib/firebase/firestore.js';
@@ -55,7 +60,8 @@ userStateChange((user) => {
       .then((result) => {
         fullname = result[0].fullname;
         nameU.textContent = fullname; // nombre del formulario con id formPost
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -72,7 +78,6 @@ window.addEventListener('DOMContentLoaded', async () => {
       arraylike = dataPost.likePost;
       postContainer.innerHTML
       += `
-        
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -94,12 +99,12 @@ window.addEventListener('DOMContentLoaded', async () => {
           
           <div class="divLikes">
             <button class = "btn-like" >
-             <i class="far fa-thumbs-up" data-id="${doc.id}" ></i>${arraylike.length}
-            </button> 
+
+              <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
+            </button>
           </div>
 
-        </div>
-       
+         </div>
       `;
     });
     // Eliminando post
@@ -131,7 +136,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           });
       });
     });
-
+    // const likePost = [];
     // Likes de  post
 
     const btnLikes = postContainer.querySelectorAll('.btn-like');
@@ -151,6 +156,7 @@ window.addEventListener('DOMContentLoaded', async () => {
               iconLike.style.color = 'black';
             }
           });
+
       });
     });
 
