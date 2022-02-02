@@ -35,7 +35,7 @@ const saveUser = async (email, password, user, uid) => {
   }
 };
 
-const getUsers = () => getDocs(query(collection(db, 'users')));
+// const getUsers = () => getDocs(query(collection(db, 'users')));
 
 // DATOS PERSONALES DEL USUARIO
 // Función para guardar los datos personales del usuario
@@ -123,9 +123,7 @@ const updateDocPost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFiel
 
 // LIKES
 // Actualizando likes
-const setLikes = async (idDoc, idUserLike) => updateDoc(doc(db, 'posts', idDoc), {
-  likePost: arrayUnion(idUserLike),
-});
+const setLikes = async (idDoc, idUserLike) => updateDoc(doc(db, 'posts', idDoc), { likePost: arrayUnion(idUserLike) });
 
 export {
   saveUser,
@@ -139,7 +137,7 @@ export {
   getDocPost,
   updateDocPost,
   // usuario
-  getUsers,
+  // getUsers,
   setLikes,
   getDataPost,
 };
