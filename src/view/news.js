@@ -74,13 +74,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     postContainer.innerHTML = '';
     let dataPost;
     let arraylike = [];
-    let uidDataPost;
+    let uidDataUser;
+    let templateWithButtons;
+    let templateWithoutButtons;
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
       arraylike = dataPost.likePost;
-      uidDataPost = dataPost.uid;
-      postContainer.innerHTML += `
+      uidDataUser = dataPost.uid;
+
+      templateWithButtons = `
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -94,30 +97,56 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <i class="far fa-edit" data-id="${doc.id}"></i>
               </button>
             </div>
-          </div> 
+          </div>
+         
           <div class="data">
             <textarea rows="auto" readonly >${dataPost.description}</textarea>
-          </div>         
+          </div>
+          
+          <div class="divLikes">
+            <button class = "btn-like" >
+
+              <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
+            </button>
+          </div>
+
+         </div>
+      `;
+      templateWithoutButtons = `
+        <div class="userPostList" id="userPostList">
+          <div class= "dataUserP">
+            <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
+            <h5 class="userName" id="userNamePost">${dataPost.name}</h5>
+            <h5 class="datetimePost" id="datetimePost"> Hace 5s</h5>
+          </div>
+         
+          <div class="data">
+            <textarea rows="auto" readonly >${dataPost.description}</textarea>
+          </div>
+          
           <div class="divLikes">
             <button class = "btn-like" >
               <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
             </button>
           </div>
+
          </div>
       `;
+      if (uidUser === uidDataUser) {
+        postContainer.innerHTML += templateWithButtons;
+      } else {
+        postContainer.innerHTML += templateWithoutButtons;
+      }
     });
     // Eliminando post
     const btnDelete = postContainer.querySelectorAll('.btn-delete');
     btnDelete.forEach((btn) => {
-      if (uidUser === uidDataPost) {
-        btn.addEventListener('click', async ({ target: { dataset } }) => {
-          await deletePost(dataset.id);
-          console.log('Eliminando documento', dataset.id);
-        });
-      } else {
-        // btn-delete.style.display = 'none';
-      }
+      btn.addEventListener('click', async ({ target: { dataset } }) => {
+        await deletePost(dataset.id);
+        console.log('Eliminando documento', dataset.id);
+      });
     });
+
     // Editando post
     const btnEdit = postContainer.querySelectorAll('.btn-edit');
     btnEdit.forEach((btnedit) => {
@@ -139,24 +168,11 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
+    // Likes de  post
     const btnLikes = postContainer.querySelectorAll('.btn-like');
     // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
-<<<<<<< HEAD
-        await getDocPost(e.target.dataset.id).then((result) => {
-          console.log('doc del post', result.id);
-          console.log('uid - usuario loguedo', uidUser);
-          // setLikes(result.id, uidUser).FieldValue;
-          if (arraylike.indexOf(uidUser) !== -1) {
-            // iconLike.style.color = 'blue';
-            removeLikes(result.id, uidUser).FieldValue;
-            console.log(arraylike, 'hola');
-          } else {
-            setLikes(result.id, uidUser).FieldValue;
-          }
-        });
-=======
         await getDocPost(e.target.dataset.id)
           .then((result) => {
             console.log('doc del post', result.id);
@@ -169,7 +185,6 @@ window.addEventListener('DOMContentLoaded', async () => {
               setLikes(result.id, uidUser).FieldValue;
             }
           });
->>>>>>> a8c0f9a595043bf322cf1cb9eafc0c9afae1abe1
       });
     });
 
@@ -214,3 +229,4 @@ logOut.addEventListener('click', () => {
 });
 
 export { news };
+
