@@ -4,7 +4,12 @@ import { viewHeader } from './header.js';
 import { logOutUser, userStateChange } from '../lib/firebase/auth.js';
 
 import {
-  savePost, onGetPost, deletePost, getDocPost, updateDocPost, getDataUserProfile,
+  savePost,
+  onGetPost,
+  deletePost,
+  getDocPost,
+  updateDocPost,
+  getDataUserProfile,
   // getDataPost,
   // setLikes,
 } from '../lib/firebase/firestore.js';
@@ -55,7 +60,8 @@ userStateChange((user) => {
       .then((result) => {
         fullname = result[0].fullname;
         nameU.textContent = fullname; // nombre del formulario con id formPost
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -70,9 +76,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
 
-      postContainer.innerHTML
-      += `
-        
+      postContainer.innerHTML += `
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -94,14 +98,10 @@ window.addEventListener('DOMContentLoaded', async () => {
           
           <div class="divLikes">
             <button class = "btn-like" >
-              <i class="far fa-thumbs-up" data-id="${doc}></i>
-              <p class='pp'>${dataPost.likePost.length}</p>
+              <i class="far fa-thumbs-up" data-id="${doc.id}">${dataPost.likePost.length}</i>
             </button>
-            
           </div>
         </div>
-       
-        
       `;
     });
     // Eliminando post
@@ -133,29 +133,16 @@ window.addEventListener('DOMContentLoaded', async () => {
           });
       });
     });
-
+    // const likePost = [];
     // Likes de  post
     const btnLikes = postContainer.querySelectorAll('.btn-like');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
         await getDocPost(e.target.dataset.id);
         console.log('doc del post');
-        // await getDocPost(e)
-        //   .then((result) => {
-        //     console.log(result, 'btnlike');
-        //     // formularioPost.btnPostSave.innerText = 'Actualizar';
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-
-        // await getDataPost(uidUser)
-        //   .then((result) => {
-        //     console.log(result);
-        //   });
-        console.log('flores', uidUser);
-        // console.log(dataPost.id);
-        // setLikes(getDocPost(e.target.dataset.id), { likePost: uidUser });
+        /* if (likePost.indexOf(idUserLike)) {
+          setLikes();
+        } */
       });
     });
 

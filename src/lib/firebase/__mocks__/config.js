@@ -11,4 +11,11 @@ export const createUserWithEmailAndPassword = jest.fn(() => Promise.resolve({}))
 export const sendEmailVerification = jest.fn(() => Promise.resolve({}));
 
 // mockeando la base de datos
-export const db = jest.fn();
+export const db = {};
+
+export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
+export const signOut = jest.fn(() => Promise.resolve({}));
+export const signInWithPopup = jest.fn((_auth_, provider) => Promise.resolve({ provider }));
+
+export const addDoc = jest.fn((documents, values) => (values));
+export const colleccion = jest.fn();

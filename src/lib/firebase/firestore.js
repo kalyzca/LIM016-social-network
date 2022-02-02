@@ -35,7 +35,7 @@ const saveUser = async (email, password, user, uid) => {
   }
 };
 
-const getUsers = () => getDocs(query(collection(db, 'users')));
+// const getUsers = () => getDocs(query(collection(db, 'users')));
 
 // DATOS PERSONALES DEL USUARIO
 // Función para guardar los datos personales del usuario
@@ -106,10 +106,10 @@ const savePost = (description, name, uid) => addDoc(collection(db, 'posts'), {
   description, name, uid, likePost: [],
 });
 
-// Listar los posts
+// Listar los posts - para mostrar todos los posts
 const getPosts = () => getDocs(collection(db, 'posts'));
 
-// Escucha los post
+// Escucha los post - para que se actualice solo
 const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
 
 // Eliminar un post
@@ -118,12 +118,12 @@ const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
 // Obtener un documento del  post
 const getDocPost = (id) => getDoc(doc(db, 'posts', id));
 
-// Actualizando un documento del  post
+// Actualizando un documento del post
 const updateDocPost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
 
 // LIKES
 // Actualizando likes
-const setLikes = async (idDoc, idUserLike) => updateDoc(doc(db, 'posts', idDoc), {
+const setLikes = async (idDocPost, idUserLike) => updateDoc(doc(db, 'posts', idDocPost), {
   likePost: arrayUnion(idUserLike),
 });
 
@@ -139,7 +139,7 @@ export {
   getDocPost,
   updateDocPost,
   // usuario
-  getUsers,
+  // getUsers,
   setLikes,
   getDataPost,
 };
