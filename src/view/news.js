@@ -74,12 +74,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     postContainer.innerHTML = '';
     let dataPost;
     let arraylike = [];
+    let uidDataUser;
+    let templateWithButtons;
+    let templateWithoutButtons;
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
       arraylike = dataPost.likePost;
-      postContainer.innerHTML
-      += `
+      uidDataUser = dataPost.uid;
+
+      templateWithButtons = `
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -108,6 +112,31 @@ window.addEventListener('DOMContentLoaded', async () => {
 
          </div>
       `;
+      templateWithoutButtons = `
+        <div class="userPostList" id="userPostList">
+          <div class= "dataUserP">
+            <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
+            <h5 class="userName" id="userNamePost">${dataPost.name}</h5>
+            <h5 class="datetimePost" id="datetimePost"> Hace 5s</h5>
+          </div>
+         
+          <div class="data">
+            <textarea rows="auto" readonly >${dataPost.description}</textarea>
+          </div>
+          
+          <div class="divLikes">
+            <button class = "btn-like" >
+              <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
+            </button>
+          </div>
+
+         </div>
+      `;
+      if (uidUser === uidDataUser) {
+        postContainer.innerHTML += templateWithButtons;
+      } else {
+        postContainer.innerHTML += templateWithoutButtons;
+      }
     });
     // Eliminando post
     const btnDelete = postContainer.querySelectorAll('.btn-delete');
@@ -138,9 +167,8 @@ window.addEventListener('DOMContentLoaded', async () => {
           });
       });
     });
-    // const likePost = [];
-    // Likes de  post
 
+    // Likes de  post
     const btnLikes = postContainer.querySelectorAll('.btn-like');
     // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
