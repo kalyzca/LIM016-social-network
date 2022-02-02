@@ -20,12 +20,12 @@ export const signOut = jest.fn(() => Promise.resolve({}));
 export const signInWithPopup = jest.fn((_auth_, provider) => Promise.resolve({ provider }));
 
 // mockeando función de restablecimiento de contraseña
-// mockeando la base de datos
-export const db = jest.fn();
-
 export const sendPasswordResetEmail = jest.fn(() => Promise.resolve());
 
 // mockeando la  funciones de firestore
+// mockeando la base de datos
+export const db = jest.fn();
+
 // mokendo collection
 export const collection = jest.fn((_db_, _collection_) => _collection_);
 
