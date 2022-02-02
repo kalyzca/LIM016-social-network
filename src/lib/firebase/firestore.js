@@ -127,6 +127,7 @@ const setLikes = async (idDocPost, idUserLike) => updateDoc(doc(db, 'posts', idD
   likePost: arrayUnion(idUserLike),
 });
 
+
 export {
   saveUser,
   saveUserProfile,

@@ -11,7 +11,7 @@ import {
   updateDocPost,
   getDataUserProfile,
   // getDataPost,
-  // setLikes,
+  setLikes,
 } from '../lib/firebase/firestore.js';
 
 // Template de news
@@ -71,12 +71,13 @@ window.addEventListener('DOMContentLoaded', async () => {
   await onGetPost((querySnapshot) => {
     postContainer.innerHTML = '';
     let dataPost;
-
+    let arraylike = [];
     // Listar los posts -
     querySnapshot.forEach((doc) => {
       dataPost = doc.data();
-
-      postContainer.innerHTML += `
+      arraylike = dataPost.likePost;
+      postContainer.innerHTML
+      += `
         <div class="userPostList" id="userPostList">
           <div class= "dataUserP">
             <img src="../img/photopostuser.png" alt="" class="imgPerfil" id="imgPerfil"">
@@ -98,10 +99,12 @@ window.addEventListener('DOMContentLoaded', async () => {
           
           <div class="divLikes">
             <button class = "btn-like" >
-              <i class="far fa-thumbs-up" data-id="${doc.id}">${dataPost.likePost.length}</i>
+
+              <i class="far fa-thumbs-up" data-id="${doc.id}">${arraylike.length}</i>
             </button>
           </div>
-        </div>
+
+         </div>
       `;
     });
     // Eliminando post
@@ -135,14 +138,25 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
     // const likePost = [];
     // Likes de  post
+
     const btnLikes = postContainer.querySelectorAll('.btn-like');
+    const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
-        await getDocPost(e.target.dataset.id);
-        console.log('doc del post');
-        /* if (likePost.indexOf(idUserLike)) {
-          setLikes();
-        } */
+        await getDocPost(e.target.dataset.id)
+          .then((result) => {
+            console.log('doc del post', result.id);
+            console.log('uid - usuario loguedo', uidUser);
+
+            if (arraylike.indexOf(uidUser) !== -1) {
+              // iconLike.style.color = 'blue';
+              setLikes(result.id, uidUser);
+              console.log(arraylike);
+            } else {
+              iconLike.style.color = 'black';
+            }
+          });
+
       });
     });
 
