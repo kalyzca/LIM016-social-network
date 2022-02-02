@@ -229,3 +229,4 @@ logOut.addEventListener('click', () => {
 });
 
 export { news };
+
