@@ -10,12 +10,24 @@ export const createUserWithEmailAndPassword = jest.fn(() => Promise.resolve({}))
 // mockeando el envio de un email de verificación
 export const sendEmailVerification = jest.fn(() => Promise.resolve({}));
 
-// mockeando la base de datos
-export const db = {};
-
+// mockeando inicio de sesión
 export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
+
+// mockeando cerrar sesión
 export const signOut = jest.fn(() => Promise.resolve({}));
+
+// mockeando la inicio de sesión con google
 export const signInWithPopup = jest.fn((_auth_, provider) => Promise.resolve({ provider }));
 
-export const addDoc = jest.fn((documents, values) => (values));
-export const colleccion = jest.fn();
+// mockeando función de restablecimiento de contraseña
+// mockeando la base de datos
+export const db = jest.fn();
+
+export const sendPasswordResetEmail = jest.fn(() => Promise.resolve());
+
+// mockeando la  funciones de firestore
+// mokendo collection
+export const collection = jest.fn((_db_, _collection_) => _collection_);
+
+// mockeando addDoc
+export const addDoc = jest.fn((Collection, data) => Promise.resolve({ [Collection]: data }));

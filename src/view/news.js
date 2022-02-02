@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable import/named */
 /* eslint-disable no-console */
 import { viewHeader } from './header.js';
@@ -150,13 +151,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             if (arraylike.indexOf(uidUser) !== -1) {
               // iconLike.style.color = 'blue';
-              setLikes(result.id, uidUser);
+              setLikes(result.id, uidUser).FieldValue;
               console.log(arraylike);
             } else {
               iconLike.style.color = 'black';
             }
           });
-
       });
     });
 

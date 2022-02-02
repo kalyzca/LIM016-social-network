@@ -34,7 +34,7 @@ import {
   query,
   orderBy,
   arrayUnion,
-  // arrayRemove,
+  arrayRemove,
 
 } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
@@ -118,6 +118,7 @@ export {
   query,
   orderBy,
   arrayUnion,
+  arrayRemove,
   // arrayRemove,
 };
 
