@@ -1,4 +1,4 @@
-# SINCHI WARMI
+# SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
 ## Índice
 
@@ -12,28 +12,30 @@
 * [8. AUTORAS](#8-AUTORAS)
 
 ***
-## 1. DEFINICION DE PRODUCTO
+## 1. DEFINICIÓN DE PRODUCTO 📝
 
 
 
-## 2. HISTORIAS DE USUARIO
+## 2. HISTORIAS DE USUARIO 📚
 
 
-## 3. PROTOTIPO DE BAJA FIDELIDAD
+## 3. PROTOTIPO DE BAJA FIDELIDAD ⬇️
 
 
-## 5. TESTS
+## 4. PROTOTIPO DE ALTA FIDELIDAD ⬆️
 
-## 6. HERRAMIENTAS
+## 5. TESTS ✅
 
-  * GitBash
-  * GitHub
-  * Trello
-  * Figma
-  * JavaScript
-  * HTML
-  * CSS
-  * Firebase
+## 6. HERRAMIENTAS 🛠️
+
+  📌 GitBash
+  📌 GitHub
+  📌 Trello
+  📌 Figma
+  📌 JavaScript
+  📌 HTML
+  📌 CSS
+  📌 Firebase
 
 ## 7. CHECKLIST
 
@@ -62,9 +64,9 @@
 
 ## 8. AUTORAS
 
-  - Kaly Cristobal
+  📌 Kaly Cristobal
 
-  - Karen Berrio Rufino
+  📌 Karen Berrio Rufino
 
 
 
