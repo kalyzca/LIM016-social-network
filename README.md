@@ -157,7 +157,7 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
 ## 8. AUTORAS ♀️
 
-  📌 Kaly Cristobal
+  📌 Kaly Zulema Cristóbal Alcántara
 
   📌 Karen Berrio Rufino
 
