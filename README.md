@@ -45,10 +45,10 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
   ## 📱 CELULAR
   
-  ![image](https://user-images.githubusercontent.com/91863929/152391444-46344182-e0a3-4f31-9491-c3833c7e75db.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152393082-5af37c76-7e20-4b19-b0e2-e3d7722df653.png)
   ![image](https://user-images.githubusercontent.com/91863929/152391634-aa53393e-fdc4-4b3b-934e-c5a895fa0ebe.png)
   ![image](https://user-images.githubusercontent.com/91863929/152391747-509a6e08-136c-4e53-8e6b-b85aeb8b80d9.png)
-  ![image](https://user-images.githubusercontent.com/91863929/152391806-c936c34f-8cd3-40ef-90c1-9a1214d20311.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152393365-a329a154-532a-42e3-b036-c795dd667599.png)
   
   ## 📓 TABLET
   
