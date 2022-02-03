@@ -25,7 +25,7 @@
 ## 4. PROTOTIPO DE ALTA FIDELIDAD ⬆️
 
 ![image](https://user-images.githubusercontent.com/91863929/152290207-e99cb4cd-4168-42d4-ae06-51666cd94b63.png)
-![image](https://user-images.githubusercontent.com/91863929/152290294-bfbbe8cf-3f7c-49ba-b961-63db358cee42.png)
+![image](https://user-images.githubusercontent.com/91863929/152290474-7058582a-6110-465a-a5b1-ef96783049f9.png)
 ![image](https://user-images.githubusercontent.com/91863929/152290322-9ac80e98-4f72-482b-882b-e622896d114c.png)
 ![image](https://user-images.githubusercontent.com/91863929/152290367-fd3d421a-b442-48a8-a5b9-e4b469f4ad8c.png)
 
