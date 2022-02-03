@@ -34,9 +34,9 @@
 📓 TABLET
 
 ![image](https://user-images.githubusercontent.com/91863929/152291082-0f5736e8-1820-4f78-b3ec-de25b7d588a6.png)
-![image](https://user-images.githubusercontent.com/91863929/152291128-5054de5e-b773-4c3a-b1ec-717996777066.png)
-
 ![image](https://user-images.githubusercontent.com/91863929/152291743-8b727356-fe7f-4d94-b696-00b80aa37083.png)
+
+![image](https://user-images.githubusercontent.com/91863929/152291868-eaa0743b-1544-4313-bce3-796c6c6a530d.png)
 ![image](https://user-images.githubusercontent.com/91863929/152291222-4bd64778-26f4-47d1-b4b7-7c69a64b1670.png)
 
 💻 ESCRITORIO
