@@ -29,17 +29,24 @@
 ## 6. HERRAMIENTAS 🛠️
 
   📌 GitBash
+  
   📌 GitHub
+  
   📌 Trello
+  
   📌 Figma
+  
   📌 JavaScript
+  
   📌 HTML
+  
   📌 CSS
+  
   📌 Firebase
 
 ## 7. CHECKLIST
 
-  ✔️ Usa VanillaJS.
+  ✔️ La aplicación es una Single Page Application (SPA)
   
   ✔️ Pasa linter (`npm run pretest`)
   
@@ -53,13 +60,27 @@
   
   ✔️ Incluye _Diseño de la Interfaz de Usuario_ (prototipo de alta fidelidad).
   
-  ✔️ UI: Muestra lista y/o tabla con datos.
+  ✔️ Alterar y persistir datos usando firestore.
   
-  ✔️ UI: Permite ordenar data por uno o más campos (asc y desc).
+  ✔️ Sign in y Sign up con firebase
   
-  ✔️ UI: Permite filtrar data en base a una condición.
+  ✔️ Autenticación con cuenta de correo y contraseña, y también con una cuenta de Google, Facebook y GitHub.
   
-  ✔️ UI: Es _responsive_.
+  ✔️ Solamente se permite el acceso a usuarios con cuentas válidas.
+  
+  ✔️ No puede haber usuarios repetidos.
+  
+  ✔️ Lo que se escriba en el campo de contraseña debe ser secreto si el usuario lo desea.
+  
+  ✔️ Se puede recuperar la contraseña
+  
+  ✔️ Se puede publicar un post y solo se hacen publicaciones si hay contenido. se puede dar likes.
+  
+  ✔️ Se puede dar likes y hacer un conteo de estos.
+  
+  ✔️ Se puede eliminar y editar tus propios posts.
+  
+  ✔️ Se hicieron sesiones de testing de usabilidad con el app.
 
 
 ## 8. AUTORAS
