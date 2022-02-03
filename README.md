@@ -14,14 +14,53 @@
 ***
 ## 1. DEFINICIÓN DE PRODUCTO 📝
 
+El proyecto consiste en la creación de una red social para apoyar a mujeres que esten pasando por situaciones de violencia. Esta idea surge de la necesidad de apoyar a mujeres que no cuenten con los recursos necesarios o que no sepan como salir del ambiente en el que están. Esta red social tiene como propósito crear una comunidad donde se pueda buscar y dar ayuda.
 
+Los usuarios son las mujeres que están siendo violentadas y todas las personas que tengan el interes de colaborar de forma gratuita y voluntaria a mujeres que esten pasando por situaciones de violencia en cualquier ámbito.
+
+La red social tiene el objetivo de convertirse en una comunidad segura donde las mujeres podrán encontrar apoyo de otras mujeres y profesionales. También, crear eventos que motiven a las mujeres a salir del ambiente en el que se encuentren. Además, compartir sus emociones, encontrar información rápida y verás sobre lugares de apoyo a los que se pueda acudir, hacer publicaciones y tener un chat privado para contactar al usuario que desee.
 
 ## 2. HISTORIAS DE USUARIO 📚
 
+¿Quiénes son los principales usuarios de producto?
+    
+    - Mujeres en situaciones de violencia.
+    - Profesionales de diferentes carreras.
+    - Organizaciones que brindan apoyo a la mujer.
+
+  ¿Cuáles son los objetivos de estos usuarios en relación con el producto?
+  
+    - Buscar ayuda inmediata.
+    - Tener un soporte emocional.
+    - Buscar ayuda profesional.
+    - Ayudar a mujeres que lo necesiten.
+    - Tener información rápida y clara sobre organizaciones.
+
+  ¿Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué?
+  
+    - Que nuestro usuario pueda encontrar de forma rápida la información de las organizaciones que brindan ayuda a mujeres que están siendo violentadas.
+    - Posts de mujeres o profesionales que sean parte de esta comunidad.
 
 ## 3. PROTOTIPO DE BAJA FIDELIDAD ⬇️
 
-
+  ## 📱 CELULAR
+  
+  ![image](https://user-images.githubusercontent.com/91863929/152391444-46344182-e0a3-4f31-9491-c3833c7e75db.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152391634-aa53393e-fdc4-4b3b-934e-c5a895fa0ebe.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152391747-509a6e08-136c-4e53-8e6b-b85aeb8b80d9.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152391806-c936c34f-8cd3-40ef-90c1-9a1214d20311.png)
+  
+  ## 📓 TABLET
+  
+  
+  
+  ## 💻 ESCRITORIO
+  
+  ![image](https://user-images.githubusercontent.com/91863929/152392067-f16b8cc1-2568-4f81-a071-e65ad617bbbd.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152392306-490248e2-20c1-44c7-b6a9-e444f4fb5038.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152392400-b258ff72-637a-4dfc-b509-e5f62c9a799b.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152392473-860841e0-0853-4cbd-8732-dd31eb6a8bc8.png)
+  
 ## 4. PROTOTIPO DE ALTA FIDELIDAD ⬆️
 
   ## 📱 CELULAR
