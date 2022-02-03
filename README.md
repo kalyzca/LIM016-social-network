@@ -87,7 +87,7 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
 ## 5. TESTS ✅
 
-   ![image](https://user-images.githubusercontent.com/91863929/152394560-f408fa9f-28d9-4df9-94c3-ba165f514161.png)
+   ![image](https://user-images.githubusercontent.com/91863929/152394771-c80a0eb1-3565-4f2f-a816-e6b5eef5421b.png)
     
     Test Suites: 1 passed, 1 total
     Tests:       14 passed, 14 total
