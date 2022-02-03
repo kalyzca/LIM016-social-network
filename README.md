@@ -44,7 +44,7 @@
   
   📌 Firebase
 
-## 7. CHECKLIST
+## 7. CHECKLIST ☑️	
 
   ✔️ La aplicación es una Single Page Application (SPA)
   
@@ -83,7 +83,7 @@
   ✔️ Se hicieron sesiones de testing de usabilidad con el app.
 
 
-## 8. AUTORAS
+## 8. AUTORAS ♀️
 
   📌 Kaly Cristobal
 
