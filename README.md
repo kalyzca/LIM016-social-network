@@ -52,7 +52,10 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
   
   ## 📓 TABLET
   
-  
+  ![image](https://user-images.githubusercontent.com/91863929/152437190-12de9382-9302-4d40-98d2-b50e21273564.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152437311-694f26a2-2fef-4702-a4b1-3549218063eb.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152437430-25f32942-1ace-4525-9f87-70f5ce78a456.png)
+  ![image](https://user-images.githubusercontent.com/91863929/152437489-45a5f9cb-20ae-4601-9822-db5c629af748.png)
   
   ## 💻 ESCRITORIO
   
