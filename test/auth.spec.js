@@ -17,8 +17,10 @@ import {
   userStateChange,
   logOutUser,
   signInGoogle,
+  signInFacebook,
   resetPassword,
   emailVerification,
+  signInGitHub,
 } from '../src/lib/firebase/auth';
 
 // Llamamos a la función que mockea las funciones de firebase
@@ -75,28 +77,14 @@ describe('probar la función signOut', () => {
 });
 
 // testeando el envio de un link al correo para que el usuario pueda iniciar sesión
-describe('probar la función sendEmailVerification', () => {
-  it('Deberia ser una funcion', () => {
+describe(' probar la función emailVerification', () => {
+  it('debería ser una función', () => {
     expect(typeof emailVerification).toBe('function');
   });
-  it('Debería enviar un email de verificación al usuario', (done) => {
-    sendEmailVerification().then(() => {
-      expect(sendEmailVerification.mock.calls[0][1]).toBe(undefined);
-    });
-    done();
-  });
-});
-
-// testeando el inicio de sesión con google
-describe('probar la función signInWithPopup', () => {
-  it('Deberia ser una funcion', () => {
-    expect(typeof signInGoogle).toBe('function');
-  });
-  it('Debería abrir el popup de google', () => {
-    signInWithPopup().then((result) => {
-      expect(signInWithPopup.mock.calls[0][1]).toBe(result.user);
-    });
-  });
+  it('Deberia el usuario recibir un link en su correo electrónico', () => emailVerification()
+    .then(() => {
+      expect(sendEmailVerification.mock.calls).toHaveLength(1);
+    }));
 });
 
 // testeando una funcion que envia un link al correo para que restablezca su contraseña
@@ -104,11 +92,41 @@ describe('probar la funcion de restablecimiento de contraseña', () => {
   it('Deberia ser una funcion', () => {
     expect(typeof resetPassword).toBe('function');
   });
-  it('Envia un link al correo electronico para restablecer su contraseña', (done) => {
-    const res = sendPasswordResetEmail('alcantarakaly@gmail.com');
-    res.then(() => {
-      expect(sendPasswordResetEmail.mock.calls[0][1]).toBe(undefined);
-    });
-    done();
+  it('Envia un link al correo electronico para restablecer su contraseña', () => resetPassword('alcantarakaly@gmail.com')
+    .then(() => {
+      expect(sendPasswordResetEmail.mock.calls[0][1]).toBe('alcantarakaly@gmail.com');
+    }));
+});
+
+// testeando el inicio de sesión con google
+describe('probar la función signInWithPopup', () => {
+  it('Deberia ser una funcion signInGoogle ', () => {
+    expect(typeof signInGoogle).toBe('function');
   });
+  it('Debería abrir el popup de google', () => signInGoogle()
+    .then((result) => {
+      expect(signInWithPopup.mock.calls[0][1]).toBe(result.user);
+    }));
+});
+
+// testeando el inicio de sesión con facebook
+describe('probar la función  signInFacebook', () => {
+  it('Deberia ser una funcion signInFacebook', () => {
+    expect(typeof signInFacebook).toBe('function');
+  });
+  it('Debería abrir el popup de google', () => signInFacebook()
+    .then((result) => {
+      expect(signInWithPopup.mock.calls[0][1]).toBe(result.user);
+    }));
+});
+
+// testeando el inicio de sesión con github
+describe('probar la función signInGitHub', () => {
+  it('Deberia ser una funcion signInGitHub', () => {
+    expect(typeof signInFacebook).toBe('function');
+  });
+  it('Debería abrir el popup de github', () => signInGitHub()
+    .then((result) => {
+      expect(signInWithPopup.mock.calls[0][1]).toBe(result.user);
+    }));
 });

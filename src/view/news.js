@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/named */
 /* eslint-disable no-console */
@@ -36,7 +37,7 @@ const viewNews = `
   <section class="postContainer" id="postContainer"></section>
   
   `;
-
+document.body.style.background = '#fff';
 const divElement = document.createElement('div');
 const news = divElement;
 divElement.setAttribute('id', 'contentNews');
@@ -196,22 +197,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 formularioPost.addEventListener('submit', async (e) => {
   e.preventDefault();
   const description = formularioPost.postDescription;
+  if (description.value === '') {
+    alert('Por favor cuéntanos algo');
+  } else {
+    if (!editStatus) {
+      await savePost(description.value, fullname, uidUser);
+    } else {
+      console.log(idp);
+      await updateDocPost(idp, {
+        description: description.value,
+      });
+
+      editStatus = false;
+      idp = '';
+      formularioPost.btnPostSave.innerText = 'Guardar';
+    }
+    formularioPost.reset();
+    description.focus();
+  }
 
   // const name = formularioPost.userName;
-  if (!editStatus) {
-    await savePost(description.value, fullname, uidUser);
-  } else {
-    console.log(idp);
-    await updateDocPost(idp, {
-      description: description.value,
-    });
-
-    editStatus = false;
-    idp = '';
-    formularioPost.btnPostSave.innerText = 'Guardar';
-  }
-  formularioPost.reset();
-  description.focus();
 });
 
 // Funcion para salir

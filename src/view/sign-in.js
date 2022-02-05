@@ -39,9 +39,9 @@ const login = () => {
       <div class='registerUser'>
         <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
       </div>
-      <img class = 'women' src='../img/mujeresunidas_celu.png'>
     </form>
-    `;
+    <img class='women' src='../img/mujeresunidas_celu.png'>
+  `;
   document.body.style.background = '#EAC9E2';
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentLogin');
