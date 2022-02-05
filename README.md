@@ -3,7 +3,7 @@
 ## Índice
 
 * [1. DEFINICIÓN DEL PRODUCTO](#1-DEFINICIÓN-DEL-PRODUCTO)
-* [2. HISTORIAS DE USUARIO](#2-HISTORIAS-DE-USUARIO)
+* [2. DEFINICIÓN DEL PRODUCTO](#2-DEFINICIÓN-DEL-PRODUCTO)
 * [3. PROTOTIPO DE BAJA FIDELIDAD](#3-PROTOTIPO-DE-BAJA-FIDELIDAD)
 * [4. PROTOTIPO DE ALTA FIDELIDAD](#4-PROTOTIPO-DE-ALTA-FIDELIDAD)
 * [5. TESTS](#5-TESTS)
@@ -20,7 +20,7 @@ Los usuarios son las mujeres que están siendo violentadas y todas las personas 
 
 La red social tiene el objetivo de convertirse en una comunidad segura donde las mujeres podrán encontrar apoyo de otras mujeres y profesionales. También, crear eventos que motiven a las mujeres a salir del ambiente en el que se encuentren. Además, compartir sus emociones, encontrar información rápida y verás sobre lugares de apoyo a los que se pueda acudir, hacer publicaciones y tener un chat privado para contactar al usuario que desee.
 
-## 2. HISTORIAS DE USUARIO 📚
+## 2. DEFINICIÓN DEL PRODUCTO 📚
 
 ¿Quiénes son los principales usuarios de producto?
     
