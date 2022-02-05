@@ -19,27 +19,25 @@ let currentUser;
 
 const login = () => {
   const viewLogin = `
-    <form id='formLogin' class = 'formLogin'>
-      <h2 class='tituloLogin'>Sinchi Warmi</h2>
-      <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
-      <div class="eye">
-        <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
-        <input type='password' placeholder='Ingrese su contraseña' id='pass' class='passLogin'>
-      </div>
-      <div class= 'forget'>
+    <form id='formLogin' class='formLogin'>
+    <h2 class='tituloLogin'>Sinchi Warmi</h2>
+      <div class="containerSignIn"> 
+        <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
+        <div class="eye">
+          <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
+          <input type='password' placeholder='Ingrese su contraseña' id='pass' class='passLogin'>
+        </div>
         <a class='forgetpass' id='forgetpass' href='#/'>¿Has olvidado tu contraseña?</a>  
+        <input type='submit' value='LogIn' id='save' class='save'>
+        <p id="textVerified"></p>
+        <div class='iconos_sesion'>
+          <img src="../img/google.png" id="btn-google" class="btn-google">
+          <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
+          <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
+        </div>
+        <p class="acountP">¿No tienes cuenta? <a href="#/sign-up"> Regístrate aquí</a></p>
       </div>
-      <input type='submit' value='LogIn' id='save'>
-      <p id="textVerified"></p>
-      <div class='iconos_sesion'>
-        <img src="../img/google.png" id="btn-google" class="btn-google">
-        <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
-        <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
-      </div>
-      <div class='registerUser'>
-        <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
-      </div>
-      <img class = 'women' src='../img/mujeresunidas_celu.png'>
+      <img class='women' src='../img/mujeresunidas_celu.png'>
     </form>
     `;
   document.body.style.background = '#EAC9E2';
