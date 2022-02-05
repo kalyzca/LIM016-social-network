@@ -97,6 +97,9 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
     Snapshots:   0 total
     Time:        1.513 s, estimated 2 s
     Ran all test suites.
+    
+    ![auth_pruebas](https://user-images.githubusercontent.com/69210648/152661103-e2a825aa-84c3-4c49-be8a-604974c13651.png)
+
 
 ## 6. HERRAMIENTAS 🛠️
 
