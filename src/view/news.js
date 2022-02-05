@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/named */
 /* eslint-disable no-console */
@@ -37,7 +36,7 @@ const viewNews = `
   <section class="postContainer" id="postContainer"></section>
   
   `;
-document.body.style.background = '#fff';
+
 const divElement = document.createElement('div');
 const news = divElement;
 divElement.setAttribute('id', 'contentNews');
@@ -174,18 +173,17 @@ window.addEventListener('DOMContentLoaded', async () => {
     // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
-        await getDocPost(e.target.dataset.id)
-          .then((result) => {
-            console.log('doc del post', result.id);
-            console.log('uid - usuario loguedo', uidUser);
-            // setLikes(result.id, uidUser).FieldValue;
-            if (arraylike.indexOf(uidUser) !== -1) {
-              removeLikes(result.id, uidUser).FieldValue;
-              console.log(arraylike, 'hola');
-            } else {
-              setLikes(result.id, uidUser).FieldValue;
-            }
-          });
+        await getDocPost(e.target.dataset.id).then((result) => {
+          console.log('doc del post', result.id);
+          console.log('uid - usuario loguedo', uidUser);
+          // setLikes(result.id, uidUser).FieldValue;
+          if (arraylike.indexOf(uidUser) !== -1) {
+            removeLikes(result.id, uidUser).FieldValue;
+            console.log(arraylike, 'hola');
+          } else {
+            setLikes(result.id, uidUser).FieldValue;
+          }
+        });
       });
     });
 
@@ -215,8 +213,6 @@ formularioPost.addEventListener('submit', async (e) => {
     formularioPost.reset();
     description.focus();
   }
-
-  // const name = formularioPost.userName;
 });
 
 // Funcion para salir

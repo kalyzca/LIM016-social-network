@@ -1,3 +1,4 @@
+/* eslint-disable comma-spacing */
 /* eslint-disable no-console */
 // Importamos las funciones de firestore
 import { addDoc, collection } from '../src/lib/firebase/config';
