@@ -173,18 +173,17 @@ window.addEventListener('DOMContentLoaded', async () => {
     // const iconLike = postContainer.querySelectorAll('.fa-thumbs-up');
     btnLikes.forEach((btnlike) => {
       btnlike.addEventListener('click', async (e) => {
-        await getDocPost(e.target.dataset.id)
-          .then((result) => {
-            console.log('doc del post', result.id);
-            console.log('uid - usuario loguedo', uidUser);
-            // setLikes(result.id, uidUser).FieldValue;
-            if (arraylike.indexOf(uidUser) !== -1) {
-              removeLikes(result.id, uidUser).FieldValue;
-              console.log(arraylike, 'hola');
-            } else {
-              setLikes(result.id, uidUser).FieldValue;
-            }
-          });
+        await getDocPost(e.target.dataset.id).then((result) => {
+          console.log('doc del post', result.id);
+          console.log('uid - usuario loguedo', uidUser);
+          // setLikes(result.id, uidUser).FieldValue;
+          if (arraylike.indexOf(uidUser) !== -1) {
+            removeLikes(result.id, uidUser).FieldValue;
+            console.log(arraylike, 'hola');
+          } else {
+            setLikes(result.id, uidUser).FieldValue;
+          }
+        });
       });
     });
 
@@ -196,22 +195,24 @@ window.addEventListener('DOMContentLoaded', async () => {
 formularioPost.addEventListener('submit', async (e) => {
   e.preventDefault();
   const description = formularioPost.postDescription;
-
-  // const name = formularioPost.userName;
-  if (!editStatus) {
-    await savePost(description.value, fullname, uidUser);
+  if (description.value === '') {
+    alert('Por favor cuéntanos algo');
   } else {
-    console.log(idp);
-    await updateDocPost(idp, {
-      description: description.value,
-    });
+    if (!editStatus) {
+      await savePost(description.value, fullname, uidUser);
+    } else {
+      console.log(idp);
+      await updateDocPost(idp, {
+        description: description.value,
+      });
 
-    editStatus = false;
-    idp = '';
-    formularioPost.btnPostSave.innerText = 'Guardar';
+      editStatus = false;
+      idp = '';
+      formularioPost.btnPostSave.innerText = 'Guardar';
+    }
+    formularioPost.reset();
+    description.focus();
   }
-  formularioPost.reset();
-  description.focus();
 });
 
 // Funcion para salir
@@ -229,4 +230,3 @@ logOut.addEventListener('click', () => {
 });
 
 export { news };
-
