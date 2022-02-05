@@ -90,15 +90,7 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
 ## 5. TESTS ✅
 
-   ![image](https://user-images.githubusercontent.com/91863929/152394771-c80a0eb1-3565-4f2f-a816-e6b5eef5421b.png)
-    
-    Test Suites: 1 passed, 1 total
-    Tests:       14 passed, 14 total
-    Snapshots:   0 total
-    Time:        1.513 s, estimated 2 s
-    Ran all test suites.
-    
-    ![auth_pruebas](https://user-images.githubusercontent.com/69210648/152661103-e2a825aa-84c3-4c49-be8a-604974c13651.png)
+   ![auth_pruebas](https://user-images.githubusercontent.com/69210648/152661103-e2a825aa-84c3-4c49-be8a-604974c13651.png)
 
 
 ## 6. HERRAMIENTAS 🛠️
