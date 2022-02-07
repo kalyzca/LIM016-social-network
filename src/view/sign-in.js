@@ -23,7 +23,7 @@ const login = () => {
     <h2 class='tituloLogin'>Sinchi Warmi</h2>
       <div class="containerSignIn"> 
         <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
-        <div class="eye">
+        <div class="eyeSignIn">
           <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
           <input type='password' placeholder='Ingrese su contraseña' id='pass' class='passLogin'>
         </div>
