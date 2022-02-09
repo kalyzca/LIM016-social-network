@@ -7,7 +7,10 @@ export const onAuthStateChanged = jest.fn(() => Promise.resolve({}));
 // mockeando para crear un usuario
 export const createUserWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
 
-// mockeando el envio de un email de verificación
+// mockeando currentUser
+export const currentUser = jest.fn();
+
+// Mockeando el email de verificación
 export const sendEmailVerification = jest.fn(() => Promise.resolve({}));
 
 // mockeando inicio de sesión
@@ -20,7 +23,7 @@ export const signOut = jest.fn(() => Promise.resolve({}));
 export const signInWithPopup = jest.fn((_auth_, provider) => Promise.resolve({ provider }));
 
 // mockeando función de restablecimiento de contraseña
-export const sendPasswordResetEmail = jest.fn(() => Promise.resolve());
+export const sendPasswordResetEmail = jest.fn(() => Promise.resolve({}));
 
 // mockeando la  funciones de firestore
 // mockeando la base de datos

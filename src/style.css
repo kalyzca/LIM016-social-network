@@ -15,7 +15,7 @@ body{
   font-weight: 300;
   background-color: #fff;
 }
-.form{
+.formSignUp, .profileRegister{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +92,7 @@ form>input[type="submit"] {
   background-size: 1.5rem;
   margin-bottom: 0.8rem;
 }
-.eye{
+.eye, .eyeSignIn{
   display: flex;
   align-items:center;
   position: relative;
@@ -107,12 +107,21 @@ form>input[type="submit"] {
   cursor: pointer;
   top: 10%;
 }
+
+.formLogin>.eyeSignIn>.iconEye{
+  color: #9b9912;
+  position: absolute;
+  right: 0px;
+  margin: 0px;
+  cursor: pointer;
+  top: 5%;
+}
 .forgetpass{
   text-decoration: none;
   font-size: 14px;
 }
 .acountP{
-  font-size: 15p;
+  font-size: 15px;
 }
 .registerUser{
   display: flex;
@@ -145,6 +154,7 @@ form>input[type="submit"] {
 }
 .divUserSignUp, .divEmailSignUp{
   position: relative;
+  
 }
 .userSignUp,
 .emailSignUp,
@@ -484,11 +494,11 @@ nav{
     width: 100%;
   }
   .formLogin{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
   }
   .containerSignIn{
     height: 100%;
@@ -500,6 +510,8 @@ nav{
     justify-content: center;
     align-items: center;
     display: flex;
+    margin: 0;
+    
   }
   .emailLogin,
   .passLogin
@@ -508,7 +520,7 @@ nav{
   }
   .women{
     width: 50%;
-    height: 600px;
+    height: 500px; /*cambiado*/
     align-self: flex-start;
     object-fit: inherit;
   }
@@ -520,8 +532,8 @@ nav{
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     align-self: flex-start;
     width: 50%;
-}
-.iconEye{
-  right: 2px;
-}
+  }
+  .iconEye{
+    right: 2px;
+  }
 }
