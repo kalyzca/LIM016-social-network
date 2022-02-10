@@ -16,7 +16,7 @@ export const signInWithEmailAndPassword = jest.fn(() => Promise.resolve({}));
 // mockeando cerrar sesión
 export const signOut = jest.fn(() => Promise.resolve({}));
 
-// mockeando la inicio de sesión con google
+// mockeando la inicio de sesión con google, facebook y github
 export const signInWithPopup = jest.fn((_auth_, provider) => Promise.resolve({ provider }));
 
 // mockeando función de restablecimiento de contraseña

@@ -25,7 +25,7 @@ body{
 .women{
  width: 100vw;
  height: 15rem;
- object-fit: inherit;
+ object-fit: fill;
 }
 
 /* Estilos de botones submit */
@@ -102,7 +102,7 @@ form>input[type="submit"] {
 .iconEye{
   color: #EAC9E2;
   position: absolute;
-  right: 30px;
+  right: 55px;
   margin: 5px;
   cursor: pointer;
   top: 10%;
@@ -112,7 +112,7 @@ form>input[type="submit"] {
   font-size: 14px;
 }
 .acountP{
-  font-size: 15p;
+  font-size: 15px;
 }
 .registerUser{
   display: flex;
@@ -508,12 +508,12 @@ nav{
   }
   .women{
     width: 50%;
-    height: 600px;
+    height: 559px;
     align-self: flex-start;
-    object-fit: inherit;
+    object-fit: fill;
   }
   .tituloLogin {
-    padding: 4rem 0 1rem;
+    padding: 1rem;
     font-size: 3.5rem;
     text-align: center;
     color: #FFFFFF;

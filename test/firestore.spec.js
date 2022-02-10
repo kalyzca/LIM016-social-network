@@ -14,6 +14,7 @@ describe('Funcion para crear el usuario saveUser', () => {
   it('Deberia subir data a coleccion saveUsers', () => saveUser('karenberrio@gmail.com', '123456', 'karen', 'PsCjKz4DgTMRVTy6POdDYzmL2bD3')
     .then(async () => {
       const prueba = await addDoc(collection.mock.results[0].value, addDoc.mock.calls[0][1]);
+      // [0][1] el indice de donde jalamos la primera data
       const datosUsuario = {
         saveUsers: {
           email: 'karenberrio@gmail.com',
