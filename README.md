@@ -1,6 +1,8 @@
 # SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
 ## Índice
+# SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
+
 
 * [1. DEFINICIÓN DEL PRODUCTO](#1-DEFINICIÓN-DEL-PRODUCTO)
 * [2. HISTORIAS DE USUARIO](#2-HISTORIAS-DE-USUARIO)
@@ -90,13 +92,6 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
 ## 5. TESTS ✅
 
-   ![image](https://user-images.githubusercontent.com/91863929/152394771-c80a0eb1-3565-4f2f-a816-e6b5eef5421b.png)
-    
-    Test Suites: 1 passed, 1 total
-    Tests:       14 passed, 14 total
-    Snapshots:   0 total
-    Time:        1.513 s, estimated 2 s
-    Ran all test suites.
 
 ## 6. HERRAMIENTAS 🛠️
 

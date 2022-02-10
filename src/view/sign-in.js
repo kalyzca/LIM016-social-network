@@ -1,5 +1,5 @@
-/* eslint-disable import/named */
 /* eslint-disable no-alert */
+/* eslint-disable import/no-mutable-exports */
 /* eslint-disable no-console */
 import {
   GoogleAuthProvider,
@@ -8,64 +8,79 @@ import {
 } from '../lib/firebase/config.js';
 import {
   loginUser,
-  // userStateChange,
+  userStateChange,
   signInGoogle,
   signInFacebook,
   signInGitHub,
   resetPassword,
 } from '../lib/firebase/auth.js';
 
+let currentUser;
+
 const login = () => {
   const viewLogin = `
-    <form id='formLogin' class = 'formLogin'>
-      <h2 class = 'tituloLogin'>Sinchi Warmi</h2>
-      <input type='text' placeholder='Ingrese su correo electrónico' id ='emailLogin' class='emailLogin'>
-      <input type='password' placeholder='Ingrese su contraseña' id = 'pass' class='passLogin'>
-      <div class= 'forget'>
-        <a class ='forgetpass' id='forgetpass' href= '#/'>
-          <p>¿Has olvidado tu contraseña?</p>
-        </a>  
+    <form id='formLogin' class='formLogin'>
+    <h2 class='tituloLogin'>Sinchi Warmi</h2>
+      <div class="containerSignIn"> 
+        <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
+        <div class="eye">
+          <span class='iconEye'><i class="fas fa-eye-slash"></i></span>
+          <input type='password' placeholder='Ingrese su contraseña' id='pass' class='passLogin'>
+        </div>
+        <a class='forgetpass' id='forgetpass' href='#/'>¿Has olvidado tu contraseña?</a>  
+        <input type='submit' value='LogIn' id='save' class='save'>
+        <p id="textVerified"></p>
+        <div class='iconos_sesion'>
+          <img src="../img/google.png" id="btn-google" class="btn-google">
+          <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
+          <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
+        </div>
+        <p class="acountP">¿No tienes cuenta? <a href="#/sign-up"> Regístrate aquí</a></p>
       </div>
-      <input type='submit' value='LogIn' id='save'>
-      <p id="textVerified"></p>
-      <div class='iconos_sesion'>
-        <img src="../img/google.png" alt="img-google" class="btn-google" id="btn-google">
-        <img src='../img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
-        <img src='../img/github.jpeg' id='gitHub' class='btn-github'> 
-      </div>
-      <div class = 'registerUser'>
-        <p>¿No tienes cuenta?,</p><a href="#/sign-up"><p>Regístrate</p></a>
-      </div>
-      <img class = 'women' src='../img/mujeresunidas_celu.png'>
+      <img class='women' src='../img/mujeresunidas_celu.png'>
     </form>
     `;
+  document.body.style.background = '#EAC9E2';
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'contentLogin');
   divElement.setAttribute('class', 'contentLogin');
   divElement.innerHTML = viewLogin;
+  const emailLogin = divElement.querySelector('#emailLogin');
+  const pass = divElement.querySelector('#pass');
+  const iconEye = divElement.querySelector('.iconEye');
+  const icon = divElement.querySelector('i');
+  iconEye.addEventListener('click', () => {
+    if (pass.type === 'password') {
+      pass.type = 'text';
+      icon.classList.remove('fa-eye-slash');
+      icon.classList.add('fa-eye');
+    } else {
+      pass.type = 'password';
+      icon.classList.add('fa-eye-slash');
+      icon.classList.remove('fa-eye');
+    }
+  });
 
-  // Evento para obtener el correo electrónico que se esta escribiendo
-  let valueEmail;
-  const emailSignIn = divElement.querySelector('#emailLogin');
-  emailSignIn.addEventListener('input', () => {
-    valueEmail = emailSignIn.value;
-    return valueEmail;
+  userStateChange((user) => {
+    if (user) {
+      currentUser = user;
+      console.log('Usuario logueado', user);
+    } else {
+      console.log('Usuario no logueado');
+    }
+    return currentUser;
   });
 
   // Evento cuando olvidaste tu contraseña para iniciar sesión
-  const password = divElement.querySelector('#forgetpass');
-  password.addEventListener('click', () => {
-    console.log(valueEmail);
-    resetPassword(valueEmail)
+  const forgetpass = divElement.querySelector('#forgetpass');
+  forgetpass.addEventListener('click', () => {
+    resetPassword(emailLogin.value)
       .then(() => {
-        // Password reset email sent!
-        console.log('Se enviado a ', valueEmail, ' un link para restablecer contraseña.');
-        // ..
+        console.log('Se enviado a ', emailLogin.value, ' un link para restablecer contraseña.');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
         console.log(errorCode, errorMessage);
       });
   });
@@ -74,19 +89,15 @@ const login = () => {
   const formLogin = divElement.querySelector('#formLogin'); // divElement ya es un elemento de html
   formLogin.addEventListener('submit', (event) => {
     event.preventDefault();
-    const emailLogin = document.querySelector('#emailLogin');
-    const pass = document.querySelector('#pass');
-
-    loginUser(emailLogin.value, pass.value)
+    currentUser = loginUser(emailLogin.value, pass.value)
       .then((userCredential) => {
         const userEmailVerified = userCredential.user.emailVerified;
-
         if (userEmailVerified === true) {
+          console.log('Usuario registrado y con correo verificado');
           window.location.hash = '#/news';
-          console.log('Usuario logueado');
         } else {
           // muestra mensaje de error si no verifico por correo
-          console.log('Error, el usuario no esta logueado');
+          console.log('Error, el usuario no se verifico el correo ');
         }
       })
       .catch((error) => {
@@ -112,7 +123,7 @@ const login = () => {
   // Iniciando sesion con google
   const google = divElement.querySelector('#btn-google');
   google.addEventListener('click', () => {
-    signInGoogle()
+    currentUser = signInGoogle()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -122,6 +133,7 @@ const login = () => {
         console.log(credential);
         console.log(token);
         console.log(user);
+
         console.log('iniciaste sesion con google', user);
         window.location.hash = '#/news';
       })
@@ -142,7 +154,7 @@ const login = () => {
   // Iniciando sesion con facebook
   const facebook = divElement.querySelector('#btn-facebook');
   facebook.addEventListener('click', () => {
-    signInFacebook()
+    currentUser = signInFacebook()
       .then((result) => {
         // The signed-in user info.
         const user = result.user;
@@ -170,10 +182,10 @@ const login = () => {
         console.log(credential);
       });
   });
-  // Iniciando sesion con facebook
+  // Iniciando sesion con github
   const gitHub = divElement.querySelector('#gitHub');
   gitHub.addEventListener('click', () => {
-    signInGitHub()
+    currentUser = signInGitHub()
       .then((result) => {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         const credential = GithubAuthProvider.credentialFromResult(result);
@@ -200,44 +212,8 @@ const login = () => {
         console.log(credential);
       });
   });
+
   return divElement;
 };
 
-// userStateChange((user) => {
-//   const inputEmail = document.getElementById('inputemail');
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const name = user.displayName;
-//     const email = user.email;
-//     const emailVerified = user.emailVerified;
-//     const uid = user.uid;
-//     const phone = user.phoneNumber;
-//     const photo = user.photoURL;
-//     console.log(uid, email, emailVerified, name, photo, phone);
-//     inputEmail.value = email;
-//     console.log('usuario ha iniciado sesion');
-//   } else {
-//     // User is signed out
-//     console.log('usuario ha cerrado sesion');
-//   }
-// });
-
-// userStateChange((user) => {
-//   if (user) {
-//     // const user = auth.currentUser;
-//     const displayName = user.displayName;
-//     const uid = user.uid;
-//     const email = user.email;
-//     const photoURL = user.photoURL;
-//     // console.log(uid);
-//     // console.log(email);
-//     const emailVerified = user.emailVerified;
-//     const textVerified = document.getElementById('textVerified');
-//     if (emailVerified === false) {
-//       textVerified.value = 'Email no verificado';
-//     } else textVerified.value = 'Email verificado';
-//     console.log(email, displayName, uid, emailVerified, photoURL);
-//   }
-// )};
-export { login };
+export { login, currentUser };
