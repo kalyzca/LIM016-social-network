@@ -92,6 +92,7 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 
 ## 5. TESTS ✅
 
+  ![image](https://user-images.githubusercontent.com/91863929/153318406-f9bcac39-0c24-4bda-b928-7caea6c2fb20.png)
 
 ## 6. HERRAMIENTAS 🛠️
 
