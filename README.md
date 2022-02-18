@@ -1,12 +1,11 @@
-# Creando una Red Social
+# SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
 ## Índice
 # SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
-## Índice
 
 * [1. DEFINICIÓN DEL PRODUCTO](#1-DEFINICIÓN-DEL-PRODUCTO)
-* [2. USUARIOS DEL PRODUCTO](#2-USUARIOS-DEL-PRODUCTO)
+* [2. HISTORIAS DE USUARIO](#2-HISTORIAS-DE-USUARIO)
 * [3. PROTOTIPO DE BAJA FIDELIDAD](#3-PROTOTIPO-DE-BAJA-FIDELIDAD)
 * [4. PROTOTIPO DE ALTA FIDELIDAD](#4-PROTOTIPO-DE-ALTA-FIDELIDAD)
 * [5. TESTS](#5-TESTS)
@@ -23,7 +22,7 @@ Los usuarios son las mujeres que están siendo violentadas y todas las personas 
 
 La red social tiene el objetivo de convertirse en una comunidad segura donde las mujeres podrán encontrar apoyo de otras mujeres y profesionales. También, crear eventos que motiven a las mujeres a salir del ambiente en el que se encuentren. Además, compartir sus emociones, encontrar información rápida y verás sobre lugares de apoyo a los que se pueda acudir, hacer publicaciones y tener un chat privado para contactar al usuario que desee.
 
-## 2. USUARIOS DEL PRODUCTO 📚
+## 2. HISTORIAS DE USUARIO 📚
 
 ¿Quiénes son los principales usuarios de producto?
     
@@ -92,8 +91,6 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
   ![image](https://user-images.githubusercontent.com/91863929/152291611-e92e9fd4-2d36-4f9f-89fc-40c54bb6ff92.png)
 
 ## 5. TESTS ✅
-
-   ![auth_pruebas](https://user-images.githubusercontent.com/69210648/152661103-e2a825aa-84c3-4c49-be8a-604974c13651.png)
 
 
 ## 6. HERRAMIENTAS 🛠️

@@ -23,13 +23,13 @@ import {
 // Función para guardar el usuario registrado
 const saveUser = async (email, password, user, uid) => {
   try {
-    await addDoc(collection(db, 'saveUsers'), { // nuevo doc con su par clave-valor
+    const docRef = await addDoc(collection(db, 'saveUsers'), { // nuevo doc con su par clave-valor
       email,
       password,
       user,
       uid,
     });
-    console.log('Colleción  saveUsers creada:');
+    console.log('Documento escrito con su ID: ', docRef.id);
   } catch (e) {
     console.error('Error al añadir el documento: ', e);
   }

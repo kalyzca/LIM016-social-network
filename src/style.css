@@ -15,7 +15,7 @@ body{
   font-weight: 300;
   background-color: #fff;
 }
-.formSignUp, .profileRegister{
+.form{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +25,7 @@ body{
 .women{
  width: 100vw;
  height: 15rem;
- object-fit: inherit;
+ object-fit: fill;
 }
 
 /* Estilos de botones submit */
@@ -92,7 +92,7 @@ form>input[type="submit"] {
   background-size: 1.5rem;
   margin-bottom: 0.8rem;
 }
-.eye, .eyeSignIn{
+.eye{
   display: flex;
   align-items:center;
   position: relative;
@@ -102,19 +102,10 @@ form>input[type="submit"] {
 .iconEye{
   color: #EAC9E2;
   position: absolute;
-  right: 30px;
+  right: 55px;
   margin: 5px;
   cursor: pointer;
   top: 10%;
-}
-
-.formLogin>.eyeSignIn>.iconEye{
-  color: #9b9912;
-  position: absolute;
-  right: 0px;
-  margin: 0px;
-  cursor: pointer;
-  top: 5%;
 }
 .forgetpass{
   text-decoration: none;
@@ -154,7 +145,6 @@ form>input[type="submit"] {
 }
 .divUserSignUp, .divEmailSignUp{
   position: relative;
-  
 }
 .userSignUp,
 .emailSignUp,
@@ -488,18 +478,17 @@ nav{
   margin: 0 0.5rem;
 }
 
-@media only screen and (min-width: 800px) and (max-width: 1500px){
+@media only screen and (min-width: 800px){
   html, body{
     height:100%;
     width: 100%;
-    
   }
   .formLogin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
   }
   .containerSignIn{
     height: 100%;
@@ -511,8 +500,6 @@ nav{
     justify-content: center;
     align-items: center;
     display: flex;
-    margin: 0;
-    
   }
   .emailLogin,
   .passLogin
@@ -521,20 +508,20 @@ nav{
   }
   .women{
     width: 50%;
-    height: 500px; /*cambiado*/
+    height: 559px;
     align-self: flex-start;
-    object-fit: inherit;
+    object-fit: fill;
   }
   .tituloLogin {
-    padding: 4rem 0 1rem;
+    padding: 1rem;
     font-size: 3.5rem;
     text-align: center;
     color: #FFFFFF;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     align-self: flex-start;
     width: 50%;
-  }
-  .iconEye{
-    right: 2px;
-  }
+}
+.iconEye{
+  right: 2px;
+}
 }
