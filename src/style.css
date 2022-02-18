@@ -497,6 +497,7 @@ nav{
   align-items: center;
   flex-direction: column;
   flex: 1;
+  height: 100vh;
   }
   .containerSignIn{
     height: 100%;
@@ -516,7 +517,7 @@ nav{
   }
   .women{
     width: 50%;
-    height: 559px;
+    height: 20%;
     align-self: flex-start;
     object-fit: fill;
   }
