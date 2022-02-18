@@ -41,5 +41,4 @@ export {
   signInFacebook,
   signInGitHub,
   resetPassword,
-
 };
