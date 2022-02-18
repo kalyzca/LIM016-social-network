@@ -517,7 +517,7 @@ nav{
   }
   .women{
     width: 50%;
-    height: 20%;
+    height: 100%;
     align-self: flex-start;
     object-fit: fill;
   }
