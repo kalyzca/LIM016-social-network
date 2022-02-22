@@ -3,7 +3,6 @@
 ## Índice
 # SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
-
 * [1. DEFINICIÓN DEL PRODUCTO](#1-DEFINICIÓN-DEL-PRODUCTO)
 * [2. HISTORIAS DE USUARIO](#2-HISTORIAS-DE-USUARIO)
 * [3. PROTOTIPO DE BAJA FIDELIDAD](#3-PROTOTIPO-DE-BAJA-FIDELIDAD)
@@ -13,7 +12,7 @@
 * [7. CHECKLIST](#7-CHECKLIST)
 * [8. AUTORAS](#8-AUTORAS)
 
-***
+
 ## 1. DEFINICIÓN DE PRODUCTO 📝
 
 El proyecto consiste en la creación de una red social para apoyar a mujeres que esten pasando por situaciones de violencia. Esta idea surge de la necesidad de apoyar a mujeres que no cuenten con los recursos necesarios o que no sepan como salir del ambiente en el que están. Esta red social tiene como propósito crear una comunidad donde se pueda buscar y dar ayuda.
@@ -23,6 +22,7 @@ Los usuarios son las mujeres que están siendo violentadas y todas las personas 
 La red social tiene el objetivo de convertirse en una comunidad segura donde las mujeres podrán encontrar apoyo de otras mujeres y profesionales. También, crear eventos que motiven a las mujeres a salir del ambiente en el que se encuentren. Además, compartir sus emociones, encontrar información rápida y verás sobre lugares de apoyo a los que se pueda acudir, hacer publicaciones y tener un chat privado para contactar al usuario que desee.
 
 ## 2. HISTORIAS DE USUARIO 📚
+
 
 ¿Quiénes son los principales usuarios de producto?
     
@@ -93,6 +93,7 @@ La red social tiene el objetivo de convertirse en una comunidad segura donde las
 ## 5. TESTS ✅
 
   ![image](https://user-images.githubusercontent.com/91863929/153318406-f9bcac39-0c24-4bda-b928-7caea6c2fb20.png)
+
 
 ## 6. HERRAMIENTAS 🛠️
 
