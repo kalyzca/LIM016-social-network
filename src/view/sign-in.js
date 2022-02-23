@@ -20,7 +20,7 @@ let currentUser;
 const login = () => {
   const viewLogin = `
     <form id='formLogin' class='formLogin'>
-    <h2 class='tituloLogin'>Sinchi Warmi</h2>
+      <h2 class='tituloLogin'>Sinchi Warmi</h2>
       <div class="containerSignIn"> 
         <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
         <div class="eye">
