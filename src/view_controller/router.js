@@ -12,7 +12,7 @@ const changeView = (route) => {
       mainContainer.appendChild(components.News);
       break;
     }
-    case '#/': {
+    case '#/': case '/': case '': {
       mainContainer.appendChild(components.Login());
       break;
     }
