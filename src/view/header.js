@@ -9,7 +9,7 @@ const viewHeader = `
        
         <li><a href="#/profile"><img src="https://img.icons8.com/ios/50/000000/person-female--v1.png"/></a></li>
 
-        <li><a><img src= "../img/notificaciones.png"></a></li>
+        <li><a><img src= "./img/notificaciones.png"></a></li>
         <li><a href="#/" id="logOut"><img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-sign-in-call-to-action-bearicons-detailed-outline-bearicons.png"/></a></li>
         
       </ul>

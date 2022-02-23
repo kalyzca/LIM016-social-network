@@ -10,6 +10,7 @@ import {
   providerFacebook,
   providerGitHub,
   sendPasswordResetEmail,
+
 } from './config.js';
 // SIGN-UP
 const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
