@@ -1,7 +1,7 @@
 # SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
 
 ## Índice
-# SINCHI WARMI 👩👩‍🦰👩‍🦱👱‍♀️
+
 
 
 * [1. DEFINICIÓN DEL PRODUCTO](#1-DEFINICIÓN-DEL-PRODUCTO)
