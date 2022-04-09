@@ -21,7 +21,7 @@ const login = () => {
   const viewLogin = `
     <form id='formLogin' class='formLogin'>
       <h2 class='tituloLogin'>Sinchi Warmi</h2>
-      <div class="containerSignIn"> 
+      <div class ='containerFormSignUp'>
         <input type='text' placeholder='Ingrese su correo electrónico' id='emailLogin' class='emailLogin'>
         <div class="eye">
           <span class='iconEye'><i class="fas fa-eye-slash"></i></span>

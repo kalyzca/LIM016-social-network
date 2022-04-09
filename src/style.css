@@ -42,9 +42,9 @@ form>input[type="submit"], .btnSignUp {
 /* Sign in */
 .formLogin{
   display: flex;
+  flex-direction: column;
   justify-content:flex-start;
   align-items: center;
-  flex-direction: column;
   width: 100%;
   height: 100vh;
  
@@ -52,10 +52,9 @@ form>input[type="submit"], .btnSignUp {
 .containerSignIn, .containerFormSignUp{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
+  justify-content: flex-start;
   align-items: center; 
-  
+ 
 }
 .save{
   margin: 0.75rem 2rem;
@@ -145,7 +144,6 @@ form>input[type="submit"], .btnSignUp {
 /* Sign up */
 .formSignUp{
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 100%;
