@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/named */
 /* eslint-disable no-console */
+/* eslint-disable no-alert */
 import { viewHeader } from './header.js';
 import { logOutUser, userStateChange } from '../lib/firebase/auth.js';
 

@@ -31,9 +31,9 @@ const login = () => {
         <input type='submit' value='LogIn' id='save' class='save'>
         <p id="textVerified"></p>
         <div class='iconos_sesion'>
-          <img src="./img/google.png" id="btn-google" class="btn-google">
-          <img src='./img/facebook.png' id='btn-facebook' class= 'btn-facebook'> 
-          <img src='./img/github.jpeg' id='gitHub' class='btn-github'> 
+          <button class="btn-google"><img src="./img/google.png" id="btn-google"></button>
+          <button class="btn-facebook"><img src='./img/facebook.png' id='btn-facebook'> </button>
+          <button class="btn-github"><img src='./img/github.jpeg' id='btn-github'></button>
         </div>
         <p class="acountP">¿No tienes cuenta? <a href="#/sign-up"> Regístrate aquí</a></p>
       </div>
@@ -183,7 +183,7 @@ const login = () => {
       });
   });
   // Iniciando sesion con github
-  const gitHub = divElement.querySelector('#gitHub');
+  const gitHub = divElement.querySelector('#btn-github');
   gitHub.addEventListener('click', () => {
     currentUser = signInGitHub()
       .then((result) => {
