@@ -18,7 +18,7 @@ body{
 
 .women{
  width: 100vw;
- height: 100vh;
+ height: 60vh;
  object-fit: fill;
  
 }
@@ -534,7 +534,7 @@ nav{
   margin: 0 0.5rem;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 700px) {
  
   .formLogin, .formSignUp{
     flex: 1;
@@ -562,7 +562,7 @@ nav{
   }
   .women, .formSignUp>.women{
     width: 50%;
-    height: 75%;
+    height: 65%;
     align-self: flex-start;
     object-fit: fill;
   }
