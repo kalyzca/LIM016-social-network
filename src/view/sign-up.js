@@ -23,6 +23,7 @@ const signUp = () => {
         </div>
         <p id="signUpErrors" class="signUpErrors"></p>
         <input type='submit' value='Registrarme' id='signUp' class= 'btnSignUp'>
+        <a href="#/">Iniciar sesión </a>
       </div>
       <img class = 'women' src='./img/mujeresunidas_celu.png'>
     </form>
