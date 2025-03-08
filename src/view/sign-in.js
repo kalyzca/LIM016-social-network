@@ -95,8 +95,10 @@ const login = () => {
         if (userEmailVerified === true) {
           console.log('Usuario registrado y con correo verificado');
           window.location.hash = '#/news';
+          document.location.reload();
         } else {
           // muestra mensaje de error si no verifico por correo
+          alert('Error, el usuario no se verifico el correo ');
           console.log('Error, el usuario no se verifico el correo ');
         }
       })
